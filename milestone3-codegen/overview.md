@@ -54,7 +54,7 @@ We provide you with a fresh MiniJava editor project, which already covers concre
 
 #### Implementation Details
 
-The projects hides nearly its entire implementation from you. Only the signature for MiniJava abstract syntax trees is accessible. You can find it in  `lib/assignments/MiniJava.str`.
+The projects hides nearly its entire implementation from you. You can find the signature for MiniJava abstract syntax trees in  `lib/assignments/MiniJava.str`, and the signature for desugared ASTs in `lib/assignments/assignment2.str`. This file also connects external strategies which implementations are hidden, for example `type-of`.
 
 ## Material
 
