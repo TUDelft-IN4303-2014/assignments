@@ -55,11 +55,13 @@ This tells Spoofax not to create or write any files. Instead, you need to create
 
 Now you need to extend `to-jbc` to handle methods without local variables.
 
-1. Provide a rule for `to-jbc`, which translates a method without parameters and local variables from MiniJava into a Jasmin method. This rule should call `to-jbc` recursively to translate the statements of the method to a Java bytecode sequence. 
+1. Provide a rule for `to-jbc-desc`, which translates a method name to a method descriptor. To achieve this, you need to retrieve the method's type from the index.
+
+1. Provide a rule for `to-jbc`, which translates a method without parameters and local variables from MiniJava into a Jasmin method. This rule should call `to-jbc` recursively to translate the statements of the method to a Java bytecode sequence. It should also call `to-jbc-desc` to translate the method name to a method descriptor.
 
 2. Provide a rule for `to-jbc`, which translates `this` expressions from MiniJava into sequences of Java bytecode instructions. 
 
-3. Provide a rule for `to-jbc`, which translates method calls without arguments from MiniJava into sequences of Java bytecode instructions. This rule should call `to-jbc` recursively to translate subexpressions to Java bytecode sequences.
+3. Provide a rule for `to-jbc`, which translates method calls without arguments from MiniJava into sequences of Java bytecode instructions. This rule should call `to-jbc` recursively to translate subexpressions to Java bytecode sequences. It should also call `to-jbc-desc` to translate the method name to a method descriptor.
 
 4. Extend the rule for `to-jbc`, which handles empty classes, in order to include code generation for methods.
 
