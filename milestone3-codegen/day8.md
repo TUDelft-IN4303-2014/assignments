@@ -67,6 +67,55 @@ Now you need to extend `to-jbc` to handle methods without local variables.
 
 Challenges are meant to distinguish excellent solutions from good solutions. Typically, they are less guided and require more investigation and programming skills.
 
+### Use Overlays
+
+Code generation rules become hard to read, when you construct large ASTs. Often, these rules inject only small parts into a skeleton AST. For example, the only variable parts in the default constructor of a class are its name `c` and the name of its super class `p`:
+
+    JBCMethod(
+      [PUBLIC()]
+    , Init()
+    , JBCMethodDesc([], Void())
+    , [ JBCLimitStack("1"), JBCLimitLocals("1")
+      , JBCVarDecl(VarNum(0), "this", Reference(c), LabelRef("start"), LabelRef("end"))
+      , JBCLabel("start")
+      , ALOAD_0()
+      , INVOKESPECIAL(JBCMethodRef(CRef(p), MRef(Init()), JBCMethodDesc([], Void())))
+      , RETURN()
+      , JBCLabel("end")
+      ]
+    )
+
+Furthermore, you might use the same pattern in different rules, e.g. in code generation rules for the main class and for ordinary classes. One way to avoid code duplication, are helper strategies. For example, you can have a strategy `to-jbc-constructor` which rewrites a pair of class and super class names to the default constructor. But this leads to runtime overhead. Alternatively, you can use _overlays_, which allow the specification of pattern abstractions.
+
+Overlays are specified in their own section. They are named, can be parametrised, and can be nested:
+
+    overlays
+
+      DEFAULT-CONSTRUCTOR(c, p) =
+        JBCMethod(
+          [PUBLIC()]
+        , Init()
+        , JBCMethodDesc([], Void())
+        , [ JBCLimitStack("1"), JBCLimitLocals("1")
+          , THIS-DECLARATION(c)
+          , JBCLabel("start")
+          , ALOAD_0()
+          , INVOKE-CONSTRUCTOR(p)
+          , RETURN()
+          , JBCLabel("end")
+          ]
+        )
+
+You can use overlays like terms in your rules, both for matching and building:
+
+    rules
+    
+      to-jbc: 
+       Class(c, e, fs, ms) -> JBCFile(header, jbc-fs, [ DEFAULT-CONSTRUCTOR(c, p) | jbc-ms ]) 
+       where ...
+
+You should identify AST patterns in your code generation rules and come up with overlays to improve the readability of these rules.
+
 ### Generate Stack Limit Directives
 
 A stack limit directive tells the Java Virtual Machine the maximum number of elements at the operand stack. To give a precise limit, you need to write a strategy `stack-limit` that maps MiniJava expressions and statements to a stack limit (**IMPORTANT**: Do not do this analysis on the Java Bytecode level). For expressions, you need to know the number of elements already on the stack before the expression is evaluated. You can pass this number as a term parameter. For statements, you do not need this extra argument since statements should not leave any elements on the stack.
