@@ -118,7 +118,7 @@ You should identify AST patterns in your code generation rules and come up with 
 
 ### Generate Stack Limit Directives
 
-A stack limit directive tells the Java Virtual Machine the maximum number of elements at the operand stack. To give a precise limit, you need to write a strategy `stack-limit` that maps MiniJava expressions and statements to a stack limit (**IMPORTANT**: Do not do this analysis on the Java Bytecode level). For expressions, you need to consider the number of elements already on the stack before the expression is evaluated. You can either pass this number as a term parameter or adapt intermediate results accordingly. For statements, you do not need this information since statements should not leave any elements on the stack.
+A stack limit directive tells the Java Virtual Machine the maximum number of elements at the operand stack. To give a precise limit, you need to write a strategy `stack-limit` that maps MiniJava expressions and statements to a stack limit (__IMPORTANT__: Do not do this analysis on the Java Bytecode level). For expressions, you need to consider the number of elements already on the stack before the expression is evaluated. You can either pass this number as a term parameter or adapt intermediate results accordingly. For statements, you do not need this information since statements should not leave any elements on the stack.
 
 The following strategies might be useful:
 
