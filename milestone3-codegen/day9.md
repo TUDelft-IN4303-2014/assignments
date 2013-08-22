@@ -34,7 +34,7 @@ You now need to extend `to-jbc` to cover field and field access. To create field
  
 You can test each rule by selecting a code fragment in the MiniJava editor and running your code generation builder.
 
-## Generate Code for Local Variables and Variable Access
+### Generate Code for Local Variables and Variable Access
 
 Finally, you need to extend `to-jbc` to cover parameters, local variables,  and access to them.
 
@@ -53,3 +53,35 @@ Finally, you need to extend `to-jbc` to cover parameters, local variables,  and 
 4. Provide a rule for `to-jbc`, which translates variable access expressions from MiniJava into sequences of Java bytecode instructions. To distinguish variable from field access, you can rely on `index-uri-namespace`, which rewrites a name to its namespace. To get the variable number associated with a variable, apply `index-get-data(|VarNumber())` to its name.
 
 5. Provide a rule for `to-jbc`, which translates assignments to variables from MiniJava into sequences of Java bytecode instructions. This rule should call `to-jbc` recursively to translate expressions to Java bytecode sequences.
+
+## Challenges
+
+Challenges are meant to distinguish excellent solutions from good solutions. Typically, they are less guided and require more investigation and programming skills.
+
+### Generate Precise Ranges for Local Variables
+
+A precise range of a local variable covers only the parts in the code where the variable is defined and used:
+
+* There is only one continuous range for each variable (in contrast, variable liveness as discussed in the lecture can be fragmented). 
+* The range should cover at least all instructions between the first and last load or store (whatever comes first/last) of a local variable. 
+* Jumps might extend the range, since they might require a variable to survive.
+
+You should extend your code generator to generate precise ranges.
+
+1. Extend `to-jbc` to label load and store instructions.
+
+2. Come up with a strategy `to-range` which maps a variable number to its range, represented as a pair of start and end labels. Similar to the stack limit challenge from last week, the analysis might be easier on the MiniJava code.
+
+3. Integrate `to-range` into your `to-jbc` rule for methods.
+
+### Generate Debug Information
+
+Real-life compilers add debug information to generated code. This information is used by debuggers, but also in runtime error messages. 
+
+Write a MiniJava program that causes a runtime exception, e.g. by accessing an array out of bound. When you compile this program to Java classes and run it in the virtual machine, you expect the runtime error to report you the position of the expression causing the error in the source code. To achieve this behaviour, you need to add source file and line number directives.
+
+1. Extend your `to-jbc` rules for classes, to include a source file directive pointing to the MiniJava file you compile. 
+
+2. When compiling expressions and statements, you can add line number directives in front of the resulting Java Bytecode instructions. To find out the line number of an AST element, you can apply the strategy `origin-line` from the `editor-common.generated` library. Instead of adding code for line numbers to every rule of `to-jbc` dealing with expressions and statements, you should define a new strategy `to-jbc-ln` which generates just  the line number directive and calls your original code generation strategy `to-jbc`. Next, replace applications of `to-jbc` by `to-jbc-ln` wherever you need to generate line numbers.
+
+3. It is pretty common, that several expression occur in the same line. In this case, you should generate only a single line number directive. To achieve this, you can try to store references to line numbers in the index. When `to-jbc-ln` encounters a new line number, it should add the line number directive and store a reference to the number. In all other cases, it will find the line number already in the index and should not add another directive. 
