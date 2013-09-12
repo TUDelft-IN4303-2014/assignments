@@ -33,8 +33,32 @@ Since we use automated grading tools, it is important to get the following steps
     6. As **Project name**, use `MiniJava-<YourNetID>`. 
        Your NetID is your login name on Blackboard. 
        It is not your student number.
+       For example, my project is called `MiniJava-gwachsmuth`.
     7. As **Language name**, use `MiniJava`.
     8. Keep the **Plugin ID and package name** as suggested by the wizard.
     9. As **File extensions**, use `mjv`.
     10. Select both checkboxes.
     11. Press the **Finish** button.
+
+### Initial Test Project
+
+You should create a separate project for your test cases and example programs:
+
+1. Right-click into the Package Explorer.
+2. Select **New** from the context menu.
+3. Choose **Project...** from the list.
+4. Select the **Project** wizard from **General**.
+5. Switch to the **Next** tab.
+6. As **Project name**, use `MiniJava-tests-<YourNetID>`. 
+7. Press the **Finish** button.
+
+## Resources
+
+You can find the *MiniJava Language Reference Manual* in the appendix of the book 
+*Modern Compiler Implementation in Java* (2nd edition).
+The relevant pages are available on [Google books](http://books.google.com/books?id=JNs6fWkJZbAC&pg=PA484).
+
+The [MiniJava project](http://www.cambridge.org/us/features/052182060X/)
+by Joao Cangussu, Jens Palsberg and Vidyut Samanta provides some example programs 
+and an HTML version of the reference manual.
+
