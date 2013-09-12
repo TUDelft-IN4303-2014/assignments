@@ -149,7 +149,7 @@ As an alternative, you can also specify two fragments in concrete syntax, which 
 You can find a table listing the associativity and priorities of operators in [this book](http://introcs.cs.princeton.edu/java/11precedence/).
 Do not focus only on binary expressions.
 
-##### Layout
+#### Layout
 
 Finally, you can focus on layout. 
 Think about places where whitespace is not optional but mandatory and define corresponding positive and negative test cases. 
