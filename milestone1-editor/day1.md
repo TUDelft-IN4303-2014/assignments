@@ -138,6 +138,23 @@ Your ASTs should meet the following requirements:
 Take care if you browse SDF grammars for inspiration. 
 Constructors in these grammars do not always meet these requirements.
 
+In larger ASTs, you are typically not interested in all details. 
+You can use the wildcard `_` for children that you are not interested in.
+In the following example, we do not care about 
+  the AST for the method type, 
+  the two variable declarations, 
+  the print statement,
+  and the return expression:
+
+    test AST for addition 
+    [[public int m() {
+      int i;
+      int j;
+      System.out.println(42);
+      return 42;
+    }
+    ]] parse to AnotherFancyConstructor(_, "m", [], [_, _], [_], _)
+
 #### Disambiguation
 
 Next, you need to focus on disambiguation. 
