@@ -146,13 +146,13 @@ In the following example, we do not care about
   the print statement,
   and the return expression:
 
-    test AST for addition 
-    [[public int m() {
-      int i;
-      int j;
-      System.out.println(42);
-      return 42;
-    }
+    test AST for method declaration [[
+      public int m() {
+        int i;
+        int j;
+        System.out.println(42);
+        return 42;
+      }
     ]] parse to AnotherFancyConstructor(_, "m", [], [_, _], [_], _)
 
 #### Disambiguation
