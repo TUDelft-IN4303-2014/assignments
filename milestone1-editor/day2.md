@@ -108,3 +108,51 @@ Afterwards, you can start by creating a new file `syntax/MiniJava.sdf3`:
 When you save this file, you should get a corresponding file `syntax/MiniJava.sdf`.
 You can also split your syntax definition over several modules in `syntax/`. 
 Do only import modules that you wrote yourself.
+
+### Lexical Syntax
+
+Start with the lexical syntax definition including identifiers, integer, and simple layout. 
+First, define `lexical syntax` rules.
+You can write these rules in reductive form (classic SDF2 rules):
+
+    lexical syntax
+    
+    ... -> ID
+    ... -> INT
+    ... -> LAYOUT
+    
+Alternatively, you can write them in productive form (new in SDF3):
+
+    lexical syntax
+    
+    ID     = ...
+    INT    = ...
+    LAYOUT = ...
+    
+It is not allowed to mix reductive and productive rules inside the same section.
+
+Second, define follow restrictions to ensure longest matches:
+
+    lexical restrictions
+    
+    ID -/- ...
+    INT -/- ...
+    
+    context-free restrictions
+    
+    LAYOUT? -/- ...
+    
+Finally, use rejection rules to rule out reserved words.
+Again, you can use reductive rules:
+
+    lexical syntax
+    
+    ... -> ID {reject}
+    
+Or productive rules:
+
+    lexical syntax
+    
+    ID = ... {reject}
+    
+
