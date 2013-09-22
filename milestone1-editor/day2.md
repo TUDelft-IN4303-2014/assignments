@@ -112,22 +112,24 @@ Do only import modules that you wrote yourself.
 ### Lexical Syntax
 
 Start with the lexical syntax definition including identifiers, integer, and simple layout. 
-First, define `lexical syntax` rules.
-You can write these rules in reductive form (classic SDF2 rules):
+First, define lexical syntax rules.
+You can write these rules in 
 
-    lexical syntax
-    
-    ... -> ID
-    ... -> INT
-    ... -> LAYOUT
-    
-Alternatively, you can write them in productive form (new in SDF3):
+* reductive form (classic SDF2 rules)
 
-    lexical syntax
+        lexical syntax
+        
+          ... -> ID
+          ... -> INT
+          ... -> LAYOUT
+     
+* productive form (new in SDF3)
+
+        lexical syntax
     
-    ID     = ...
-    INT    = ...
-    LAYOUT = ...
+          ID     = ...
+          INT    = ...
+          LAYOUT = ...
     
 It is not allowed to mix reductive and productive rules inside the same section.
 
@@ -135,24 +137,26 @@ Second, define follow restrictions to ensure longest matches:
 
     lexical restrictions
     
-    ID -/- ...
-    INT -/- ...
+      ID -/- ...
+      INT -/- ...
     
     context-free restrictions
     
-    LAYOUT? -/- ...
+      LAYOUT? -/- ...
     
 Finally, use rejection rules to rule out reserved words.
-Again, you can use reductive rules:
+Again, you can use 
 
-    lexical syntax
-    
-    ... -> ID {reject}
-    
-Or productive rules:
+* reductive rules
 
-    lexical syntax
+        lexical syntax
+        
+          ... -> ID {reject}
+
+* productive rules
+
+        lexical syntax
     
-    ID = ... {reject}
+          ID = ... {reject}
     
 
