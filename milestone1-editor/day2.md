@@ -131,7 +131,7 @@ You can write these rules in
           INT    = ...
           LAYOUT = ...
     
-It is not allowed to mix reductive and productive rules inside the same section.
+It is not allowed to mix reductive and productive rules inside the same `lexical syntax` section.
 
 Second, define follow restrictions to ensure longest matches:
 
@@ -159,4 +159,94 @@ Again, you can use
     
           ID = ... {reject}
     
+### Context-free Syntax
+
+Continue with the context-free syntax of the language. 
+Use the context-free grammar in the **MiniJava Language Reference Manual** as a reference.
+There are three different ways to specify context-free syntax in SDF3:
+
+* reductive rules (classic SDF2 rules)
+
+        context-free syntax
+        
+          ... -> Program {"SomeFancyConstructor"}
+          
+
+* productive rules (new in SDF3)
+
+        context-free syntax
+        
+          Program.SomeFancyConstructor = ...
+          
+* templates (new in SDF3)
+
+        templates
+        
+          Program.SomeFancyConstructor = <...>
+          
+Similar to `lexical syntax` sections, 
+ it is not allowed to mix reductive and productive rules in the same `context-free syntax` section.
+We recomment to use templates for your context-free syntax definition,
+ since this will give you a head start for the next lab.
+In case you want to use `<` or `>` as symbols inside a template, you can use alternate template brackets `[...]`.
+
+You need disambiguation constructs to disambiguate your syntax definition.
+You can specify the associativity with attributes `left`, `right`, or `non-assoc`.
+These attributes are added to the end of a rule:
+
+* reductive rules
+
+        context-free syntax
+        
+          ... -> Exp {"Constr1", left}
+          
+
+* productive rules
+
+        context-free syntax
+        
+          Exp.Constr1 = ... {left}
+          
+* templates
+
+        templates
+        
+          Program.Constr1 = <...> {left}
+          
+You can specify precedence in a `context-free priorities` section.
+In this section, you order groups of rules:
+
+    context-free priorities
+    
+      { 
+        ... -> Exp
+        ... -> Exp
+      } > { 
+        ... -> Exp
+        ... -> Exp
+      } > ...
+
+Instead of repeating rules, you can use sorts and constructors as references:
+
+    context-free priorities
+    
+      { 
+        Exp.Constr1
+        Exp.Constr2
+      } > { 
+        Exp.Constr3
+        Exp.Constr4
+      } > ...
+   
+You can also define the associativity of a group:
+
+    context-free priorities
+    
+      { left:
+        Exp.Constr1
+        Exp.Constr2
+      } > { 
+        Exp.Constr3
+        Exp.Constr4
+      } > ...
 
