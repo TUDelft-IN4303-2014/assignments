@@ -10,21 +10,21 @@ From this definition, you generate an Eclipse editor, that provides syntax check
 Develop a syntax definition for MiniJava in SDF2 or SDF3 and generate an Eclipse editor from it. 
 The definition should include
 * a lexical syntax definition for
-** sort `ID`,
-** sort `INT`,
-** whitespaces,
-** single line comments and
-** nested block comments,
+  * sort `ID`,
+  * sort `INT`,
+  * whitespaces,
+  * single line comments and
+  * nested block comments,
 * a context-free syntax definition or templates for sorts
-** `Program`,
-** `MainClass`,
-** `ClassDecl`,
-** `VarDecl`,
-** `MethodDecl`,
-** `Type`,
-** `Statement` and
-** `Exp`,
-* constructor names for context-free syntax rules, and
+  * `Program`,
+  * `MainClass`,
+  * `ClassDecl`,
+  * `VarDecl`,
+  * `MethodDecl`,
+  * `Type`,
+  * `Statement` and
+  * `Exp`,
+* constructor names for context-free syntax rules and
 * disambiguation rules.
 
 For grading, it is required to comply with these sort names literally.
@@ -44,23 +44,23 @@ You earn points, when your implementation passes test cases.
 The total number of points depends on how many test cases you pass in each of the following groups:
 
 * lexical syntax (20 points)
-** `ID` (6 points)
-** `INT` (1 point)
-** whitespace (3 points)
-** simple comments (5 points)
-** complex comments, including nested block comments (5 points)
+  * `ID` (6 points)
+  * `INT` (1 point)
+  * whitespace (3 points)
+  * simple comments (5 points)
+  * complex comments, including nested block comments (5 points)
 * context-free syntax (30 points)
-** `Program` (1 point)
-** `MainClass` (2 points)
-** `ClassDecl` (2 points)
-** `VarDecl` (2 points)
-** `Type` (2 points)
-** `MethodDecl` (5 points)
-** `Statement` (6 points)
-** `Exp` (10 points)
+  * `Program` (1 point)
+  * `MainClass` (2 points)
+  * `ClassDecl` (2 points)
+  * `VarDecl` (2 points)
+  * `Type` (2 points)
+  * `MethodDecl` (5 points)
+  * `Statement` (6 points)
+  * `Exp` (10 points)
 * disambiguation (30 points)
-** associativity (10 points)
-** precedence (20 points)
+  * associativity (10 points)
+  * precedence (20 points)
 
 You can earn up to 20 points for your abstract syntax definition.
 Therefor, we generate an abstract syntax tree for an example program.
