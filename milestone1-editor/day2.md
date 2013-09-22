@@ -7,7 +7,7 @@ From this definition, you generate an Eclipse editor, that provides syntax check
 
 ### Objectives
 
-Develop a syntax definition for MiniJava in SDF2 or SDF3 and generate an Eclipse editor from it. 
+Develop a syntax definition for MiniJava in SDF3 and generate an Eclipse editor from it. 
 The definition should include:
 
 1. A lexical syntax definition for
@@ -73,18 +73,27 @@ We particular focus on
 
 ## Detailed Instructions
 
-### Testing the Syntax Definition
+### Agile Software Language Engineering
 
-You should build the syntax definition step by step. 
+Spoofax supports short development cycles.
+This enables you build the syntax definition step by step.
+In each step, you focus on a single aspect, 
+ for example a particular nonterminal symbol or a particular grammar rule.
 After each step, you can check your progress by building the project and running your test cases. 
-Therefor, you need to declare the same start symbols in your syntax definition as in your test suites. 
-To also test your MiniJava editor interactively, 
-  you need to specify the start symbols also in the main editor description `editor/MiniJava.main.esv`. 
-You can also use **Show AST** in the editor's **Transform** menu to test your abstract syntax definition interactively.
+This requires you to declare the same start symbols in your syntax definition as in your test suites. 
 
-![Menu entry to inspect the abstract syntax of a program fragment.]
-(http://strategoxt.org/pub/Spoofax/Features/show-abstract-syntax.png 
-"Menu entry to inspect the abstract syntax of a program fragment.")
+You can also test the generated editor in the same Eclipse instance.
+This requires you to specify the start symbol that is used by the editor
+  in the main editor description `editor/MiniJava.main.esv`.
+Of course, this should also be a start symbol in your syntax definition.
+You can test the editor by opening a MiniJava program.  
+
+You can also use **Show AST** in the editor's **Transform** menu to test your abstract syntax definition interactively.
+While you change a MiniJava program in the editor, its corresponding AST is updated automatically.
+You might notice that the editor will give you an AST even for syntactically incorrect programs.
+This is because generated Spoofax editor support syntactic error recovery. 
+
+![Menu entry to inspect the abstract syntax of a program fragment.](http://strategoxt.org/pub/Spoofax/Features/show-abstract-syntax.png  "Menu entry to inspect the abstract syntax of a program fragment.")
 
 ### Lexical Syntax
 
