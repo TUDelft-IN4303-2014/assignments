@@ -1,7 +1,7 @@
 # Day 2: Syntax Analysis
 
 In this lab, you define the concrete and abstract syntax of MiniJava in Spoofax. 
-From this definition, you generate an Eclipse editor, that provides syntax checking and highlighting.
+From this definition, you generate an Eclipse editor, that provides syntax checking, error recovery and syntax highlighting.
 
 ## Overview
 
@@ -99,7 +99,7 @@ This is because generated Spoofax editor support syntactic error recovery.
 
 You should define your syntax in SDF3.
 This requires you to update Spoofax to the latest unstable release.
-Afterwards, you can start by creating a new file `syntax/MiniJava.sdf3`:
+Afterwards, you can start by creating a new file `syntax/MiniJava.sdf3` in your MiniJava project:
 
     module MiniJava
     
@@ -221,10 +221,7 @@ In this section, you order groups of rules:
       { 
         ... -> Exp
         ... -> Exp
-      } > { 
-        ... -> Exp
-        ... -> Exp
-      } > ...
+      } > { ... } > ...
 
 Instead of repeating rules, you can use sorts and constructors as references:
 
@@ -233,10 +230,7 @@ Instead of repeating rules, you can use sorts and constructors as references:
       { 
         Exp.Constr1
         Exp.Constr2
-      } > { 
-        Exp.Constr3
-        Exp.Constr4
-      } > ...
+      } > { ... } > ...
    
 You can also define the associativity of a group:
 
@@ -245,8 +239,17 @@ You can also define the associativity of a group:
       { left:
         Exp.Constr1
         Exp.Constr2
-      } > { 
-        Exp.Constr3
-        Exp.Constr4
-      } > ...
+      } > { ... } > ...
 
+### Comments
+
+Finally, you should add lexical syntax rules for comments to your syntax definition. 
+Start with single line comments. 
+Continue with unnested block comments. 
+Do not forget to define follow restrictions.
+
+### Challenge
+
+Challenges are meant to distinguish excellent solutions from good solutions. 
+Typically, they are less guided and require more investigation or higher programming skills.
+This lab's challenge is to support nested block comments.
