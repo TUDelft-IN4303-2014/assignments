@@ -1,4 +1,4 @@
-# Day 2: Syntax Analysis
+# Day 2: Syntax Definition
 
 In this lab, you define the concrete and abstract syntax of MiniJava in Spoofax. 
 From this definition, you generate an Eclipse editor, that provides syntax checking, error recovery and syntax highlighting.
