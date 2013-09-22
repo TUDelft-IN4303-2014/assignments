@@ -8,14 +8,15 @@ From this definition, you generate an Eclipse editor, that provides syntax check
 ### Objectives
 
 Develop a syntax definition for MiniJava in SDF2 or SDF3 and generate an Eclipse editor from it. 
-The definition should include
-* a lexical syntax definition for
+The definition should include:
+
+1. A lexical syntax definition for
   * sort `ID`,
   * sort `INT`,
   * whitespaces,
   * single line comments and
-  * nested block comments,
-* a context-free syntax definition or templates for sorts
+  * nested block comments.
+2. A context-free syntax definition or templates for sorts
   * `Program`,
   * `MainClass`,
   * `ClassDecl`,
@@ -23,11 +24,11 @@ The definition should include
   * `MethodDecl`,
   * `Type`,
   * `Statement` and
-  * `Exp`,
-* constructor names for context-free syntax rules and
-* disambiguation rules.
+  * `Exp`.
+3. Constructor names for context-free syntax rules.
+4. Disambiguation rules.
 
-For grading, it is required to comply with these sort names literally.
+For grading, it is required to comply with all sort names literally.
 
 ### Submission
 
