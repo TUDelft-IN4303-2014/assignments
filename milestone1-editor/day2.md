@@ -32,9 +32,9 @@ For grading, it is required to comply with all sort names literally.
 
 ### Submission
 
-You need to submit your test project on Blackboard. 
+You need to submit your MiniJava project on Blackboard. 
 As part of your submission,
-  we ask you to provide a short paragraph explaining the organisation of your syntax definition. 
+  we ask you to provide a short paragraph explaining the organisation of your syntax definition.
 The deadline for submission is October 2, 17:59.
 
 ### Grading
@@ -95,6 +95,16 @@ This is because generated Spoofax editor support syntactic error recovery.
 
 ![Menu entry to inspect the abstract syntax of a program fragment.](http://strategoxt.org/pub/Spoofax/Features/show-abstract-syntax.png  "Menu entry to inspect the abstract syntax of a program fragment.")
 
-### Lexical Syntax
+### SDF3
 
-As a syntax definition formalism, you can choose either SDF or the Template Language.
+You should define your syntax in SDF3.
+This requires you to update Spoofax to the latest unstable release.
+Afterwards, you can start by creating a new file `syntax/MiniJava.sdf3`:
+
+    module MiniJava
+    
+    context-free start-symbols 
+    
+When you save this file, you should get a corresponding file `syntax/MiniJava.sdf`.
+You can also split your syntax definition over several modules in `syntax/`. 
+Do only import modules that you wrote yourself.
