@@ -7,6 +7,27 @@ From this definition, you generate an Eclipse editor, that provides syntax check
 
 ### Objectives
 
+Develop a syntax definition for MiniJava in SDF2 or SDF3 and generate an Eclipse editor from it. 
+The definition should include
+* a lexical syntax definition for
+** sort `ID`,
+** sort `INT`,
+** whitespaces,
+** single line comments and
+** nested block comments,
+* a context-free syntax definition or templates for sorts
+** `Program`,
+** `MainClass`,
+** `ClassDecl`,
+** `VarDecl`,
+** `MethodDecl`,
+** `Type`,
+** `Statement` and
+** `Exp`,
+* constructor names for context-free syntax rules, and
+* disambiguation rules.
+
+For grading, it is required to comply with these sort names literally.
 
 ### Submission
 
@@ -17,12 +38,37 @@ The deadline for submission is October 2, 17:59.
 
 ### Grading
 
-You can earn up to 5 points for the organisation of your syntax definition. 
-We take file names, organisation of rules, comments, and your explanation into account. 
-You can earn up to 95 points for the effectiveness of your test cases. 
-Therefor, we run your test cases against 184 correct and erroneous implementations of MiniJava. 
-You earn points, when your test cases reveal certain kinds of errors in erroneous implementations while passing correct implementations. 
-The total number of points depends only on how many kinds of errors you reveal, not on the number of test cases that reveal these errors.
+You can earn up to 80 points for your concrete syntax definition.
+Therefor, we run 333 test cases against your implementation. 
+You earn points, when your implementation passes test cases.
+The total number of points depends on how many test cases you pass in each of the following groups:
+
+* lexical syntax (20 points)
+** `ID` (6 points)
+** `INT` (1 point)
+** whitespace (3 points)
+** simple comments (5 points)
+** complex comments, including nested block comments (5 points)
+* context-free syntax (30 points)
+** `Program` (1 point)
+** `MainClass` (2 points)
+** `ClassDecl` (2 points)
+** `VarDecl` (2 points)
+** `Type` (2 points)
+** `MethodDecl` (5 points)
+** `Statement` (6 points)
+** `Exp` (10 points)
+* disambiguation (30 points)
+** associativity (10 points)
+** precedence (20 points)
+
+You can earn up to 20 points for your abstract syntax definition.
+Therefor, we generate an abstract syntax tree for an example program.
+We inspect your syntax definition and the generated AST manually.
+We particular focus on 
+ meaningful constructor names, 
+ distinctness of different constructs,
+ and the representation of formal and actual parameter lists.
 
 ## Detailed Instructions
 
