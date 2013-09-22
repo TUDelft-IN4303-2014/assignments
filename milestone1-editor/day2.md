@@ -88,7 +88,7 @@ This requires you to specify the start symbol that is used by the editor
 Of course, this should also be a start symbol in your syntax definition.
 You can test the editor by opening a MiniJava program.  
 
-You can also use **Show AST** in the editor's **Transform** menu to test your abstract syntax definition interactively.
+You can also use *Show AST* in the editor's *Transform* menu to test your abstract syntax definition interactively.
 While you change a MiniJava program in the editor, its corresponding AST is updated automatically.
 You might notice that the editor will give you an AST even for syntactically incorrect programs.
 This is because generated Spoofax editor support syntactic error recovery. 
@@ -162,7 +162,7 @@ Again, you can use
 ### Context-free Syntax
 
 Continue with the context-free syntax of the language. 
-Use the context-free grammar in the **MiniJava Language Reference Manual** as a reference.
+Use the context-free grammar in the *MiniJava Language Reference Manual* as a reference.
 There are three different ways to specify context-free syntax in SDF3:
 
 * reductive rules (classic SDF2 rules)
