@@ -71,6 +71,14 @@ We particular focus on
  distinctness of different constructs,
  and the representation of formal and actual parameter lists.
 
+### Spoofax Update
+
+You should define your syntax in SDF3.
+This requires you to update Spoofax to the latest unstable release.
+1. Choose *Install New Software* from the *Help* menu.
+2. Add `http://download.spoofax.org/update/unstable` as an update site.
+3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
+
 ## Detailed Instructions
 
 ### Agile Software Language Engineering
@@ -97,9 +105,7 @@ This is because generated Spoofax editor support syntactic error recovery.
 
 ### SDF3
 
-You should define your syntax in SDF3.
-This requires you to update Spoofax to the latest unstable release.
-Afterwards, you can start by creating a new file `syntax/MiniJava.sdf3` in your MiniJava project:
+You can start by creating a new file `syntax/MiniJava.sdf3` in your MiniJava project:
 
     module MiniJava
     
@@ -186,7 +192,7 @@ There are three different ways to specify context-free syntax in SDF3:
           
 Similar to `lexical syntax` sections, 
  it is not allowed to mix reductive and productive rules in the same `context-free syntax` section.
-We recomment to use templates for your context-free syntax definition,
+We recommend to use templates for your context-free syntax definition,
  since this will give you a head start for the next lab.
 In case you want to use `<` or `>` as symbols inside a template, you can use alternate template brackets `[...]`.
 
