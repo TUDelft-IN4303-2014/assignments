@@ -85,7 +85,7 @@ This requires you to update Spoofax to the latest unstable release.
 ### Agile Software Language Engineering
 
 Spoofax supports short development cycles.
-This enables you build the syntax definition step by step.
+This enables you to develop your syntax definition step by step.
 In each step, you focus on a single aspect, 
  for example a particular nonterminal symbol or a particular grammar rule.
 After each step, you can check your progress by building the project and running your test cases. 
@@ -100,7 +100,7 @@ You can test the editor by opening a MiniJava program.
 You can also use *Show AST* in the editor's *Transform* menu to test your abstract syntax definition interactively.
 While you change a MiniJava program in the editor, its corresponding AST is updated automatically.
 You might notice that the editor will give you an AST even for syntactically incorrect programs.
-This is because generated Spoofax editor support syntactic error recovery. 
+This is because Spoofax editors support syntactic error recovery. 
 
 ![Menu entry to inspect the abstract syntax of a program fragment.](http://strategoxt.org/pub/Spoofax/Features/show-abstract-syntax.png  "Menu entry to inspect the abstract syntax of a program fragment.")
 
