@@ -105,6 +105,7 @@ This is because generated Spoofax editor support syntactic error recovery.
 
 ### SDF3
 
+You should define your syntax in [SDF3](http://metaborg.org/wiki/sdf). 
 You can start by creating a new file `syntax/MiniJava.sdf3` in your MiniJava project:
 
     module MiniJava
