@@ -95,7 +95,9 @@ You can also test the generated editor in the same Eclipse instance.
 This requires you to specify the start symbol that is used by the editor
   in the main editor description `editor/MiniJava.main.esv`.
 Of course, this should also be a start symbol in your syntax definition.
-You can test the editor by opening a MiniJava program.  
+You can test the editor by first building your project and opening a MiniJava program.  
+In Eclipse, you build a project by chosing *Build Project* from the *Project* menu or by pressing the corresponding keyboard shortcut.
+When you later rebuild your project, any open MiniJava editor is updated to the new version you just built.
 
 You can also use *Show AST* in the editor's *Transform* menu to test your abstract syntax definition interactively.
 While you change a MiniJava program in the editor, its corresponding AST is updated automatically.
