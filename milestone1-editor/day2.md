@@ -77,7 +77,7 @@ You should define your syntax in SDF3.
 This requires you to update Spoofax to the latest unstable release.
 
 1. Choose *Install New Software* from the *Help* menu.
-2. Add `http://download.spoofax.org/update/unstable` as an update site.
+2. Add `http://download.spoofax.org/update/unstable/` as an update site.
 3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
 
 ## Detailed Instructions
