@@ -48,8 +48,8 @@ When you want to benefit from these fixes, you should update Spoofax to the late
 
 ### Anatomy of a Spoofax Project
 
-Until now, you mainly worked on files in the `syntax` directory of your project. 
-During this lab you will also edit files in the `editor` and `trans` directories.
+Until now, you mainly worked on files in the `syntax` folder of your project. 
+During this lab you will also edit files in the `editor` and `trans` folders.
 So this is a good point to talk about the general structure of a Spoofax project.
 
 First of all, every Spoofax project is an Eclipse plug-in project. 
@@ -58,13 +58,25 @@ Users do not need to have Spoofax installed for using your editor.
 You will find the typical administrative boilerplate code for such plug-ins in files 
 `plugin.xml`, `build.properties`, `META-INF/MANIFEST.MF`, and `editor/java`.
 
-The actual language definition is spread over three directories:
+The actual language definition is spread over three folders:
 
-* `syntax` contains all syntax definition files, 
-  including hand-written SDF2 and SDF3 files and some generated files (SDF2 files and generated pretty-print tables).
+* `syntax` contains all syntax definition files, including the main file `MiniJava.sdf3`.
 * `trans` contains all transformation files, including the main file `minijava.str`. 
-  Some of these files are generated from your SDF3 files.
-* `editor` contains editor service definition files. 
-  Many of these files are generated either from your SDF3 files (on save) or from the Spoofax build process.
-  You have seen already the main file `MiniJava.main.esv` when you changed the start symbol of your editor.
+* `editor` contains editor service definition files, including the main file `MiniJava.main.esv`,
+  which you have seen already during the last lab.
+  
+In all of these folders you will find files which where generated from your syntax definition. 
+For each file `<name>.sdf3`, there are generated files
 
+* `syntax/<name>.sdf`: an SDF2 definition which is equivalent to the SDF3 definition.
+* `editor/<name>.generated.esv`: completion templates derived from SDF3 templates.
+* `trans/<name>.pp.generated.str`: pretty-printing strategies derived from SDF3 templates.
+
+You can find more generated files in `editor` and `include` folders:
+
+* `editor/MiniJava-Folding.generated.esv`: folding patterns derived from your syntax definition.
+* `include/MiniJava.def`: your complete syntax definition in SDF2.
+* `include/MiniJava-Permissive.def`: a permissive version of the syntax definition, which supports error recovery.
+* `include/MiniJava.tbl`: the parse table of your language.
+* `include/MiniJava.str`: the signature for ASTs of your language.
+* `include/minijava.ctree` and/or `include/minijava.jar`: compiled Stratego code of your language.
