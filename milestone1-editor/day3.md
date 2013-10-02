@@ -45,3 +45,26 @@ When you want to benefit from these fixes, you should update Spoofax to the late
 3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
 
 ## Detailed Instructions
+
+### Anatomy of a Spoofax Project
+
+Until now, you mainly worked on files in the `syntax` directory of your project. 
+During this lab you will also edit files in the `editor` and `trans` directories.
+So this is a good point to talk about the general structure of a Spoofax project.
+
+First of all, every Spoofax project is an Eclipse plug-in project. 
+This allows you to deploy your editor as a plugin using the Eclipse update site mechanism. 
+Users do not need to have Spoofax installed for using your editor. 
+You will find the typical administrative boilerplate code for such plug-ins in files 
+`plugin.xml`, `build.properties`, `META-INF/MANIFEST.MF`, and `editor/java`.
+
+The actual language definition is spread over three directories:
+
+* `syntax` contains all syntax definition files, 
+  including hand-written SDF2 and SDF3 files and some generated files (SDF2 files and generated pretty-print tables).
+* `trans` contains all transformation files, including the main file `minijava.str`. 
+  Some of these files are generated from your SDF3 files.
+* `editor` contains editor service definition files. 
+  Many of these files are generated either from your SDF3 files (on save) or from the Spoofax build process.
+  You have seen already the main file `MiniJava.main.esv` when you changed the start symbol of your editor.
+
