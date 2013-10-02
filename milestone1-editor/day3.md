@@ -80,3 +80,11 @@ You can find more generated files in `editor` and `include` folders:
 * `include/MiniJava.tbl`: the parse table of your language.
 * `include/MiniJava.str`: the signature for ASTs of your language.
 * `include/minijava.ctree` and/or `include/minijava.jar`: compiled Stratego code of your language.
+
+### Folding Patterns
+
+### Completion Templates
+
+### Pretty-Print Builder
+
+
