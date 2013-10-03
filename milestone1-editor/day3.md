@@ -157,7 +157,7 @@ You can fix this by improving your templates in the syntax definition.
 The completion templates follow the indentation and line breaks from the syntax definition.
 You can hide particular placeholders from completion templates with a `hide` option or 
 change a placeholder label with a `text="label"` option.
-Read the [SDF3 documentation](metaborg.org/wiki/sdf) on templates and placeholders for more information.
+Read the [SDF3 documentation](http://metaborg.org/wiki/sdf) on templates and placeholders for more information.
 
 You should improve your syntax definition in order to get readable completion templates with a consistent indentation.
 You might read on [indent styles](http://en.wikipedia.org/wiki/Indent_style) for some inspiration.
