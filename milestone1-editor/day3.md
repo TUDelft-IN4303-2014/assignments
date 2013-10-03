@@ -186,8 +186,8 @@ You can do this in a new file `trans/pp.str`:
     module pp
     
     imports
-     	libstratego-gpp
-     	include/MiniJava-parenthesize
+      libstratego-gpp
+      include/MiniJava-parenthesize
       ...
 
 This defines a module `pp` which imports Stratego's generic pretty-print library `libstratego-gpp` 
@@ -215,9 +215,11 @@ The left-hand side of the rule is a tuple of
 * the complete `ast` of the file, 
 * the file `path` and 
 * the `project-path`.
+
 The right-hand side specifies a file which should be changed (or created) by
 * its `name` and
 * its `content`.
+
 The `with` clause specifies how to bind these variables. 
 The output file `name` is derived from the `path` of the file opened in the editor.
 Its `content` is derived in three steps:
