@@ -79,6 +79,7 @@ You can find more generated files in `editor` and `include` folders:
 * `include/MiniJava-Permissive.def`: a permissive version of the syntax definition, which supports error recovery.
 * `include/MiniJava.tbl`: the parse table of your language.
 * `include/MiniJava.str`: the signature for ASTs of your language.
+* `include/MiniJava-parenthesize.str`: strategies to add parentheses to an AST according to the priorities of your language.
 * `include/minijava.ctree` and/or `include/minijava.jar`: compiled Stratego code of your language.
 
 ### Preliminaries
@@ -134,8 +135,8 @@ It is important, to include only those structures, where folding is reasonable.
 Syntactic content completion provides users with completion suggestions based purely on static, syntactic templates. 
 For example
 
-    completion template Statement:
-      "while (" <e> ") {\n\t" <b> "\n}"
+    completion template Statement : "while(true) {}" =
+      "while(" <true:Exp> ") " <{}:Statement> (blank)  
 
 is a syntactic completion template for `while` loops. 
 Such templates are composed of static strings and placeholder expressions. 
@@ -146,7 +147,7 @@ The editor automatically moves the cursor to these expressions once the user sel
 allowing the expressions to be filled in as the user continues typing.
 
 Spoofax generates completion templates from `templates` sections in your syntax definition.
-You can find them in `editor/<name>.generated.esv`files. 
+You can find these templates in `editor/<name>.generated.esv`files. 
 Until now, these completion templates are not integrated into your editor.
 You can change this, by importing the generated files in `editor/MiniJava-Completions.esv`.
 After building your project, you can test completion by pressing `Ctrl + Space`.
@@ -162,6 +163,74 @@ You might read on [indent styles](http://en.wikipedia.org/wiki/Indent_style) for
 Finally, you should specify few additional completion templates manually.
 This might involve larger code patterns or useful variants of the generated templates.
 
-### Pretty-Print Builder
+### Pretty-Printing
+
+Spoofax also generates pretty-printing rules from your syntax definition.
+You can find these rules in `trans/<name>.pp.generated.str`.
+You need to define a builder and a corresponding build strategy 
+  to hook a pretty-printing option into the *Transform* menu of your MiniJava editor.
+You define builders in `editor/MiniJava-Builders.esv`:
+
+    builder : "Pretty-print" = pp-builder (source) (openeditor)                                              
+
+This builder definition adds a new entry to the *Transform* menu.
+The left-hand side of the definition specifies the label used in the menu.
+The right-hand side indicates a Stratego strategy which implements the corresponding action.
+The `(source)` annotation specifies that the strategy is applied to the original, un-desugared, un-analyzed AST.
+The `(openeditor)` annotation specifies that the action opens an editor with the result.
+
+You still need to implement the strategy `pp-builder` which is responsible
+for performing the action of the *Pretty-print* menu entry.
+You can do this in a new file `trans/pp.str`:
+
+    module pp
+    
+    imports
+     	libstratego-gpp
+     	include/MiniJava-parenthesize
+      ...
+
+This defines a module `pp` which imports Stratego's generic pretty-print library `libstratego-gpp` 
+and a module `MiniJava-parenthesize`.
+The latter is generated from your syntax definition and provides strategies to add parentheses to an AST.
+These strategies obey the priority rules of your syntax definition.
+You also need to import the generated `*.pp.generated.str` files here.
+
+Now, you can define `pp-builder`:
+
+    rules
+	
+     	pp-builder:
+        (selected, position, ast, path, project-path) -> (name, content)
+        with
+          name    := <guarantee-extension(|"pp.mjv")> path
+        ; ast'    := <parenthesize-MiniJava> ast
+        ; box     := V([], <prettyprint-Program> ast')
+        ; content := <box2text-string(|100)> box
+
+This rule follows a fixed interface for interoperability with the editor. 
+The left-hand side of the rule is a tuple of
+* the `selected` node,
+* its `position` in the tree,
+* the complete `ast` of the file, 
+* the file `path` and 
+* the `project-path`.
+The right-hand side specifies a file which should be changed (or created) by
+* its `name` and
+* its `content`.
+The `with` clause specifies how to bind these variables. 
+The output file `name` is derived from the `path` of the file opened in the editor.
+Its `content` is derived in three steps:
+1. We add parentheses to the  `ast` of the input file, which results in a new `ast'`.
+2. We pretty-print `ast'` with the generated `prettyprint-Program` strategy. 
+   This results in some nested *boxes*, which we surround with a vertical (`V`) `box`.
+   These boxes are a fundamental concept of the generic pretty-print library.
+3. We turn the `box` into text with a maximal width of `100`.
+   This results in the `content` of our output file.
+
+
+
+
+
 
 
