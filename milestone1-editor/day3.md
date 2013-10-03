@@ -95,7 +95,7 @@ Before you start with the actual assignment, you should make sure that
 
 3. your editor accepts only MiniJava programs. 
 
-### Folding Patterns
+### Folding Rules
 
 Presentational editor services such as code folding and syntax highlighting are defined 
 in `.esv` files in the `editor` folder.
@@ -111,7 +111,7 @@ To indicate that an element should always be folded, add a `(folded)` annotation
 
     _.Imports (folded)
 
-To disable a folding rule defined elsewhere (e.g. in a generated file), add a `(disabled)` annotation:
+To disable a folding rule defined elsewhere (for example in a generated file), add a `(disabled)` annotation:
 
     Definition._ (disabled)
 
@@ -120,7 +120,7 @@ they have a derived file (`EntityLang-Folding.generated.esv`)
 and a definition file (`EntityLang-Folding.esv`). 
 The first file is automatically generated from your syntax definition, each time the project is built.
 You can use the second file to customize the editor. 
-You should specify additional folding rules in this files. 
+You should specify additional folding rules in this file. 
 It is important, to include only those structures, where folding is reasonable. 
 
 ### Completion Templates
