@@ -94,7 +94,7 @@ Before you start with the actual assignment, you should make sure that
         Sort             = [...]
         Sort.Constructor = [...]
 
-3. your editor accepts only MiniJava programs. 
+3. your start symbol is set to Program so that your editor accepts only complete MiniJava programs. 
 
 ### Folding Rules
 
@@ -149,7 +149,7 @@ allowing the expressions to be filled in as the user continues typing.
 Spoofax generates completion templates from `templates` sections in your syntax definition.
 You can find these templates in `editor/<name>.generated.esv`files. 
 Until now, these completion templates are not integrated into your editor.
-You can change this, by importing the generated files in `editor/MiniJava-Completions.esv`.
+You can change this, by __importing all the generated esv files in__ `editor/MiniJava-Completions.esv`.
 After building your project, you can test completion by pressing `Ctrl + Space`.
 
 Typically, your completion templates lack proper indentation and line breaks. 
@@ -157,6 +157,7 @@ You can fix this by improving your templates in the syntax definition.
 The completion templates follow the indentation and line breaks from the syntax definition.
 You can hide particular placeholders from completion templates with a `hide` option or 
 change a placeholder label with a `text="label"` option.
+Read the [SDF3 documentation](metaborg.org/wiki/sdf) on templates and placeholders for more information.
 
 You should improve your syntax definition in order to get readable completion templates with a consistent indentation.
 You might read on [indent styles](http://en.wikipedia.org/wiki/Indent_style) for some inspiration.
@@ -194,7 +195,8 @@ This defines a module `pp` which imports Stratego's generic pretty-print library
 and a module `MiniJava-parenthesize`.
 The latter is generated from your syntax definition and provides strategies to add parentheses to an AST.
 These strategies obey the priority rules of your syntax definition.
-You also need to import the generated `*.pp.generated.str` files here.
+__You also need to import all the generated__ `*.pp.generated.str` __files here__.
+These generated files contain errors, but they can be safely ignored. 
 
 Now, you can define `pp-builder`:
 
@@ -232,7 +234,5 @@ Its `content` is derived in three steps:
    This results in the `content` of our output file.
 
 In order to test the pretty-print builder, you need to import `pp.str` from `trans/minijava.str` and build your project.
-
-
-
-
+Create or open a `.mjv` test file with a valid program, press the down-facing arrow on the right of the Transform button and choose `Pretty-print`.
+This will apply `pp-builder` to the current file and show the result in a new editor.
