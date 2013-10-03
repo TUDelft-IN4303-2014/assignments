@@ -101,26 +101,32 @@ Presentational editor services such as code folding and syntax highlighting are 
 in `.esv` files in the `editor` folder.
 When you build your editor and open a MiniJava file, you can see that the editor provides already some folding points.
 These points are syntax-dependent and are specified by folding rules in `editor/MiniJava-Folding.generated.esv`.
+All editor services follow the same basic structure: 
+they have a derived file (`EntityLang-Folding.generated.esv`) 
+and a custom definition file (`EntityLang-Folding.esv`). 
+The first file is automatically generated from your syntax definition, each time the project is built.
+You can use the second file to customize the editor. 
+
 Folding rules indicate which syntactic constructs can be folded, and take one of the following forms:
 
     <Sort>.<Constructor>
     <Sort>._
     _.<Constructor>
 
-To indicate that an element should always be folded, add a `(folded)` annotation:
+The `(folded)` annotation can be used for constructs that should be folded automatically:
 
     _.Imports (folded)
 
-To disable a folding rule defined elsewhere (for example in a generated file), add a `(disabled)` annotation:
+Spoofax uses heuristics to automatically derive folding rules, 
+ based on the logical nesting structure in the syntax of the language. 
+Currently, it derives folding rules from productions rules with a lexical identifier and child elements.
+While not perfect, the heuristics provide a good starting point for a new folding definition. 
+Any undesired definitions in the generated file can be disabled 
+ by using the `(disabled)` annotation in a custom rule:
 
     Definition._ (disabled)
 
-All editor services follow the same basic structure: 
-they have a derived file (`EntityLang-Folding.generated.esv`) 
-and a definition file (`EntityLang-Folding.esv`). 
-The first file is automatically generated from your syntax definition, each time the project is built.
-You can use the second file to customize the editor. 
-You should specify additional folding rules in this file. 
+You should now specify additional custom folding rules. 
 It is important, to include only those structures, where folding is reasonable. 
 
 ### Completion Templates
