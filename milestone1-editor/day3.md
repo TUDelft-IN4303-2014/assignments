@@ -223,6 +223,7 @@ The right-hand side specifies a file which should be changed (or created) by
 The `with` clause specifies how to bind these variables. 
 The output file `name` is derived from the `path` of the file opened in the editor.
 Its `content` is derived in three steps:
+
 1. We add parentheses to the  `ast` of the input file, which results in a new `ast'`.
 2. We pretty-print `ast'` with the generated `prettyprint-Program` strategy. 
    This results in some nested *boxes*, which we surround with a vertical (`V`) `box`.
