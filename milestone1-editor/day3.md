@@ -231,8 +231,7 @@ Its `content` is derived in three steps:
 3. We turn the `box` into text with a maximal width of `100`.
    This results in the `content` of our output file.
 
-
-
+In order to test the pretty-print builder, you need to import `pp.str` from `trans/minijava.str` and build your project.
 
 
 
