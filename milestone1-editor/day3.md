@@ -6,7 +6,7 @@ In this lab, you add a pretty-printer and syntactic editor services to your Mini
 
 ### Objectives
 
-1. Extend generated folding patterns with hand-written patterns. 
+1. Extend generated folding rules with hand-written rules. 
 You should include only structures, where folding is reasonable. 
 2. Integrate generated pretty-printing rules and completion templates into your MiniJava editor.
 Improve your syntax definition to support 
@@ -81,7 +81,47 @@ You can find more generated files in `editor` and `include` folders:
 * `include/MiniJava.str`: the signature for ASTs of your language.
 * `include/minijava.ctree` and/or `include/minijava.jar`: compiled Stratego code of your language.
 
+### Preliminaries
+
+Before you start with the actual assignment, you should make sure that
+
+1. your syntax definition provides all start symbols needed by your test cases,
+2. your context-free syntax is specified in `templates` sections by productions of the form
+
+        Sort             = <...>
+        Sort.Constructor = <...>
+        Sort             = [...]
+        Sort.Constructor = [...]
+
+3. your editor accepts only MiniJava programs. 
+
 ### Folding Patterns
+
+Presentational editor services such as code folding and syntax highlighting are defined 
+in `.esv` files in the `editor` folder.
+When you build your editor and open a MiniJava file, you can see that the editor provides already some folding points.
+These points are syntax-dependent and are specified by folding rules in `editor/MiniJava-Folding.generated.esv`.
+Folding rules indicate which syntactic constructs can be folded, and take one of the following forms:
+
+    <Sort>.<Constructor>
+    <Sort>._
+    _.<Constructor>
+
+To indicate that an element should always be folded, add a `(folded)` annotation:
+
+    _.Imports (folded)
+
+To disable a folding rule defined elsewhere (e.g. in a generated file), add a `(disabled)` annotation:
+
+    Definition._ (disabled)
+
+All editor services follow the same basic structure: 
+they have a derived file (`EntityLang-Folding.generated.esv`) 
+and a definition file (`EntityLang-Folding.esv`). 
+The first file is automatically generated from your syntax definition, each time the project is built.
+You can use the second file to customize the editor. 
+You should specify additional folding rules in this files. 
+It is important, to include only those structures, where folding is reasonable. 
 
 ### Completion Templates
 
