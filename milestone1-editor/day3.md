@@ -131,6 +131,37 @@ It is important, to include only those structures, where folding is reasonable.
 
 ### Completion Templates
 
+Syntactic content completion provides users with completion suggestions based purely on static, syntactic templates. 
+For example
+
+    completion template Statement:
+      "while (" <e> ") {\n\t" <b> "\n}"
+
+is a syntactic completion template for `while` loops. 
+Such templates are composed of static strings and placeholder expressions. 
+Static strings allow for precise control of the presentation and are enclosed by double quotes. 
+They can use `\n` for newlines or `\t` for one indentation level (following the user’s tab/space configuration). 
+Placeholder expressions are indicated by angular brackets. 
+The editor automatically moves the cursor to these expressions once the user selects a completion proposal, 
+allowing the expressions to be filled in as the user continues typing.
+
+Spoofax generates completion templates from `templates` sections in your syntax definition.
+You can find them in `editor/<name>.generated.esv`files. 
+Until now, these completion templates are not integrated into your editor.
+You can change this, by importing the generated files in `editor/MiniJava-Completions.esv`.
+After building your project, you can test completion by pressing `Ctrl + Space`.
+
+Typically, your completion templates lack proper indentation and line breaks. 
+You can fix this by improving your templates in the syntax definition.
+The completion templates follow the indentation and line breaks from the syntax definition.
+You can hide particular placeholders from completion templates with a `hide` option or 
+change a placeholder label with a `text="label"` option.
+
+You should improve your syntax definition in order to get readable completion templates with a consistent indentation.
+You might read on [indent styles](http://en.wikipedia.org/wiki/Indent_style) for some inspiration.
+Finally, you should specify few additional completion templates manually.
+This might involve larger code patterns or useful variants of the generated templates.
+
 ### Pretty-Print Builder
 
 
