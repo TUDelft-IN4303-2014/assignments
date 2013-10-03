@@ -188,6 +188,7 @@ You can do this in a new file `trans/pp.str`:
     
     imports
       libstratego-gpp
+      lib/runtime/tmpl/pp
       include/MiniJava-parenthesize
       ...
 
