@@ -78,7 +78,7 @@ For example, the following rule rewrites a variable declaration to its name, whi
 
     rules
       
-      to-outline-label: VarDecl(t, v) -> v
+      to-outline-label: Var(t, v) -> v
 
 On the left-hand side, the rule matches a variable declaration. 
 During the match, variables `t` and `v` are bound to actual terms. 
@@ -107,7 +107,7 @@ For example, you might want to show not only a variable's name, but also it's ty
 The following rule achieves this:
 
     to-outline-label: 
-      VarDecl(t, v) -> label
+      Var(t, v) -> label
       where
         t'    := <pp> t
       ; label := <concat-strings> [v, ": ", t']
@@ -132,7 +132,7 @@ String concatenation is not very intuitive.
 Instead, you can also use string interpolation:
 
     to-outline-label: 
-      VarDecl(t, v) -> $[[v]: [t']] 
+      Var(t, v) -> $[[v]: [t']] 
       where 
         t' := <pp> t
       
