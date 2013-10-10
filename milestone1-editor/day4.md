@@ -105,11 +105,11 @@ In Stratego, we use the following naming conventions:
 To test your transformation, you need to define a builder. 
 This is done similar to the builder for pretty-printing. Add the following rewrite rule:
 
-  editor-desugar:
-    (selected, position, ast, path, project-path) -> (filename, text)
-    where
-      filename := <guarantee-extension(|"desugared.aterm")> path ;
-      text     := <desugar> selected
+    editor-desugar:
+      (selected, position, ast, path, project-path) -> (filename, text)
+      where
+        filename := <guarantee-extension(|"desugared.aterm")> path ;
+        text     := <desugar> selected
 
 This rule follows Spoofax' convention for strategies which implement editor services. 
 On the left-hand site, it matches a tuple of 
