@@ -37,8 +37,13 @@ The deadline for submission is October 16, 17:59.
 
 ### Grading
 
+You can earn up to 60 points for your desugarings:
 
-
+* signature (25 points)
+* rewrite rules (20 points)
+* strategy (10 points)
+* octals  (5 points)
+	
 ## Detailed Instructions
 
 ### Initial Editor Project
