@@ -55,6 +55,14 @@ You can earn up to 60 points for your desugarings:
 
 ### Initial Editor Project
 
+1. Download the initial project.
+2. Import it into your Eclipse workspace.
+3. Rename the project to `MiniJava-<YourNetID>`.
+Your NetID is your login name on Blackboard. 
+It is not your student number. 
+For example, my project is called `MiniJava-gwachsmuth`.
+4. Build the project.
+
 #### Signature
 
 Signatures declare sorts and constructors for terms. 
@@ -68,7 +76,7 @@ If you write your own syntax definition, the generated signature can be found in
 
 #### Rewrite Rules
 
-An outline view can be specified by rewrite rules `to-outline-label` in `editor/MiniJava-Outliner.str`.
+An outline view can be specified by rewrite rules `to-outline-label` in `trans/editor/outline.str`.
 These rules should rewrite AST nodes to their label in an outline view.
 For example, the following rule rewrites a variable declaration to its name, which will be used as a label.
 
@@ -172,7 +180,7 @@ Typically, they are less guided and require more investigation or higher program
 See `lib/runtime/editor/origins/` for a suitable strategy.
 2. Outline the main method as a subnode of the main class.
 This requires you to drop the import `editor/MiniJava-Outliner.generated`.
-Instead, you need define a strategy 
+Instead, you need tp define a strategy 
 
         outline = custom-label-outline(to-outline-label, to-outline-node)
     Visit `lib/runtime/editor/outline-library` for inspiration.
@@ -184,7 +192,8 @@ To get such a uniform representation, you need to desugar abstract syntax trees 
 
 #### Signature
 
-Before you can implement a desugaring, you need to define a signature for the uniform representation of expressions:
+Before you can implement a desugaring, 
+you need to define a signature for the uniform representation of expressions in `trans/analysis/desugar.str`:
 
 1. Identify unary and binary expressions in MiniJava. 
 A unary expression has one subexpression and an operator.
@@ -210,12 +219,13 @@ On the right-hand side, the rule instantiates a binary expression (in a uniform 
 During the instantiation, variables `e1` and `e2` are replaced with the terms they are bound to.
 You can extend `desugar` to replace the different unary and binary expressions in the abstract syntax tree 
 with a uniform representation of these expressions. 
-Define a rewrite rule `desugar` for every unary or binary operator, which transforms the original expression into a uniform representation.
+Define a rewrite rule `desugar` in `trans/analysis/desugar.str` for every unary or binary operator, 
+which transforms the original expression into a uniform representation.
 
 #### Editor Integration
 
 To test your transformation, you need to define a builder. 
-This is done similar to the builder for pretty-printing. Add the following rewrite rule:
+This is done similar to the builder for pretty-printing. Add the following rewrite rule to `trans/editor/builders.str`:
 
     editor-desugar:
       (selected, position, ast, path, project-path) -> (filename, text)
@@ -273,7 +283,7 @@ which tries to apply its parameter inside a tree, starting at the leaves (bottom
 Whenever an application is successful, the result is traversed again. 
 
 Same results can be achieved with different generic traversals. 
-You should try different traversals:
+You should try different traversals in `trans/analysis/desugar.str`:
 
 * `desugar-all = innermost(desugar)`
 * `desugar-all = topdown(desugar)`
@@ -319,10 +329,6 @@ This is the place, where you should hook-in your desugaring:
 To test your implementation, you can use a predefined builder labeled *Show analyzed syntax*. 
 Open a MiniJava program and run the builder. 
 At this point, you can get rid of your old desugaring builder.
-
-#### Annotations
-
-In case you want to 
 
 #### Challenge
 
