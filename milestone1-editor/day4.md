@@ -147,6 +147,23 @@ You should provide the following information in your outline labels:
 * method name, parameter types (not parameter names), return type
 * variable name and type
 
+For parameter types, you need to turn a list of parameters into a string.
+You can do this with a recursive strategy:
+
+    pp-params: // empty parameter list
+      [] -> ...
+    
+    pp-params: // single parameter
+      [Param(t, p)] -> ...
+      
+    pp-params: // at least two parameters
+      [Param(t, p), param | params] -> ...
+      where
+        // do something on first parameter
+        ...
+        // recursive call on remaining parameters
+        ... := <pp-params> [param | params]
+        
 Your current outline view is missing a root node.
 You can add a root node by providing a label for programs.
 
