@@ -1,7 +1,7 @@
 # Day 4: Simple Term Rewriting
 
 This lab is your first encounter with Stratego.
-You add a desugaring transformation and an outline view to an initial editor provided by us. 
+You add an outline view and a desugaring transformation to an initial editor provided by us. 
 
 ## Overview
 
@@ -16,16 +16,16 @@ It includes
 
 ### Objectives
 
-1. Define rewrite rules `desugar` which desugar
-  * unary expressions into terms of the form `Uop(op, exp)`,
-  * binary expressions into terms of the form `Bop(op, exp1, exp2)` and
-  * octal numbers into decimal numbers.
-2. Integrate `desugar` into a strategy `desugar-all` which desugars subtrees in an AST.
-3. Specify rewrite rules `to-outline-label` which map AST nodes to labels in an outline view. You should include:
+1. Specify rewrite rules `to-outline-label` which map AST nodes to labels in an outline view. You should include:
   * classes (class name and, if available, parent class name),
   * fields (field name and type),
   * methods (method name, parameter types, return type) and
   * local variables (variable name and type).
+2. Define rewrite rules `desugar` which desugar
+  * unary expressions into terms of the form `Uop(op, exp)`,
+  * binary expressions into terms of the form `Bop(op, exp1, exp2)` and
+  * octal numbers into decimal numbers.
+3. Integrate `desugar` into a strategy `desugar-all` which desugars subtrees in an AST.
 
 For grading, it is required to comply with all rule and strategy names literally.
 
@@ -37,12 +37,19 @@ The deadline for submission is October 16, 17:59.
 
 ### Grading
 
+You can earn up to 40 points for your outline view:
+
+* names in labels (8 points)
+* super classes in lables (2 points)
+* types in labels (25 points)
+* challenge (5 points)
+
 You can earn up to 60 points for your desugarings:
 
 * signature (25 points)
 * rewrite rules (20 points)
 * strategy (10 points)
-* octals  (5 points)
+* challenge  (5 points)
 	
 ## Detailed Instructions
 
@@ -57,6 +64,118 @@ You can find a signature for MiniJava in `assignment1/MiniJava.str`.
 It was generated from a syntax definition, which itself is not included in the initial project.
 If you write your own syntax definition, the generated signature can be found in `include/<LanguageName>.str`.
 
+### Outline View
+
+#### Rewrite Rules
+
+An outline view can be specified by rewrite rules `to-outline-label` in `editor/MiniJava-Outliner.str`.
+These rules should rewrite AST nodes to their label in an outline view.
+For example, the following rule rewrites a variable declaration to its name, which will be used as a label.
+
+    rules
+      
+      to-outline-label: VarDecl(t, v) -> v
+
+On the left-hand side, the rule matches a variable declaration. 
+During the match, variables `t` and `v` are bound to actual terms. 
+On the right-hand side, the rule instantiates a label. 
+During the instantiation, variable `v` is replaced with the term it is bound to.
+You can extend `to-outline-label` to provide labels for 
+
+* class declarations, 
+* field declarations and
+* method declarations.
+
+When you build the project and open a MiniJava file, you will get an outline of this program in the outline view.
+In case you do not see any outline view, you can select it in *Show View* from Eclipse's *Window* menu.
+
+#### Naming Conventions
+
+In Stratego, we use the following naming conventions:
+
+* constructor and sort names: camel case, starting with an upper case (e.g. `Add`, `BinExp`)
+* rule names, strategy names, variable names: lower case, multiple words seperated by `-` (e.g. `e1`, `project-path`)
+
+#### String Interpolation
+
+In many cases, you want to provide more information than just the name.
+For example, you might want to show not only a variable's name, but also it's type.
+The following rule achieves this:
+
+    to-outline-label: 
+      VarDecl(t, v) -> label
+      where
+        t'    := <pp> t
+      ; label := <concat-strings> [v, ": ", t']
+    
+On its right-hand side, it produces a `label`, which is bound in the `where` clause.
+First, the term bound to `t` is turned into a string bound to `t'` by applying a strategy `pp`.
+You need to define this strategy yourself by a couple of rewrite rules:
+
+    rules
+      
+      pp: Bool()       -> ...
+      pp: ClassType(c) -> ...
+      pp: Int()        -> ...
+      pp: IntArray()   -> ...
+
+Next, the label is bound to the concatenation of 
+the string bound to `v`, 
+a constant string `": "`, 
+and the string bound to `t'`.
+
+String concatenation is not very intuitive.
+Instead, you can also use string interpolation:
+
+    to-outline-label: 
+      VarDecl(t, v) -> $[[v]: [t']] 
+      where 
+        t' := <pp> t
+      
+String interpolation allows you to combine text with variables.
+Text is enclosed in `$[` and `]`, while variables inside the text are enclosed in `[` and `]`.
+These variables need to be bound to strings.
+
+You should provide the following information in your outline labels:
+
+* class name and super class name
+* field name and type
+* method name, parameter types (not parameter names), return type
+* variable name and type
+
+Your current outline view is missing a root node.
+You can add a root node by providing a label for programs.
+
+#### Annotations
+
+In Stratego, terms can be annotated with additional information.
+The Spoofax outline view uses annotations to determine the icon of a node.
+You can specify the icon to use in an annotation:
+
+    to-outline-label: 
+      VarDecl(t, v) -> label{icon} 
+      where 
+        t'    := <pp> t
+      ; label := $[[v]: [t']]
+      ; icon  := "icons/var.gif"
+
+We do not require you to use icons and you will not earn any points with them.
+If you want to use them anyway, you should put the icons into the folder `icons`
+and place a proper attribution or licence file next to them.
+
+#### Challenge
+
+Challenges are meant to distinguish excellent solutions from good solutions. 
+Typically, they are less guided and require more investigation or higher programming skills. 
+
+1. Provide the file name as the root node label. 
+See `lib/runtime/editor/origins/` for a suitable strategy.
+2. Outline the main method as a subnode of the main class.
+This requires you to drop the import `editor/MiniJava-Outliner.generated`.
+Instead, you need define a strategy 
+
+        outline = custom-label-outline(to-outline-label, to-outline-node)
+    Visit `lib/runtime/editor/outline-library` for inspiration.
 
 ### Desugaring
 
@@ -92,13 +211,6 @@ During the instantiation, variables `e1` and `e2` are replaced with the terms th
 You can extend `desugar` to replace the different unary and binary expressions in the abstract syntax tree 
 with a uniform representation of these expressions. 
 Define a rewrite rule `desugar` for every unary or binary operator, which transforms the original expression into a uniform representation.
-
-#### Naming Conventions
-
-In Stratego, we use the following naming conventions:
-
-* constructor and sort names: camel case, starting with an upper case (e.g. `Add`, `BinExp`)
-* rule names, strategy names, variable names: lower case, multiple words seperated by `-` (e.g. `e1`, `project-path`)
 
 #### Editor Integration
 
@@ -208,15 +320,14 @@ To test your implementation, you can use a predefined builder labeled *Show anal
 Open a MiniJava program and run the builder. 
 At this point, you can get rid of your old desugaring builder.
 
-#### Challenge
+#### Annotations
 
-Challenges are meant to distinguish excellent solutions from good solutions. 
-Typically, they are less guided and require more investigation or higher programming skills. 
+In case you want to 
+
+#### Challenge
 
 Define a desugaring for octal numbers. 
 In Java, octal numbers start with leading zeros. 
 Define a rewrite rule which matches such numbers and transforms them to decimal integers. 
 See the [API docs](http://releases.strategoxt.org/docs/api/libstratego-lib/stable/docs/) for useful helper strategies.
-
-### Outline View
 
