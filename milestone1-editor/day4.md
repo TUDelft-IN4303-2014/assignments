@@ -157,7 +157,7 @@ The Spoofax outline view uses annotations to determine the icon of a node.
 You can specify the icon to use in an annotation:
 
     to-outline-label: 
-      VarDecl(t, v) -> label{icon} 
+      Var(t, v) -> label{icon} 
       where 
         t'    := <pp> t
       ; label := $[[v]: [t']]
