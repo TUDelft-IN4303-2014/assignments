@@ -56,7 +56,7 @@ You can earn up to 60 points for your desugarings:
 ### Initial Editor Project
 
 1. Download the initial project.
-2. Import it into your Eclipse workspace.
+2. Import it into your Eclipse workspace (*Import ...*, *Existing Projects into Workspace*, *Select archive file*).
 3. Rename the project to `MiniJava-<YourNetID>`.
 Your NetID is your login name on Blackboard. 
 It is not your student number. 
