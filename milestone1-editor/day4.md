@@ -74,9 +74,10 @@ which combine an operator and an expression (respectively two expressions) to an
 #### Rewrite Rules
 
 The following rewrite rule defines a rule to desugar an addition:
-  rules 
 
-    desugar: Add(e1, e2) -> BinExp(Plus(), e1, e2)
+    rules 
+
+      desugar: Add(e1, e2) -> BinExp(Plus(), e1, e2)
 
 This rewrite rule is named `desugar`. 
 On the left-hand side, the rule matches an addition. 
@@ -120,7 +121,7 @@ while the content of the file is a desugared version of the selected AST node.
 You also need to hook your strategy into the editor, making desugaring available in the *Transform* menu. 
 You can do this in `editor/MiniJava-Builders.esv`:
 
-  builder : "Desugar AST (selection)" = editor-desugar (openeditor) (realtime) (meta) (source)
+    builder : "Desugar AST (selection)" = editor-desugar (openeditor) (realtime) (meta) (source)
 
 This rule defines 
 
@@ -144,9 +145,9 @@ Furthermore, strategies can be defined to orchestrate rewrite rules to complex t
 A strategy consists of a name and a definition, which is typically a combination of strategy applications. 
 For example, the following strategy orchestrates local desugarings to a desugaring of complete ASTs:
 
-  strategies
+    strategies
 
-    desugar-all = innermost(desugar)
+      desugar-all = innermost(desugar)
 
 This strategy is named `desugar-all`. 
 It applies local `desugar` rules. 
@@ -175,32 +176,42 @@ However, desugaring should be an automatic transformation as part of static anal
 In Spoofax, static analysis is performed by strategies. 
 In the initial project, these strategies are implemented in `trans/minijava.str`:
 
-  rules // Analysis
+    rules // Analysis
   
-    editor-analyze = analysis-default-editor
+      editor-analyze = analysis-default-editor
   
-    analysis-single-default-interface = 
-      analysis-single-default(id, id, id|<language>)
-    analysis-multiple-default-interface = 
-      analysis-multiple-default(parse-file <+ !(), id, id, id|<language>, <project-path>)
+      analysis-single-default-interface = 
+        analysis-single-default(id, id, id|<language>)
+      analysis-multiple-default-interface = 
+        analysis-multiple-default(parse-file <+ !(), id, id, id|<language>, <project-path>)
 
 The strategies `analysis-single-default` and `analysis-multiple-default` require various strategy parameters.
 The first parameter in `analysis-single-default` and 
 the second parameter in `analysis-multiple-default` are used for transformations before name analysis.
 This is the place, where you should hook-in your desugaring:
 
-  rules // Analysis
+    rules // Analysis
   
-    editor-analyze = analysis-default-editor
+      editor-analyze = analysis-default-editor
   
-    analysis-single-default-interface = 
-      analysis-single-default(desugar-all, id, id|<language>)
-    analysis-multiple-default-interface = 
-      analysis-multiple-default(parse-file <+ !(), desugar-all, id, id|<language>, <project-path>)
+      analysis-single-default-interface = 
+        analysis-single-default(desugar-all, id, id|<language>)
+      analysis-multiple-default-interface = 
+        analysis-multiple-default(parse-file <+ !(), desugar-all, id, id|<language>, <project-path>)
 
 To test your implementation, you can use a predefined builder labeled *Show analyzed syntax*. 
 Open a MiniJava program and run the builder. 
 At this point, you can get rid of your old desugaring builder.
+
+#### Challenge
+
+Challenges are meant to distinguish excellent solutions from good solutions. 
+Typically, they are less guided and require more investigation or higher programming skills. 
+
+Define a desugaring for octal numbers. 
+In Java, octal numbers start with leading zeros. 
+Define a rewrite rule which matches such numbers and transforms them to decimal integers. 
+See the [API docs](http://releases.strategoxt.org/docs/api/libstratego-lib/stable/docs/) for useful helper strategies.
 
 ### Outline View
 
