@@ -1,4 +1,4 @@
-# Day 4: Testing Name Analysis
+# Day 5: Testing Name Analysis
 
 In this lab, you develop a test suite for name analysis.
 The test suite consists of resolution test cases and constraint test cases.
