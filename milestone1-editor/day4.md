@@ -56,8 +56,17 @@ You can earn up to 60 points for your desugarings:
 ### Initial Editor Project
 
 1. Download the [initial project](https://github.com/guwac/compiler-construction/releases/download/ms1/MiniJava.zip).
-2. Import it into your Eclipse workspace (*Import ...*, *Existing Projects into Workspace*, *Select archive file*).
-3. Build the project.
+2. Import the project into your workspace:
+    1. right-click into the Package Explorer
+    2. select **Import...** from the context menu
+    3. choose **General/Existing Projects into Workspace** from the list
+    4. select **archive file** (2nd choice) as a source
+    5. select the downloaded MiniJava project
+    6. press the **Finish** button
+3. Build the project:
+    1. select the project folder
+    2. select **Build Project** from the **Project** menu
+    3. the console will report success or failure
 
 #### Signature
 
