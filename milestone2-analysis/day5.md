@@ -13,7 +13,6 @@ The test suite should provide
 1. Test cases for the resolution of
   * class names,
   * field names,
-  * method calls,
   * parameter names, and
   * variable names.
 2. Test cases for
@@ -23,7 +22,6 @@ The test suite should provide
   * errors on cyclic inheritance,
   * errors on hiding fields,
   * warnings on hiding variables,
-  * errors on overloaded methods, and
   * errors on instantiating or subclassing the main class.
 
 ### Submission
