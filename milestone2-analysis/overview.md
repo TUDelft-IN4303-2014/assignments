@@ -11,19 +11,39 @@ In this milestone, the MiniJava editor from the previous milestone is extended w
 
 ### MiniJava Editor (Milestone 1)
 
-We provide you with a fresh MiniJava editor project, which already covers the concrete and abstract syntax of MiniJava. For grading purposes, you are required to use this project as a starting point for milestone 2.
+In the last assignment of milestone 1, we provided you with a fresh MiniJava editor project, 
+  which already covers the concrete and abstract syntax of MiniJava. 
+For grading purposes, you are required to continue with this project as a starting point for milestone 2.
+The projects hides nearly its entire implementation from you. 
+Only the signature for MiniJava abstract syntax trees is accessible. You can find it in  `assignment1/MiniJava.str`.
 
-1. Download the MiniJava project.
-2. Import the project into your workspace:
-    1. right-click into the Package Explorer
-    2. select **Import...** from the context menu
-    3. choose **General/Existing Projects into Workspace** from the list
-    4. select **archive file** (2nd choice) as a source
-    5. select the downloaded MiniJava project
-    6. press the **Finish** button
-3. Build the project:
-    1. select the project folder
-    2. select **Build Project** from the **Project** menu
-    3. the console will report success or failure
+### Test Project
 
-The projects hides nearly its entire implementation from you. Only the signature for MiniJava abstract syntax trees is accessible. You can find it in  `assignment1/MiniJava.str`.
+You should create a separate project for your test cases and example programs:
+
+1. Right-click into the Package Explorer.
+2. Select **New** from the context menu.
+3. Choose **Project...** from the list.
+4. Select the **Project** wizard from **General**.
+5. Switch to the **Next** tab.
+6. As **Project name**, use `MiniJava-tests-<YourNetID>`. 
+7. Press the **Finish** button.
+
+Please do not resubmit your syntax test cases during this milestone.
+
+## Resources
+
+You can find the *MiniJava Language Reference Manual* in the appendix of the book 
+*Modern Compiler Implementation in Java* (2nd edition).
+The relevant pages are available on [Google books](http://books.google.com/books?id=JNs6fWkJZbAC&pg=PA484).
+
+The [MiniJava project](http://www.cambridge.org/us/features/052182060X/)
+by Joao Cangussu, Jens Palsberg and Vidyut Samanta provides some example programs 
+and an HTML version of the reference manual.
+
+The following research papers cover relevant topics of this milestone:
+
+1. L. Kats, R. Vermaas, E. Visser: [Integrated Language Definition Testing: Enabling Test-Driven Language Development](http://swerl.tudelft.nl/twiki/pub/Main/TechnicalReports/TUD-SERG-2011-011.pdf), OOPSLA 2011
+2. G. Konat, L. Kats, G. Wachsmuth, E. Visser: [Declarative Name Binding and Scope Rules](http://swerl.tudelft.nl/twiki/pub/Main/TechnicalReports/TUD-SERG-2012-015.pdf), SLE 2012
+
+
