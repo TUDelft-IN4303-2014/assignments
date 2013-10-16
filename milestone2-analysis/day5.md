@@ -119,7 +119,7 @@ For example, the following test cases specify a correct MiniJava program,
       class [[Foo]] {}
     ]] 2 errors
      
-    test waring on unused class [[
+    test warning on unused class [[
       class Main {
         public static void main(String[] args) {
           System.out.println(1);
@@ -132,4 +132,12 @@ For example, the following test cases specify a correct MiniJava program,
         Foo x;
       }
     ]] 1 warning
+
+You can start with test cases for duplicate definitions, missing definitions, and unused definitions.
+Similar to your syntax test cases, you can pair up positive (`0 errors`) and negative test cases.
+Next, you should develop test cases for 
+ cyclic inheritance, 
+ hiding fields and variables, 
+ and main class instantiation/subvlassing.
+Again, you should keep in mind that coverage is the main criterion for your grade. 
 
