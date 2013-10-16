@@ -43,7 +43,7 @@ You can earn up to 95 points for the coverage of your test cases.
 In test cases for reference resolution, 
  you write syntactically correct programs and
  mark names at definition and use sites with inner square bracket blocks. 
-You can then relate the use site with the definition site in a `resolve ... to ...` clause, 
+You can then relate the use site with the definition site in a `resolve`-`to` clause, 
   using numbers to refer to the inner blocks. 
 For example, the following two test cases require to resolve the type `Foo` to the name in the definition of class `Foo`:
 
@@ -75,12 +75,19 @@ For example, the following two test cases require to resolve the type `Foo` to t
       }
     ]] resolve #2 to #1
  
- Tip: You can use setup headers and footers to avoid repeating parts in similar test cases.
+You can use `setup` headers and footers to avoid repeating parts in similar test cases.
 
+You should come up with test cases for the resolution of class names, field names, parameter names, and variable names.
+Start with simple test cases, but keep in mind that coverage is the main criterion for your grade. 
+It is important to think about 
+ forward and backward references,
+ resolution in the presence of homonyms, 
+ and the influence of class hierarchies on resolution.
+ 
 ### Testing Error Checking
 
 In test cases for error checking, you need o specify the number of errors, warnings, or notes in a test case 
- in `... errors`, `... warnings`, or `... notes` clauses. 
+ in `errors`, `warnings`, or `notes` clauses. 
 You can use inner square bracket blocks to mark the positions where messages should be reported. 
 For example, the following test cases specify a correct MiniJava program, 
  a program with two errors which are reported on the name of a duplicate class `Foo`, 
@@ -125,3 +132,4 @@ For example, the following test cases specify a correct MiniJava program,
         Foo x;
       }
     ]] 1 warning
+
