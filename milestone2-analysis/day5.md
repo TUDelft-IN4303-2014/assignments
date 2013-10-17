@@ -47,6 +47,11 @@ You can then relate the use site with the definition site in a `resolve`-`to` cl
   using numbers to refer to the inner blocks. 
 For example, the following two test cases require to resolve the type `Foo` to the name in the definition of class `Foo`:
 
+    module resolution
+     
+    language MiniJava
+    start symbol Start
+     
     test forward class name resolution [[
       class Main {
         public static void main(String[] args) {
@@ -93,6 +98,11 @@ For example, the following test cases specify a correct MiniJava program,
  a program with two errors which are reported on the name of a duplicate class `Foo`, 
  and another program with a warning which is reported on the name of an unused class `Foobar`:
  
+    module resolution
+     
+    language MiniJava
+    start symbol Start
+     
     test correct program [[
       class Main {
         public static void main(String[] args) {
