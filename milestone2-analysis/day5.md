@@ -124,9 +124,9 @@ For example, the following test cases specify a correct MiniJava program,
         }
       }
      
-      class [[Foo]] {}
+      class Foo {}
      
-      class [[Foo]] {}
+      class Foo {}
     ]] 2 errors
      
     test warning on unused class [[
