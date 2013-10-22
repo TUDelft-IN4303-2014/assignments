@@ -11,15 +11,15 @@
 ##### How do I get started?
 
 1. Create a Spoofax editor project ([instructions](https://github.com/guwac/compiler-construction/blob/master/assignments/milestone1-editor/overview.md#initial-spoofax-project)) 
-   and a general project ([instructions](https://github.com/guwac/compiler-construction/blob/master/assignments/milestone1-editor/overview.md#initial-test-project)) in Eclipse.
-2. Create a new test suite. 
+   and a test project ([instructions](https://github.com/guwac/compiler-construction/blob/master/assignments/milestone1-editor/overview.md#initial-test-project)) in Eclipse.
+2. Create a new test suite in the test project. 
    1. Select *File > New > File* from the menu.
    2. Use `.spt` as a file extension.
 3. Write your first test module in that file. 
    
 Each test module gets its own file. 
 You can add directories to your project to group the test files. 
-If you have built the MiniJava project, your test modules will be parsed. 
+If you build the editor project, your test modules will be parsed. 
 
 # Syntax Definition
 
