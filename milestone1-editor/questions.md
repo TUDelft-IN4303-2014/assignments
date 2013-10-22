@@ -10,10 +10,8 @@
 
 ##### How do I get started?
 
-1. Create a general project in Eclipse:
-   1. Select *File > New > Project ...* from the menu.
-   2. Select *Project* in the *General* folder.
-   3. Use `MiniJava-tests-<YourNetID>` as the project name.
+1. Create a Spoofax editor project and a general project in Eclipse.
+   Follow [these instructions](https://github.com/guwac/compiler-construction/blob/master/assignments/milestone1-editor/overview.md#initial-test-project).
 2. Create a new test suite. 
    1. Select *File > New > File* from the menu.
    2. Use `.spt` as a file extension.
