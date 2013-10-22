@@ -148,6 +148,6 @@ Similar to your syntax test cases, you can pair up positive (`0 errors`) and neg
 Next, you should develop test cases for 
  cyclic inheritance, 
  hiding fields and variables, 
- and main class instantiation/subvlassing.
+ and main class instantiation/subclassing.
 Again, you should keep in mind that coverage is the main criterion for your grade. 
 
