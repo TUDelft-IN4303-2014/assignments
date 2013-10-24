@@ -243,3 +243,37 @@ The following library strategies might be useful:
 * `task-create-error-on-multiple(|ctx, task, msg)` creates an error message `msg`, if `task` has more than one solution.
 * `task-create-warning-on-failure`, `task-create-warning-on-success` and `task-create-warning-on-multiple` are variants for warnings instead of errors.
 
+### Properties on Definitions
+
+#### Defining Properties
+
+You can define certain properties of binding instances.
+`type` is a build-in property and you should define the type of field and variable declarations.
+You can do so in a special `defines` clause:
+
+    ...: defines Field f of type t
+    
+This associates the type `t` with the field name `f`.
+You can see such associations in the index (try the *Show index (current)* builder).
+The index stores all definitions and properties of these definitions.
+
+#### Property-based Constraints 
+
+You can use properties in constraints. 
+For example, you can define a constructor for a special type and associate the main class with this type.
+You can use this to check if a class reference refers to the main class:
+
+    nabl-constraint(|ctx):
+      ClassType(c) -> <fail>
+      where
+        lookup := <type-lookup(|ctx)> c
+      ; match  := <type-match(|ctx, YourSpecialTypeConstructor())> lookup
+      ; msg    := "Another fancy error message"
+      ; <task-create-error-on-success(|ctx, match, msg)> c
+      
+This rule reports errors on class types which refer to the main class.
+It creates a task `lookup` which looks up the type of `c` and
+another task `match` which matches the result of this lookup against your special type.
+If this match is successful, an error is reported.
+You should define your own special type constructor and provide a meaningful error message.
+Next, you can do similar checks for main class subtyping and main class instantiation.
