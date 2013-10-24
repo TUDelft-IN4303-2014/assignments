@@ -88,7 +88,7 @@ This lab requires you to update Spoofax to the latest unstable release and
 
 ## Detailed Instructions
 
-### Name Binding
+### Name Binding Language
 
 In Spoofax, name bindings are specified in NaBL.
 NaBL stands for *Name Binding Language* and the acronym is pronounced 'enable'.
@@ -141,10 +141,30 @@ Each binding rule is of the form `pattern : clause*`,
   `clause*` is a list of name binding specifications about the language construct that is matched by `pattern`. 
 For example, the first rule specifies binding instances of class names.
 Its pattern matches regular MiniJava classes (but not the main class).
-Its single clause states that these classes are definition sites for class names (i.e. they bind class names).
+Its `defines` clause states that these classes are definition sites for class names (i.e. they bind class names).
 Similarly, the second rule specifies bound instances of class names.
 Its pattern matches class types and 
-its clause states that such class types are use sites for class names (i.e. they refer to bound class names).
+its `refers` clause states that such class types are use sites for class names (i.e. they refer to bound class names).
+When a name can refer to different namespaces, you can combine refer clauses with `otherwise`, e.g. 
+
+    Foo(name) : refers to Namespace1 name otherwise refers to Namespace2 name
 
 When you save the file and build your project, 
   you will get reference resolution for class names in your MiniJava editor.
+You might recognise that reference resolution works across files in the same Eclipse project.
+Though this is a nice feature, this is incorrect for MiniJava,
+ where files scope their class declarations.
+You can specify this scoping behaviour in a binding rule:
+
+    Program(_, _): scopes Class
+    
+The pattern of this rule matches programs and its `scopes` clause specifies that this is a scope for class names.
+
+### More Name Binding Rules
+
+You are now able to complete the name binding rules for MiniJava. You should come up with:
+
+1. more name binding rules for class names (there might be more definition and use sites of class names),
+2. namespaces and name binding rules for method declarations, field declarations and variable declarations,
+3. scoping rules for these declarations and
+4. name binding rules for variable and field references.
