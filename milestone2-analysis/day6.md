@@ -88,7 +88,7 @@ This lab requires you to update Spoofax to the latest unstable release and
 
 ## Detailed Instructions
 
-### Name Binding Language
+### Name Binding
 
 In Spoofax, name bindings are specified in NaBL.
 NaBL stands for *Name Binding Language* and the acronym is pronounced 'enable'.
@@ -102,7 +102,7 @@ Name binding is specified in terms of
 To start a new name binding specification, 
   you need to create a `.nab` file in directory `trans` or one of its subdirectories.
 
-    module names
+    module module-name
       
     imports
       assignment1/MiniJava
@@ -111,10 +111,10 @@ The module name has to be the same as the file name and should include the path 
 For example, a file `foo.nab` in directory `trans/bar` should define a module `bar/foo`.
 When you save an NaBL file, a corresponding Stratego file will be generated from it.
 This file contains implementation strategies for your name analysis.
-You need to import this file into `trans/<YourLanguage>.str`.
+You need to import this file into `trans/minijava.str`.
 When you build your project, your name binding rules become effective in your MiniJava editor.
 
-### Class Names
+#### Class Names
 
 We use class names as an example to get you started with NaBL.
 First, you start a `namespaces` section and define a namespace `Class`:
@@ -160,7 +160,7 @@ You can specify this scoping behaviour in a binding rule:
     
 The pattern of this rule matches programs and its `scopes` clause specifies that this is a scope for class names.
 
-### More Name Binding Rules
+#### More Name Binding Rules
 
 You are now able to complete the name binding rules for MiniJava. You should come up with:
 
@@ -168,3 +168,63 @@ You are now able to complete the name binding rules for MiniJava. You should com
 2. namespaces and name binding rules for method declarations, field declarations and variable declarations,
 3. scoping rules for these declarations and
 4. name binding rules for variable and field references.
+
+### Custom Constraints
+
+NaBL provides generic checks for duplicate definitions and unresolved references.
+In order to give specific error messages, you need to replace them with your own constraints.
+First, you need to create a new Stratego file in `trans` or one of its subdirectories:
+
+    module module-name
+     
+    imports
+      
+      assignment1/MiniJava
+      runtime/nabl/-
+      runtime/task/-
+      runtime/types/-
+
+Again, the module name has to be the same as the file name and should include the path relative to the `trans` directory.
+Now you can turn off the generic checks:
+
+    strategies
+     
+      nabl-check-disable-duplicate(|uri, ns) = id
+      nabl-check-disable-hiding(|uri, ns) = id
+      nabl-check-disable-unresolved = id
+      
+#### Unresolved References
+
+You can create your own constraints by providing rewrite rules for `nabl-constraint(|ctx)`:
+
+    rules
+     
+      nabl-constraint(|ctx):
+        ClassType(c) -> <fail>
+        where
+          <has-annotation(?Use(task))> c
+        ; msg  := "Your meaningful error message should be here"
+        ; <task-create-error-on-failure(|ctx, task, msg)> c
+        
+This rule matches a language construct on the left-hand side (in this case a class type) and fails on the right-hand side.
+The failure ensures that you can report different errors on the same language construct.
+The shown rule reports an error on unresolved class names in class types.
+Errors can be reported on failing tasks.
+In the current example of an unresolved error message, this needs to be a failing resolution task.
+The `where` clause of the rule obtains this `task` from the class name by matching a particular annotation.
+Next, an error message `msg` is created.
+You should replace this with a meaningful message.
+You can use string interpolation to include elements from the matched term in the error message.
+Finally, a library strategy is called to create an error in case of a failing task.
+The arguments to this strategy are
+
+1. a context variable `ctx`,
+2. the `task` which needs to fail to trigger the error message and
+3. the error message `msg`.
+
+The strategy is applied to the term where the error should be shown (in this case, the class name).
+You should follow this pattern to provide custom error messages for all unresolved class references,
+field references and variable references.
+
+
+
