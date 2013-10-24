@@ -114,6 +114,37 @@ This file contains implementation strategies for your name analysis.
 You need to import this file into `trans/<YourLanguage>.str`.
 When you build your project, your name binding rules become effective in your MiniJava editor.
 
-#### Namespaces
+### Class Names
 
+We use class names as an example to get you started with NaBL.
+First, you start a `namespaces` section and define a namespace `Class`:
 
+    namespaces 
+      
+      Class
+
+In NaBL, a *namespace* is a collection of names and is not necessarily connected to a specific language concept.
+Different concepts can contribute names to a single namespace. 
+For example, in MiniJava variables and parameters contribute to the same namespace. 
+
+Once you have defined a namespace, 
+you can define name bindings rules in a `binding rules` section:
+
+    binding rules
+     
+      Class(c, _, _, _): defines Class c
+       
+      ClassType(c): refers to Class c
+
+Each binding rule is of the form `pattern : clause*`, 
+  where `pattern` is a term pattern (like in Stratego rewrite rules) and 
+  `clause*` is a list of name binding specifications about the language construct that is matched by `pattern`. 
+For example, the first rule specifies binding instances of class names.
+Its pattern matches regular MiniJava classes (but not the main class).
+Its single clause states that these classes are definition sites for class names (i.e. they bind class names).
+Similarly, the second rule specifies bound instances of class names.
+Its pattern matches class types and 
+its clause states that such class types are use sites for class names (i.e. they refer to bound class names).
+
+When you save the file and build your project, 
+  you will get reference resolution for class names in your MiniJava editor.
