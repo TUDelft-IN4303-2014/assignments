@@ -226,5 +226,20 @@ The strategy is applied to the term where the error should be shown (in this cas
 You should follow this pattern to provide custom error messages for all unresolved class references,
 field references and variable references.
 
+#### Duplicates and Hiding
 
+Constraints on duplicate or hiding declarations can also be specified with `nabl-constraint(|ctx)` rules.
+However, in these cases you cannot match existing tasks but need to create your own ones.
+The following library strategies might be useful:
+
+* `nabl-lookup-local(|ctx)` creates a resolution task that searches for a name in the same (local) scope.
+  This strategy needs to be applied to a binding instance of a name.
+* `nabl-lookup-lexical(|ctx)` creates a resolution task that searches for a name in the local and surrounding (lexical) scope.
+  This strategy needs to be applied to a binding instance of a name.
+* `nabl-lookup-lexical(|ctx, ns)` does the same as above, but considers names in namespace `ns`.
+  You need to pass a term for the namespace of interest here. Constructor for such terms are generated from your
+  name binding specification.
+* `task-create-error-on-success(|ctx, task, msg)` creates an error message `msg`, if `task` has one or more solutions.
+* `task-create-error-on-multiple(|ctx, task, msg)` creates an error message `msg`, if `task` has more than one solution.
+* `task-create-warning-on-failure`, `task-create-warning-on-success` and `task-create-warning-on-multiple` are variants for warnings instead of errors.
 
