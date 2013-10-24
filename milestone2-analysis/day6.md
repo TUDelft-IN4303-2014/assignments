@@ -277,3 +277,14 @@ another task `match` which matches the result of this lookup against your specia
 If this match is successful, an error is reported.
 You should define your own special type constructor and provide a meaningful error message.
 Next, you can do similar checks for main class subtyping and main class instantiation.
+
+### Challenge
+
+Challenges are meant to distinguish excellent solutions from good solutions. 
+Typically, they are less guided and require more investigation or higher programming skills.
+
+Enhance your error messages with information about scopes.
+For example, you might want to mention the surrounding method of a variable which hides a field.
+You can retrieve such information from the annotations of a binding instance.
+To retrieve annotations, you should use strategies from the [standard library](http://releases.strategoxt.org/docs/api/libstratego-lib/stable/docs/).
+To analyse the anotated URIs, you should use strategies from `lib/runtime/nabl/uri`.
