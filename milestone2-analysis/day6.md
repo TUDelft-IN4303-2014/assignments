@@ -255,6 +255,10 @@ You can do so in a special `defines` clause:
     
 This associates the type `t` with the field name `f`.
 You can see such associations in the index (try the *Show index (current)* builder).
+Search for entries of the form `Prop(URI(...), Type(), Result(...)`.
+The URI specifies the definition by naming its scopes.
+The result refers to a task which has the property as a result.
+You can see tasks and their results with the *Show tasks (current)* builder.
 The index stores all definitions and properties of these definitions.
 
 #### Property-based Constraints 
