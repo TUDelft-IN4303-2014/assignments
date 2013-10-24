@@ -76,10 +76,44 @@ We will consider the fact that both languages are new to you.
 
 ### Spoofax Update
 
-This lab requires you to update Spoofax to the latest unstable release.
+This lab requires you to update Spoofax to the latest unstable release and 
+  to fix an import in the milestone we provided you.
 
 1. Choose *Install New Software* from the *Help* menu.
 2. Add `http://download.spoofax.org/update/unstable/` as an update site.
 3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
+4. Delete the directory `lib/runtime` in your existing MiniJava project.
+5. Update the import in `trans/minijava.str` from `lib/runtime/nbl/-` to `lib/runtime/nabl/-`.
+6. Build your MiniJava project.
 
 ## Detailed Instructions
+
+### Name Binding
+
+In Spoofax, name bindings are specified in NaBL.
+NaBL stands for *Name Binding Language* and the acronym is pronounced 'enable'.
+Name binding is specified in terms of
+  namespaces, 
+  binding instances (name declarations), 
+  bound instances (name references),
+  scopes and
+  imports.
+
+To start a new name binding specification, 
+  you need to create a `.nab` file in directory `trans` or one of its subdirectories.
+
+    module names
+      
+    imports
+      assignment1/MiniJava
+
+The module name has to be the same as the file name and should include the path relative to the `trans` directory.
+For example, a file `foo.nab` in directory `trans/bar` should define a module `bar/foo`.
+When you save an NaBL file, a corresponding Stratego file will be generated from it.
+This file contains implementation strategies for your name analysis.
+You need to import this file into `trans/<YourLanguage>.str`.
+When you build your project, your name binding rules become effective in your MiniJava editor.
+
+#### Namespaces
+
+
