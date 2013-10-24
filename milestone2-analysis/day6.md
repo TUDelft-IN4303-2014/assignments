@@ -66,6 +66,14 @@ We particular focus on
  precision, 
  and the level of detail in your messages.
 
+Finally, you can earn up to 5 points for the organisation of your NaBL and Stratego files and 
+up to 10 points for the quality of your code.
+We focus on
+  readibility in general,
+  meaningful variable names and
+  the consistent use of NaBL Stratego paragdims.
+We will consider the fact that both languages are new to you.
+
 ### Spoofax Update
 
 This lab requires you to update Spoofax to the latest unstable release.
