@@ -248,7 +248,7 @@ The following library strategies might be useful:
 #### Defining Properties
 
 You can define certain properties of binding instances.
-`type` is a build-in property and you should define the type of field and variable declarations.
+`type` is a built-in property and you should define the type of field and variable declarations.
 You can do so in a special `defines` clause:
 
     ...: defines Field f of type t
