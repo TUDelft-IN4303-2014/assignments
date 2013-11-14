@@ -41,8 +41,8 @@ In test cases for type analysis,
  you write syntactically correct programs and
  mark expressions with inner square bracket blocks. 
 You can then specify the expected type of the marked expression in a `run`-`to` clause.
-For example, the following two test cases require an integer literal to be of type `IntType()` 
-and a variable reference to be of its declared type `BoolType()`:
+For example, the following two test cases require an integer literal to be of type `Int()` 
+and a variable reference to be of its declared type `Bool()`:
 
     module types
      
