@@ -45,5 +45,4 @@ The following research papers cover relevant topics of this milestone:
 
 1. L. Kats, R. Vermaas, E. Visser: [Integrated Language Definition Testing: Enabling Test-Driven Language Development](http://swerl.tudelft.nl/twiki/pub/Main/TechnicalReports/TUD-SERG-2011-011.pdf), OOPSLA 2011
 2. G. Konat, L. Kats, G. Wachsmuth, E. Visser: [Declarative Name Binding and Scope Rules](http://swerl.tudelft.nl/twiki/pub/Main/TechnicalReports/TUD-SERG-2012-015.pdf), SLE 2012
-
-
+3. G. Wachsmuth, G. Konat, V. Vergu, D. Groenewegen, E. Visser: [A Language Independent Task Engine for Incremental Name and Type Analysis](http://swerl.tudelft.nl/twiki/pub/Main/TechnicalReports/TUD-SERG-2013-014.pdf), SLE 2013
