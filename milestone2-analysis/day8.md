@@ -168,6 +168,8 @@ The general pattern for the corresponding typing rules is this:
       
 Here, `e` should match an expression with subexpressions `e1` and `e2` and
 `ty` should be the type of `e`, while `ty1` and `ty2` should be the expected types of `e1` and `e2`, respectively.
+The strategy `type-task` tries to find an existing type task for an expression.
+If it cannot find such a task, it will call `create-type-task` to create a new one.
 
 You can follow this pattern for the rules for unary and binary expressions.
 You should define the following rules:
@@ -192,3 +194,39 @@ In TS, you need to specify the types of operators in axioms:
 
     Length(): (IntArray(), Int())
 
+#### References
+
+For references, you need to lookup the type of the corresponding definition.
+Types of definitions are specified in NaBL rules.
+You should have specified these types in the name analysis assignment:
+
+    ...: defines Field f of type t
+
+You can use `type-lookup` to create a task which looks up the type at a definition:
+
+    create-type-task(|ctx): 
+      e -> ...
+      where
+        task := <type-lookup(|ctx)> r
+    
+Here, `r` should be a reference in an expression `e`.
+`task` is a task which yields the type at the definition of `r`.
+You can use this task either in other tasks or as the result of `create-type-task`.
+You have used this strategy already in the assignment on name analysis.
+
+You can use the same approach to type `this` expressions.
+Therefor, you first need to specify name binding rules for `this`.
+Since `this` is nowhere specified explicitly, 
+  you need to add an implicit definition clause to one of the existing name binding rules.
+An implicit definition clause has the following form:
+
+    ...: implicitly defines Namespace name
+    
+You might want to reuse an existing namespace or define a new one for `this`.
+As a name, you should use the abstract syntax for `this`.
+Implicit defintions can also have properties, which allows you to specify the type of `this`.
+
+Next, you should specify a rule which resolves `this` to the implicit definition you just added.
+Again, you should use the abstract syntax for `this` as the name in this rule.
+
+Finally, you can define a typing rule which uses `type-lookup` to create a task which looks up the type of `this`.
