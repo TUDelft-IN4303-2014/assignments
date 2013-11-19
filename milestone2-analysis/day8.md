@@ -15,7 +15,7 @@ The specification should include:
   * method declarations and
   * method calls.
 2. Typing rules for
-  * integer and boolean constants,
+  * integer and boolean literals,
   * unary and binary expressions,
   * variable and field references,
   * object creation,
@@ -118,17 +118,18 @@ For each kind of expression, you should define a rule `create-type-task(|ctx)`,
 There are three strategies to create type analysis tasks:
 
 1. `<type-is(|ctx)> ty` creates a task which has `ty` as its result.
-2. `<type-lookup(|ctx)> ref` creates a task which looks up the type of a reference `ref`. 
-3. `<type-match(|ctx, ty1)> ty2` creates a task which matches `ty1` against `ty2`. 
+2. `<type-is(|ctx, t*)> ty` creates a task which has `ty` as its result, when all tasks `t*` succeed.
+3. `<type-lookup(|ctx)> ref` creates a task which looks up the type of a reference `ref`. 
+4. `<type-match(|ctx, ty1)> ty2` creates a task which matches `ty1` against `ty2`. 
 
-You have already used `type-lookup` and `type-match` in the name analysis lab for checking main class instantiations.
+You have already used `type-lookup` and `type-match` in the assignment on name analysis for constraints related to the main class.
 
-#### Typing Axioms
+#### Literals
 
 In the simplest case, the type of an expression is directly known.
-An typical example for such expessions are constant values.
-For example, integer constants are of type integer.
-The following rule matches an integer constant and creates a task which will result in the integer type:
+An typical example for such expessions are literals.
+For example, integer literals are of type `int`.
+The following rule matches an integer literal and creates a task which will result in the type `int`:
 
     create-type-task(|ctx): IntValue(_)  -> <type-is(|ctx)> Int()
 
@@ -137,4 +138,35 @@ You should specify similar rules for boolean literals and for object creations.
 When you want to accept the challenge, here is the previous rule in TS:
 
     IntValue(_): Int()
-    
+
+#### Unary and Binary Expressions
+
+In more complicated cases, you need to check the types of subexpressions.
+The general idea is that only well-typed expressions have a type.
+For example, `1 + true` has no type, because the right subexpression is of type `boolean` instead of type `int`.
+The general pattern for the corresponding typing rules is this:
+
+    create-type-task(|ctx): 
+      e -> <type-is(|ctx, [task2, task4])> ty
+      where
+        task1 := <type-task(|ctx)> e1
+      ; task2 := <type-match(|ctx, ty1)> task1
+      ; task3 := <type-task(|ctx)> e2
+      ; task4 := <type-match(|ctx, ty2)> task3
+      
+Here, `e` should match an expression with subexpressions `e1` and `e2` and
+`ty` should be the type of `e`, while `ty1` and `ty2` should be the expected types of `e1` and `e2`, respectively.
+
+You can follow this pattern for the rules for unary and binary expressions.
+You should define the following rules:
+
+1. One `create-type-task` rule for `UnExp`.
+2. One `create-type-task` rule for `BinExp`.
+3. A rule `type-of-op` for each unary and binary operator, which rewrites the operator to a tuple.
+   This tuple should consist of the expected types of subexpressions and the type of the operator itself.
+   For example, the following rule states that `Length` requires a subexpression of type `int`and yields an expression of type `int`:
+        
+        type-of-op: Length() -> (IntArray(), Int())
+
+
+
