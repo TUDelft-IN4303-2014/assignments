@@ -114,12 +114,18 @@ There overall structure looks like this:
 To support incremental name and type analysis, we use tasks to specify name and type analysis.
 You have seen tasks already in the assignment on name analysis.
 
+#### Idea
+
 A task is a unit of computation, which might depend on index entries (such as definitions or properties) or on the results of other tasks.
 Tasks are collected in a traversal, before they are evaluated.
 Results of evaluated tasks are cached.
 When a file is changed, tasks are only re-collected for this file.
 A task is only re-eveluated, if it is new or if one of its dependencies changed.
 This might include tasks which originated from a different file than the file that changed.
+
+#### Debugging
+
+...
 
 ### Typing Rules
 
@@ -155,7 +161,7 @@ When you want to accept the challenge, here is the previous rule in TS:
 
 In more complicated cases, you need to check the types of subexpressions.
 The general idea is that only well-typed expressions have a type.
-For example, `1 + true` has no type, because the right subexpression is of type `boolean` instead of type `int`.
+For example, `1 + true` should have no type, since the right subexpression is of type `boolean` instead of type `int`.
 The general pattern for the corresponding typing rules is this:
 
     create-type-task(|ctx): 
