@@ -188,7 +188,7 @@ In TS, the general pattern for checking subexpressions is this:
       and e2: ety2
       and ety2 == ty2
 
-You should specify the types of operators in axioms:
+In TS, you need to specify the types of operators in axioms:
 
     Length(): (IntArray(), Int())
 
