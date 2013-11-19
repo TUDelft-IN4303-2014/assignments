@@ -78,8 +78,6 @@ This lab requires you to update Spoofax to the latest unstable release and
 1. Choose *Install New Software* from the *Help* menu.
 2. Add `http://download.spoofax.org/update/unstable/` as an update site.
 3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
-4. Delete the directory `lib/runtime` in your existing MiniJava project.
-5. Update the import in `trans/minijava.str` from `lib/runtime/nbl/-` to `lib/runtime/nabl/-`.
-6. Build your MiniJava project.
+4. Build your MiniJava project.
 
 ## Detailed Instructions
