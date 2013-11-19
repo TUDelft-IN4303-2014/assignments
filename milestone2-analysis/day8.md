@@ -289,4 +289,12 @@ You need to provide an implementation for this rule:
       where
         ...
         
-     
+In TS, you do not need to specify rules for `task-rewrite`. 
+Instead, you can use a pattern for `sophisticated-type` which matches `parameter-types` and `return-type`:
+
+    ...: ...
+    where definition of m: sophisticated-type // lookup sophisticated type and match parameter-types and return-type
+      ...                                     // check actual argument types w.r.t. parameter types
+
+TS will generate the corresponding rewrite rules for you.
+
