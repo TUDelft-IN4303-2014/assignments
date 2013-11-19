@@ -300,7 +300,10 @@ Instead, you can use a pattern for `sophisticated-type` which matches `parameter
 
     ...: ...
     where definition of m: sophisticated-type // lookup sophisticated type and match parameter-types and return-type
-      ...                                     // check actual argument types w.r.t. parameter types
+      and  ...                                // check actual argument types w.r.t. parameter types
 
 TS will generate the corresponding rewrite rules for you.
+
+### Constraints
+
 
