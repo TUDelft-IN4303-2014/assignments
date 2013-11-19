@@ -81,3 +81,60 @@ This lab requires you to update Spoofax to the latest unstable release and
 4. Build your MiniJava project.
 
 ## Detailed Instructions
+
+### Challenge
+
+Challenges are meant to distinguish excellent solutions from good solutions. 
+Typically, they are less guided and require more investigation or higher programming skills.
+
+The challenge for this lab is to specify typing rules and constraints as much as possible in TS, a brand new metalanguage for specifying type systems of programming languages.
+TS has a number of rough edges:
+
+1. Generated Stratego files contain errors, but compile fine.
+2. Generated variable names change in each compilation.
+3. The language lacks syntactic sugar for typical typing rule patterns.
+
+Despite these issues, the language should allow you to specify typing rules and constraints in a declarative and concise way.
+TS files end in `.ts` and generate corresponding `.generated.str` files.
+
+### Tasks
+
+To support incremental name and type analysis, we use tasks to specify name and type analysis.
+You have seen tasks already in the assignment on name analysis.
+
+A task is a unit of computation, which might depend on index entries (such as definitions or properties) or on the results of other tasks.
+Tasks are collected in a traversal, before they are evaluated.
+Results of evaluated tasks are cached.
+When a file is changed, tasks are only re-collected for this file.
+A task is only re-eveluated, if it is new or if one of its dependencies changed.
+This might include tasks which originated from a different file than the file that changed.
+
+### Typing Rules
+
+Typing rules specify the types of expressions.
+Instead of specifying these types directly, we wrap them in tasks.
+For each kind of expression, you should define a rule `create-type-task(|ctx)`,
+  which rewrites an expression to a task yielding its type.
+There are three strategies to create type analysis tasks:
+
+1. `<type-is(|ctx)> ty` creates a task which has `ty` as its result.
+2. `<type-lookup(|ctx)> ref` creates a task which looks up the type of a reference `ref`. 
+3. `<type-match(|ctx, ty1)> ty2` creates a task which matches `ty1` against `ty2`. 
+
+You have already used `type-lookup` and `type-match` in the name analysis lab for checking main class instantiations.
+
+#### Typing Axioms
+
+In the simplest case, the type of an expression is directly known.
+An typical example for such expessions are constant values.
+For example, integer constants are of type integer.
+The following rule matches an integer constant and creates a task which will result in the integer type:
+
+    create-type-task(|ctx): IntValue(_)  -> <type-is(|ctx)> Int()
+
+You should specify similar rules for boolean literals and for object creations.
+
+When you want to accept the challenge, here is the previous rule in TS:
+
+    IntValue(_): Int()
+    
