@@ -125,7 +125,13 @@ This might include tasks which originated from a different file than the file th
 
 #### Debugging
 
-...
+Hovers offer a quick way to check if type analysis works as expected.
+When you move your mouse over an expression, you should see its type in a hover text.
+Your test cases from the previous lab should enable a more principled way of testing type analysis. 
+
+When you get unexpected results, you can inspect index entries and collected tasks with builders.
+Probably the most useful builders for you are those which show them only for the current file or for a selection.
+You can navigate the dependencies of tasks and can find failing tasks.
 
 ### Typing Rules
 
