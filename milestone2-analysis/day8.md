@@ -214,6 +214,11 @@ Here, `r` should be a reference in an expression `e`.
 You can use this task either in other tasks or as the result of `create-type-task`.
 You have used this strategy already in the assignment on name analysis.
 
+In TS, you can lookup the type of definitions as follows:
+
+    e: ...
+    where definition of r: ty
+
 ### Name Binding Revisited
 
 #### `this` Expressions
@@ -236,4 +241,52 @@ Finally, you can define a typing rule which uses `type-lookup` to create a task 
 
 #### Method Calls
 
+Method calls need to be resolved with respect to the type of the callee expression.
+This expression needs to be of a class type and the method call should resolve to a method in the corresponding class.
+Such contextual references are specified as follows:
 
+    ...: 
+      refers to Namespace1 name1 in Namespace2 name2
+      where e has type ty
+      
+The `where` clause requires an expression `e` to be of type `ty`.
+`name1` is then resolved in the scope of `name2`. 
+You need to instantiate this pattern for method calls which resolve to methods inside classes.
+You should use a pattern for `ty`, which binds `name2`.
+
+To type a method call, you need to define the type of a method name definition:
+
+    ...: defines Method m of type t
+
+Next, you can specify a `create-type-task` rule for method calls, which looks up the type of the method definition.
+This works nicely, but also yields a type for method calls with missing arguments, additional arguments, or wrong argument types.
+To avoid this, you need to specify a more sophisticated type at the definition site.
+This type should include the expected types for the parameters and the return type of the method.
+Similar to the rule for method calls, you can collect the parameter types in a `where` clause.
+Next, you can adopt your typing rule for method calls.
+`type-lookup` will now yield the more sophisticated type.
+You need to extract the parameter types and the return type for further tasks.
+This extraction is done by a `Rewrite` task:
+
+    create-type-task(|ctx):
+      ... -> ...
+      where
+        task1 := <type-lookup(|ctx)> m                              // lookup sophisticated type of method name definition
+      ; task2 := <new-task(|ctx)> Rewrite("parameter-types", task1) // extract parameter types
+      ; task3 := <new-task(|ctx)> Rewrite("return-type", task1)     // extract return type
+      ; ...                                                         // check actual argument types w.r.t. parameter types
+      
+The first parameter of a `Rewrite` task specifies a particular rewrite rule.
+You need to provide an implementation for this rule:
+
+    task-rewrite: 
+      ("parameter-types", sophisticated-type) -> parameter-types
+      where
+        ...
+        
+    task-rewrite: 
+      ("return-type", sophisticated-type) -> return-type
+      where
+        ...
+        
+     
