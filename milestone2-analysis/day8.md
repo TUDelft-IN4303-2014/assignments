@@ -214,8 +214,11 @@ Here, `r` should be a reference in an expression `e`.
 You can use this task either in other tasks or as the result of `create-type-task`.
 You have used this strategy already in the assignment on name analysis.
 
-You can use the same approach to type `this` expressions.
-Therefor, you first need to specify name binding rules for `this`.
+### Name Binding Revisited
+
+#### `this` Expressions
+
+To type `this` expressions, you first need to specify name binding rules for `this`.
 Since `this` is nowhere specified explicitly, 
   you need to add an implicit definition clause to one of the existing name binding rules.
 An implicit definition clause has the following form:
@@ -230,3 +233,7 @@ Next, you should specify a rule which resolves `this` to the implicit definition
 Again, you should use the abstract syntax for `this` as the name in this rule.
 
 Finally, you can define a typing rule which uses `type-lookup` to create a task which looks up the type of `this`.
+
+#### Method Calls
+
+
