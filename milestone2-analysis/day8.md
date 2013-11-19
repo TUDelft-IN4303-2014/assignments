@@ -96,6 +96,18 @@ TS has a number of rough edges:
 
 Despite these issues, the language should allow you to specify typing rules and constraints in a declarative and concise way.
 TS files end in `.ts` and generate corresponding `.generated.str` files.
+There overall structure looks like this:
+
+    module types
+     
+    imports
+      
+      assignment1/MiniJava
+      analysis/desugar
+     
+    type rules
+     
+      ...
 
 ### Tasks
 
@@ -165,8 +177,18 @@ You should define the following rules:
 3. A rule `type-of-op` for each unary and binary operator, which rewrites the operator to a tuple.
    This tuple should consist of the expected types of subexpressions and the type of the operator itself.
    For example, the following rule states that `Length` requires a subexpression of type `int`and yields an expression of type `int`:
-        
+         
         type-of-op: Length() -> (IntArray(), Int())
 
+In TS, the general pattern for checking subexpressions is this:
 
+    e: ty
+    where e1: ety1
+      and ety1 == ty1
+      and e2: ety2
+      and ety2 == ty2
+
+You should specify the types of operators in axioms:
+
+    Length(): (IntArray(), Int())
 
