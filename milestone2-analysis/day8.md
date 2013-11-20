@@ -161,7 +161,9 @@ You should specify similar rules for boolean literals and for object creations.
 
 When you want to accept the challenge, here is the previous rule in TS:
 
-    IntValue(_): Int()
+    IntValue(v): Int()
+
+Note that you cannot use wildcards in TS patterns.
 
 #### Unary and Binary Expressions
 
