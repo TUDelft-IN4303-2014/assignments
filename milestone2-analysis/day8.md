@@ -123,6 +123,12 @@ When a file is changed, tasks are only re-collected for this file.
 A task is only re-eveluated, if it is new or if one of its dependencies changed.
 This might include tasks which originated from a different file than the file that changed.
 
+#### Building
+
+Name and type tasks are executed incrementally based on changes made in MiniJava programs. 
+However, tasks do not take changes of your language specification into account.
+If you encounter an unexpected result after changing your naming or typing rules, try a 'Reset and reanalyze' to force a full analysis.
+
 #### Debugging
 
 Hovers offer a quick way to check if type analysis works as expected.
