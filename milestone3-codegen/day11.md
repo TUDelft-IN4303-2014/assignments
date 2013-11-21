@@ -1,4 +1,4 @@
-# Day 8: More Code Generation
+# Day 11: More Code Generation
 
 In this lab, you extend your code generator to handle expressions, statements, methods without local parameters, and classes without fields.
 
