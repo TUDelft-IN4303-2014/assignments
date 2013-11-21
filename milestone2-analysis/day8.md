@@ -127,7 +127,7 @@ This might include tasks which originated from a different file than the file th
 
 Name and type tasks are executed incrementally based on changes made in MiniJava programs. 
 However, tasks do not take changes of your language specification into account.
-If you encounter an unexpected result after changing your naming or typing rules, try a 'Reset and reanalyze' to force a full analysis.
+If you encounter an unexpected result after changing your naming or typing rules, try a *Reset and reanalyze* to force a full analysis.
 
 #### Debugging
 
@@ -160,7 +160,35 @@ Your test cases from the previous lab should enable a more principled way of tes
 When you get unexpected results, you can inspect index entries and 
   collected tasks with the *Show analysis*, *Show tasks* and *Show index* builders.
 Probably the most useful builders for you are those which show them only for the current file or for a selection.
-You can navigate the dependencies of tasks and can find failing tasks.
+
+Consider the following task entry:
+
+    task 1 [2, 3] =
+      produce &2
+      ->
+      [Int()]
+      
+This entry consists of
+
+* an identifier `1`,
+* a list `[2, 3]` of dependencies on other tasks,
+* an instruction `produce &2` which refers the result of task `2`,
+* and a list of results `[Int()]`.
+
+You can navigate the dependencies of tasks to find the reasons for failing tasks.
+The following instructions exist:
+
+* `resolve ns n in s* wrt props []` resolves a name `n` of namespace `ns` in scopes `s*`.
+* `choose x <+ y` chooses from alternatives `x` and `y` deterministicly. 
+  If `x` is a term or a task with a result, `x` is chosen.
+  Otherwise, `y` is chosen.
+* `concat t1 + t2` combines the results of tasks `t1` and `t2`.
+* `show error msg on t when t' fails` shows an error message `msg` on term `t` when task `t'` fails.
+  There are similar variants for warnings and other conditions such as the success of a task.
+* `produce x` produces result `x`.
+* `CollectDefs(x)` retrieves the definition of a reference `x`.
+* `lookup Type() props on d` looks up the type of a definition `d`.
+* `check Type() prop t1 against t2 wrt Eq()` checks if types `t1` and `t2` are equal.
 
 ### Typing Rules
 
