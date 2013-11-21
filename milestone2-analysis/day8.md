@@ -80,6 +80,19 @@ This lab requires you to update Spoofax to the latest unstable release.
 4. Build your MiniJava project.
 5. If you get build errors about `nabl-def`, regenerate your name binding files (go to .nab file, Actions -> Generate name analysis), and build again.
 
+### Error in the Initial Project
+
+In some versions of the initial project, your desugaring rules will not be applied.
+However, desugaring is crucial for this lab.
+You should make sure, that the file `trans/minijava.str` defines the following two strategies:
+
+  analysis-single-default-interface = 
+    analysis-single-default(desugar-all, id, id|<language>)
+  analysis-multiple-default-interface = 
+    analysis-multiple-default(parse-file <+ !(), desugar-all, id, id|<language>, <project-path>)
+ 
+If the strategies are defined using `id` instead of `desugar-all`, you should change this.
+
 ## Detailed Instructions
 
 ### Challenge
