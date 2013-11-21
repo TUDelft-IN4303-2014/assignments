@@ -1,4 +1,4 @@
-# Day 7: Simple Code Generation
+# Day 10: Simple Code Generation
 
 In this lab, you develop a simple code generator, that generates Java Bytecode from simple MiniJava programs, which only print an integer constant in their main methods.
 
