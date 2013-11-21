@@ -408,6 +408,13 @@ In the typing rules for expressions,
 These tasks will fail, if an actual type does not match an expected type.
 You should extend your typing rules and specify corresponding error messages with `task-create-error-on-failure`.
 
+In TS you can also specify error messages:
+	
+	e : t
+		where e1: et1
+		  and et1 == e1
+		 else error "Your meaningful error message should be here" on e1
+
 #### Statements
 
 Statements typically do not have a type, but they might expect a certain type of an expression in the statement.
