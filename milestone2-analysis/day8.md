@@ -361,6 +361,10 @@ This works nicely, but also yields a type for method calls with missing argument
 To avoid this, you need to specify a more sophisticated type at the definition site.
 This type should include the expected types for the parameters and the return type of the method.
 Similar to the rule for method calls, you can collect the parameter types in a `where` clause.
+To make this work, you also need to create type tasks for parameters:
+
+    create-type-task(|ctx): Param(t, p) -> <type-is(|ctx)> ...
+    
 Next, you can adopt your typing rule for method calls.
 `type-lookup` will now yield the more sophisticated type.
 You need to extract the parameter types and the return type for further tasks.
