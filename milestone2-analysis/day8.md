@@ -251,7 +251,7 @@ You should define the following rules:
 2. One `create-type-task` rule for `BinExp`.
 3. A rule `type-of-op` for each unary and binary operator, which rewrites the operator to a tuple.
    This tuple should consist of the expected types of subexpressions and the type of the operator itself.
-   For example, the following rule states that `Length` requires a subexpression of type `intArray` and yields an expression of type `int`:
+   For example, the following rule states that `Length` requires a subexpression of type `int[]` and yields an expression of type `int`:
          
         type-of-op: Length() -> (IntArray(), Int())
 
