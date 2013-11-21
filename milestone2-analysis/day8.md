@@ -78,7 +78,7 @@ This lab requires you to update Spoofax to the latest unstable release.
 2. Add `http://download.spoofax.org/update/unstable/` as an update site.
 3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
 4. Build your MiniJava project.
-5. If you get build errors about 'nabl-def', regenerate your name binding files (go to .nab file, Actions -> Generate name analysis), and build again.
+5. If you get build errors about `nabl-def`, regenerate your name binding files (go to .nab file, Actions -> Generate name analysis), and build again.
 
 ## Detailed Instructions
 
@@ -189,6 +189,8 @@ The following instructions exist:
 * `CollectDefs(x)` retrieves the definition of a reference `x`.
 * `lookup Type() props on d` looks up the type of a definition `d`.
 * `check Type() prop t1 against t2 wrt Eq()` checks if types `t1` and `t2` are equal.
+
+Tests that expect a class type as a result have to be modified to accept annotations on the name of the class. For example, an expectation `ClassType("A")` needs to be changed to `ClassType("A"{_})`.
 
 ### Typing Rules
 
