@@ -126,10 +126,33 @@ This might include tasks which originated from a different file than the file th
 #### Debugging
 
 Hovers offer a quick way to check if type analysis works as expected.
-When you move your mouse over an expression, you should see its type in a hover text.
-Your test cases from the previous lab should enable a more principled way of testing type analysis. 
+The hover for your editor is specified in `trans/minijava.str`:
 
-When you get unexpected results, you can inspect index entries and collected tasks with builders.
+    editor-hover:
+      (target, position, ast, path, project-path) -> <fail>
+
+The elements of the tuple are:
+
+* `target`: The AST node corresponding to the text the mouse hovers over.
+* `position`: The position of `target` inside the whole AST.
+* `ast`: The whole AST.
+* `path`: The path of the current file.
+* `project-path`: The path of the project.
+
+You can use the type of an expression as the hover text for the expression.
+Therefor, you should replace `<fail>` with the actual hover information.
+The following strategies might be useful:
+
+1. `get-type` retrieves the result of the corresponding type task.
+2. When you do not want to show the AST of a type but its concrete syntax, 
+   you can reuse your pretty-print strategies for types from the assignment on editor services.
+
+When you build your project and move your mouse over an expression in a MiniJava editor, 
+  you should see its type in a hover text.
+
+Your test cases from the previous lab should enable a more principled way of testing type analysis. 
+When you get unexpected results, you can inspect index entries and 
+  collected tasks with the *Show analysis*, *Show tasks* and *Show index* builders.
 Probably the most useful builders for you are those which show them only for the current file or for a selection.
 You can navigate the dependencies of tasks and can find failing tasks.
 
@@ -252,6 +275,7 @@ Next, you should specify a rule which resolves `this` to the implicit definition
 Again, you should use the abstract syntax for `this` as the name in this rule.
 
 Finally, you can define a typing rule which uses `type-lookup` to create a task which looks up the type of `this`.
+Note that it is currently not possible to specify this rule in TS.
 
 #### Method Calls
 
@@ -314,4 +338,22 @@ TS will generate the corresponding rewrite rules for you.
 
 ### Constraints
 
+In the assignment on name analysis, you have seen already strategies to specify constraints.
+You can specify type constraints in a similar way.
 
+#### Expressions
+
+In the typing rules for expressions, 
+  you used `type-match` to create tasks which check the types of subexpressions against expected types.
+These tasks will fail, if an actual type does not match an expected type.
+You should extend your typing rules and specify corresponding error messages with `task-create-error-on-failure`.
+
+#### Statements
+
+Statements typically do not have a type, but they might expect a certain type of an expression in the statement.
+For example, an if statement requires a boolean expression.
+You should specify such additional constraints in `nabl-constraint` rules.
+
+#### Method Declarations
+
+Finally, you can also specify a constraint which checks the type of a return expression against the declared return type.
