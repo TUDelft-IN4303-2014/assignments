@@ -157,6 +157,8 @@ When you build your project and move your mouse over an expression in a MiniJava
   you should see its type in a hover text.
 
 Your test cases from the previous lab should enable a more principled way of testing type analysis. 
+Tests that expect a class type as a result have to be modified to accept annotations on the name of the class. For example, an expectation `ClassType("A")` needs to be changed to `ClassType("A"{_})`.
+
 When you get unexpected results, you can inspect index entries and 
   collected tasks with the *Show analysis*, *Show tasks* and *Show index* builders.
 Probably the most useful builders for you are those which show them only for the current file or for a selection.
@@ -189,8 +191,6 @@ The following instructions exist:
 * `CollectDefs(x)` retrieves the definition of a reference `x`.
 * `lookup Type() props on d` looks up the type of a definition `d`.
 * `check Type() prop t1 against t2 wrt Eq()` checks if types `t1` and `t2` are equal.
-
-Tests that expect a class type as a result have to be modified to accept annotations on the name of the class. For example, an expectation `ClassType("A")` needs to be changed to `ClassType("A"{_})`.
 
 ### Typing Rules
 
