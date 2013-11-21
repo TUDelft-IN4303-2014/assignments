@@ -72,8 +72,7 @@ We will consider the fact that both languages are new to you.
 
 ### Spoofax Update
 
-This lab requires you to update Spoofax to the latest unstable release and 
-  to fix an import in the milestone we provided you.
+This lab requires you to update Spoofax to the latest unstable release.
 
 1. Choose *Install New Software* from the *Help* menu.
 2. Add `http://download.spoofax.org/update/unstable/` as an update site.
