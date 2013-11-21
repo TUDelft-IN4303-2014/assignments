@@ -408,12 +408,15 @@ In the typing rules for expressions,
 These tasks will fail, if an actual type does not match an expected type.
 You should extend your typing rules and specify corresponding error messages with `task-create-error-on-failure`.
 
-In TS you can also specify error messages:
+In TS, you can specify errors and warnings in `else` clauses:
 	
 	e : t
 		where e1: et1
-		  and et1 == e1
+		  and et1 == t1
 		 else error "Your meaningful error message should be here" on e1
+		  and e2: et2
+		  and et2 == t2
+		 else error "Another meaningful error message should be here" on e2
 
 #### Statements
 
