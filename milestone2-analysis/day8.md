@@ -317,16 +317,24 @@ An implicit definition clause has the following form:
     ...: implicitly defines Namespace name
     
 You might want to reuse an existing namespace or define a new one for `this`.
-If you use a new namespace, then remember to scope this namespace.
+If you use a new namespace, you need to scope this namespace properly.
 As a name, you should use the constructor for `this`.
+You can find this constructor in the abstract syntax of MiniJava.
 Implicit defintions can also have properties, which allows you to specify the type of `this`.
 
 Next, you should specify a rule which resolves `this` to the implicit definition you just added.
 Again, you should use the constructor for `this` as the name in this rule.
 
 Finally, you can define a typing rule which uses `type-lookup` to create a task which looks up the type of `this`. 
-A task defined in the where clause of rule will be called on the matching pattern.
-The pattern in this case is the constructor of `this`.
+You need to make sure that `type-lookup` is applied to the term matched by the rule, not to a new term `This()`.
+You can achieve this by matching with a variable and an additional check, that this variable matches `This()`:
+
+    create-type-task(|ctx): 
+      e -> ...
+      where
+        This() := e
+      ; task   := <type-lookup(|ctx)> e
+      
 Note that it is currently not possible to specify this rule in TS.
 
 #### Method Calls
