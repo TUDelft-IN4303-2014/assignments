@@ -317,13 +317,16 @@ An implicit definition clause has the following form:
     ...: implicitly defines Namespace name
     
 You might want to reuse an existing namespace or define a new one for `this`.
-As a name, you should use the abstract syntax for `this`.
+If you use a new namespace, then remember to scope this namespace.
+As a name, you should use the constructor for `this`.
 Implicit defintions can also have properties, which allows you to specify the type of `this`.
 
 Next, you should specify a rule which resolves `this` to the implicit definition you just added.
-Again, you should use the abstract syntax for `this` as the name in this rule.
+Again, you should use the constructor for `this` as the name in this rule.
 
-Finally, you can define a typing rule which uses `type-lookup` to create a task which looks up the type of `this`.
+Finally, you can define a typing rule which uses `type-lookup` to create a task which looks up the type of `this`. 
+A task defined in the where clause of rule will be called on the matching pattern.
+The pattern in this case is the constructor of `this`.
 Note that it is currently not possible to specify this rule in TS.
 
 #### Method Calls
