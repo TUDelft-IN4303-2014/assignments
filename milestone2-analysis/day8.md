@@ -86,12 +86,10 @@ In some versions of the initial project, your desugaring rules will not be appli
 However, desugaring is crucial for this lab.
 You should make sure, that the file `trans/minijava.str` defines the following two strategies:
 
-```
-  analysis-single-default-interface = 
-    analysis-single-default(desugar-all, id, id|<language>)
-  analysis-multiple-default-interface = 
-    analysis-multiple-default(parse-file <+ !(), desugar-all, id, id|<language>, <project-path>)
-```
+    analysis-single-default-interface = 
+      analysis-single-default(desugar-all, id, id|<language>)
+    analysis-multiple-default-interface = 
+      analysis-multiple-default(parse-file <+ !(), desugar-all, id, id|<language>, <project-path>)
 
 If the strategies are defined using `id` instead of `desugar-all`, you should change this.
 
