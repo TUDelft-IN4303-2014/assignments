@@ -62,6 +62,7 @@ However, subtyping is allowed in the following places:
 1. In an assignment, the type of the assigned expression needs to be a subtype of the type of the variable.
 2. In a method declaration, the type of the return expression needs to be a subtype of the declared method type.
 3. In a method call, the types of the actual parameters need to be subtypes of the types of the formal parameters.
+4. In method overriding, the return type of the overriding method needs to be a subtype of the return type of the overridden method.
 
 You can achieve subtyping in three steps.
 In the first step, you prepare constraints for subtyping checks.
