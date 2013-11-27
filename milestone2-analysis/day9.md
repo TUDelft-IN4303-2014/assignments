@@ -153,5 +153,13 @@ You can now add a second check, which checks if `ty1` is a class type of some cl
          check1 := <type-match(|ctx, ty1)> ty2 ;
          c-name := ... // extract class name from class type with a rewrite task
          ty     := ... // lookup type from class name
-         check2 := <type-match(|ctx, ty)> ty2 ;
+         check2 := ... // match ty with ty2
          t      := <new-task(|ctx)> Choice([check1, check2])
+         
+In TS, you need to extend the definition of the `<:` relation:
+
+    ty1 <: ty2
+    where ty1 == ty2
+       or ty1 => ... // extract class name from class type with a pattern match
+      and ...        // lookup type from class name
+      and ...        // match type with ty2 
