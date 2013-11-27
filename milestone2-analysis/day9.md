@@ -96,6 +96,27 @@ Finally, you can define `create-subtype-task`:
         t := <type-match(|ctx, ty1)> ty2
  
 You might notice that this is a pure refactoring, which should not affect the functionality of your code.
+Finally, you should add the following boilerplate code for handling lists:
+
+    create-subtype-task(|ctx):
+      (SubTyping(), t1*, t2*) -> <type-is(|ctx, [m])> t*
+      where 
+         t* := <zip(create-subtype-task(|ctx, SubTyping()))> (t1*, t2*)
+      <+ t* := <map-with-index(create-subtype-task(|ctx, SubTyping(), t2*))> t1*
+       ; l  := <new-task(|ctx)> Length(t2*)
+       ; m  := <type-match(|ctx, <length> t1*)> l 
+      <+ t* := <map-with-index(create-subtype-task(|ctx, SubTyping(), t1*))> t2*
+       ; l  := <new-task(|ctx)> Length(t1*)
+       ; m  := <type-match(|ctx, <length> t2*)> l 
+     
+    create-subtype-task(|ctx, op):
+      (t1, t2) -> <create-subtype-task(|ctx)> (op, t1, t2)
+     
+    create-subtype-task(|ctx, op, t*):
+      (i, t) -> st
+      where
+        t' := <new-task(|ctx)> Index(i, t*)
+      ; st := <create-subtype-task(|ctx)> (op, t, t')
 
 When you are using TS, you can achieve the same by replacing equivalence checks of the form 
 
@@ -109,6 +130,8 @@ You then need to define the relation `<:`:
 
     ty1 <: ty2
     where ty1 == ty2
+
+You should also add the boilerplate code from above, but should replace `SubTyping()` with `"<:"`.
 
 #### Parent Classes
 
