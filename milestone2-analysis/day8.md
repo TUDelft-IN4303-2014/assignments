@@ -400,6 +400,9 @@ You need to provide an implementation for this rule:
 
 The goal of these rules is to match the pattern of a sophisticated type and extract the relevant parts of it.
 You need to replace `sophisticated-type` with a pattern that matches the sophisticated type.
+These rules are executed by the rewrite tasks.
+You should not create any tasks in these rules.
+
 In TS, you do not need to specify rules for `task-rewrite`. 
 Instead, you can use a pattern for `sophisticated-type` which matches `parameter-types` and `return-type`:
 
