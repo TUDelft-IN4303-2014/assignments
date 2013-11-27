@@ -163,3 +163,36 @@ In TS, you need to extend the definition of the `<:` relation:
        or ty1 => ... // extract class name from class type with a pattern match
       and ...        // lookup type from class name
       and ...        // match type with ty2 
+
+#### Ancestor Classes
+
+So far you only consider parent classes in subtyping checks. 
+To get correct subtyping checks, you need to consider all ancestor classes.
+This can be achieved by assigning multiple types to class names.
+Reconsider the following example:
+
+    class Main {
+      public static void main ( String [] a ) {
+        System.out.println(42);
+      }
+    }
+     
+    class A  {}
+     
+    class B extends A {}
+     
+    class C extends B {}
+
+`A` should be of type `Top()`, `B` should be of types `ClassType("A")` and `Top()`, and `C` should be of types `ClassType("B")`, `ClassType("A")` and `Top()`.
+
+To achieve this, you need to extend your `create-type-task` rule for `extends` parts with a second type, which is looked up from the parent class:
+
+    create-type-task(|ctx):
+      ... -> ty
+      where
+        ty1 := ... // your initial type
+        ty2 := ... // type lookup from parent class
+        ty  := <new-task(|ctx)> Combine([ty1, ty2])
+        
+There is currently no way to express this rule in TS.
+
