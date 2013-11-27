@@ -60,7 +60,7 @@ Your current typing constraints check for type equivalence.
 However, subtyping is allowed in the following places:
 
 1. In an assignment, the type of the assigned expression needs to be a subtype of the type of the variable.
-2. In a method, the type of the return expression 
+2. In a method declaration, the type of the return expression needs to be a subtype of the declared method type.
 3. In a method call, the types of the actual parameters need to be subtypes of the types of the formal parameters.
 
 You can achieve subtyping in three steps.
