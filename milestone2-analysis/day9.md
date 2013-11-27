@@ -196,3 +196,10 @@ To achieve this, you need to extend your `create-type-task` rule for `extends` p
         
 There is currently no way to express this rule in TS.
 
+### Cyclic Inheritance
+
+Finally, you should implement constraints for cyclic inheritance.
+These constraints can be expressed based on the type of `extends` parts.
+
+
+
