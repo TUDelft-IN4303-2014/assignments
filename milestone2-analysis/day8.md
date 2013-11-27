@@ -357,14 +357,21 @@ To type a method call, you need to define the type of a method name definition:
     ...: defines Method m of type t
 
 Next, you can specify a `create-type-task` rule for method calls, which looks up the type of the method definition.
-This works nicely, but also yields a type for method calls with missing arguments, additional arguments, or wrong argument types.
+You should have this working, before you continue.
+
+The current solution works nicely, but also yields a type for method calls with missing arguments, additional arguments, or wrong argument types.
 To avoid this, you need to specify a more sophisticated type at the definition site.
 This type should include the expected types for the parameters and the return type of the method.
+You can construct this sophisticated type either as a tuple of parameter types and return type 
+or define a special constructor for this type.
 Similar to the rule for method calls, you can collect the parameter types in a `where` clause.
 To make this work, you also need to create type tasks for parameters:
 
     create-type-task(|ctx): Param(t, p) -> <type-is(|ctx)> ...
     
+Before you continue, you should check if the type associated with the method name carries all the information you need.
+Do not continue, until this is working.
+
 Next, you can adopt your typing rule for method calls.
 `type-lookup` will now yield the more sophisticated type.
 You need to extract the parameter types and the return type for further tasks.
@@ -390,7 +397,9 @@ You need to provide an implementation for this rule:
       ("return-type", sophisticated-type) -> return-type
       where
         ...
-        
+
+The goal of these rules is to match the pattern of a sophisticated type and extract the relevant parts of it.
+You need to replace `sophisticated-type` with a pattern that matches the sophisticated type.
 In TS, you do not need to specify rules for `task-rewrite`. 
 Instead, you can use a pattern for `sophisticated-type` which matches `parameter-types` and `return-type`:
 
