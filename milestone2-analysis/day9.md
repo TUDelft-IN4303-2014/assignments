@@ -167,7 +167,9 @@ You should report errors on overloading methods and give notes on overriding met
 The following strategies might be useful:
 
 * `nabl-lookup-local(|ctx)`
+* `nabl-lookup-lexical(|ctx)`
 * `nabl-lookup-local-import(|ctx)`
+* `nabl-lookup-lexical-import(|ctx)`
 * `type-lookup(|ctx)`
 * `type-match(|ctx)`
 * `task-create-error-on-triggers(|ctx, triggers, msg)`
