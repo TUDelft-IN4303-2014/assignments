@@ -20,8 +20,7 @@ The total number of points depends on how many test cases you pass in each of th
 
 * name binding (5 points)
     * inheritance (5 points) 
-* subtyping (30 points)
-    * constructors (5 points)
+* subtyping (25 points)
     * parent types (15 points)
     * ancestor types (10 points)
 * constraints (40 points)
@@ -29,6 +28,7 @@ The total number of points depends on how many test cases you pass in each of th
     * method overloading and method overriding (20 points)
     * cyclic inheritance (10 points)
     * subtyping in assignments, return expressions, method calls (5 points)
+* challenge (using TS) (5 points)
 
 You can earn up to 10 points for your messages in errors and warnings.
 We particular focus on 
