@@ -4,6 +4,110 @@ In this lab, you extend name binding and typing rules for MiniJava in order to s
 
 ## Overview
 
+### Submission
+
+You need to submit your MiniJava project on Blackboard. 
+As part of your submission,
+  we ask you to provide a short paragraph explaining the organisation of your NaBL and Stratego files.
+The deadline for submission is December 4, 17:59.
+
+### Grading
+
+You can earn up to 75 points for the correctness of your name and type analysis.
+Therefor, we run several test cases against your implementation. 
+You earn points, when your implementation passes test cases.
+The total number of points depends on how many test cases you pass in each of the following groups:
+
+* name binding (5 points)
+    * inheritance (5 points) 
+* subtyping (30 points)
+    * constructors (5 points)
+    * parent types (15 points)
+    * ancestor types (10 points)
+* constraints (40 points)
+    * hiding variables and fields (5 points)
+    * method overloading and method overriding (20 points)
+    * cyclic inheritance (10 points)
+    * subtyping in assignments, return expressions, method calls (5 points)
+
+You can earn up to 10 points for your messages in errors and warnings.
+We particular focus on 
+ readibility, 
+ precision, 
+ and the level of detail in your messages.
+
+Finally, you can earn up to 5 points for the organisation of your NaBL, TS and Stratego files and 
+up to 10 points for the quality of your code.
+We focus on
+  readibility in general,
+  meaningful variable names and
+  the consistent use of NaBL Stratego paragdims.
+We will consider the fact that these languages are new to you.
+
+### Update Library
+
+You should create the file `lib/runtime/task/new-messages.str` with the following content:
+
+		module runtime/task/new-messages
+		
+		imports
+		  
+		  runtime/task/core
+		  runtime/editor/origins
+		  runtime/task/messages
+		  
+		signature
+		
+		  sorts
+		  
+		    Message
+		    MessageTrigger
+		    
+		  constructors
+		    
+		    Failure  : List(Result) -> MessageTrigger // No results
+		    Success  : List(Result) -> MessageTrigger // At least one result
+		    Multiple : List(Result) -> MessageTrigger // More than one result
+		
+		    Message  : MessageTrigger * Term -> Instruction
+		
+		rules // task creation
+		  
+		  task-create-message-on-triggers(|partition, triggers):
+		    message -> <new-task(|partition)> Message(triggers, message)
+		  
+		  task-create-error-on-triggers(|partition, triggers, message) = 
+		    task-error-message(|message); task-create-message-on-triggers(|partition, triggers)
+		    
+		  task-create-warning-on-triggers(|partition, triggers, message) =
+		    task-warning-message(|message); task-create-message-on-triggers(|partition, triggers)
+		    
+		  task-create-note-on-success-failure(|partition, triggers, message) =
+		    task-note-message(|message); task-create-message-on-triggers(|partition, triggers)
+		  
+		rules // task execution
+		  
+		  task-is-combinator = ?Message(_, _)
+		
+		  perform-task(|n):
+		    Message(trigger*, message) -> []
+		    where
+		      <map(?Failure([]) + ?Success([_|_]) + ?Multiple([_, _|_]))> trigger*
+		    where
+		      task-add-message(|n, message)
+
+The new strategy `task-create-error-on-triggers(|ctx, triggers, msg)` and its variants will give you more control when you want to create errors, warning, or notes. You should pass it a list of `triggers`.
+There are three kinds of triggers:
+
+* `Failure(t)` requires that task `t` has no result.
+* `Success(t)` requires that task `t` has at least one result.
+* `Multiple(t)` requires that task `t` has at least two results.
+
+The message `msg` will only be shown if the requirements of all triggers are fullfilled.
+
+### Update Spoofax
+
+When you are using TS, you should update Spoofax.
 
 ## Detailed Instructions
 
@@ -43,16 +147,15 @@ You should give warnings on variable declarations and report errors on field dec
 
 Next, you can specify constraints for overloaded and overridden method declarations.
 You should report errors on overloading methods and give notes on overriding methods.
-The following strategies from previous assignments might be useful:
+The following strategies might be useful:
 
 * `nabl-lookup-local(|ctx)`
 * `nabl-lookup-local-import(|ctx)`
 * `type-lookup(|ctx)`
 * `type-match(|ctx)`
-* `task-create-error-on-success(|ctx, task, msg)`
-* `task-create-error-on-failure(|ctx, task, msg)`
-* `task-create-note-on-success(|ctx, task, msg)`
-* `task-create-note-on-failure(|ctx, task, msg)`
+* `task-create-error-on-triggers(|ctx, triggers, msg)`
+* `task-create-warning-on-triggers(|ctx, triggers, msg)`
+* `task-create-note-on-triggers(|ctx, triggers, msg)`
 
 ### Subtyping
 
