@@ -411,6 +411,7 @@ Instead, you can use a pattern for `sophisticated-type` which matches `parameter
       and  ...                                // check actual argument types w.r.t. parameter types
 
 TS will generate the corresponding rewrite rules for you.
+Note that it is also necessary to implement type rules for parameters in TS.
 
 ### Constraints
 
