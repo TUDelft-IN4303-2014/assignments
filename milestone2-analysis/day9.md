@@ -4,6 +4,23 @@ In this lab, you extend name binding and typing rules for MiniJava in order to s
 
 ## Overview
 
+### Objectives
+
+Specify inheritance and subtyping in MiniJava with name binding and type rules in NaBL, TS and Stratego and generate an Eclipse editor from it. The specification should include:
+
+* Name binding rules for inheritance.
+* Typing rules for 
+    * `extends` parts of class declarations,
+    * class declarations and
+    * a subtype relation.
+* Custom constraint rules for 
+    * variables hiding inherited fields,
+    * fields hiding inherited fields,
+    * method overloading,
+    * method overriding,
+    * cyclic inheritance and
+    * valid subtyping in assignments, method calls and return expressions.
+
 ### Submission
 
 You need to submit your MiniJava project on Blackboard. 
