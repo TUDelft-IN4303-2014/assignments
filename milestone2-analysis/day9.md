@@ -99,7 +99,7 @@ You should create the file `lib/runtime/task/new-messages.str` with the followin
 		  task-create-warning-on-triggers(|partition, triggers, message) =
 		    task-warning-message(|message); task-create-message-on-triggers(|partition, triggers)
 		    
-		  task-create-note-on-success-failure(|partition, triggers, message) =
+		  task-create-note-on-triggers(|partition, triggers, message) =
 		    task-note-message(|message); task-create-message-on-triggers(|partition, triggers)
 		  
 		rules // task execution
