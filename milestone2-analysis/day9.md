@@ -145,6 +145,7 @@ works like
     
 but additionally imports declarations of `NS1` and `NS2` from the referred scope into the current scope.
 It only considers declarations which are declared in the referred scope, but not those which are imported into the referred scope.
+`imported` is a keyword for one specific label, not a clause such as `imports`.
 The following clause also imports declarations of `NS1` which are imported into the referred scope:
 
     imports NS1, imported NS1, NS2 from NS name
