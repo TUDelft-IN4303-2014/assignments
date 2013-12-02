@@ -216,6 +216,9 @@ Finally, you can define `create-subtype-task`:
     create-subtype-task(|ctx):
       (SubTyping(), ty1, ty2) -> t
       where
+      	<not(is-list)> ty1
+      ; <not(is-list)> ty2
+      where
         t := <type-match(|ctx, ty1)> ty2
  
 You might notice that this is a pure refactoring, which should not affect the functionality of your code.
@@ -228,9 +231,6 @@ Finally, you should add the following boilerplate code for handling lists:
       <+ t* := <map-with-index(create-subtype-task(|ctx, SubTyping(), t2*))> t1*
        ; l  := <new-task(|ctx)> Length(t2*)
        ; m  := <type-match(|ctx, <length> t1*)> l 
-      <+ t* := <map-with-index(create-subtype-task(|ctx, SubTyping(), t1*))> t2*
-       ; l  := <new-task(|ctx)> Length(t1*)
-       ; m  := <type-match(|ctx, <length> t2*)> l 
      
     create-subtype-task(|ctx, op):
       (t1, t2) -> <create-subtype-task(|ctx)> (op, t1, t2)
@@ -295,6 +295,9 @@ You can now add a second check, which checks if `ty1` is a class type of some cl
 
      create-subtype-task(|ctx):
        (SubTyping(), ty1, ty2) -> t
+       where 
+         <not(is-list)> ty1
+       ; <not(is-list)> ty2
        where
          check1 := <type-match(|ctx, ty1)> ty2 ;
          c-name := ... // extract class name from class type with a rewrite task
