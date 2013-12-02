@@ -249,12 +249,36 @@ by subtyping checks
 
      ty1 <: ty2
 
+or
+
+     ty1* <list: ty2*
+     
+where `ty1*` and `ty2*` are lists.
+
 You then need to define the relation `<:`:
 
     ty1 <: ty2
     where ty1 == ty2
 
-You should also add the boilerplate code from above, but should replace `SubTyping()` with `"<:"`.
+You should also add the following boilerplate code:
+
+    create-subtype-task(|ctx):
+      ("<list:", t1*, t2*) -> <type-is(|ctx, [m])> t*
+      where 
+         t* := <zip(create-subtype-task(|ctx, "<:"))> (t1*, t2*)
+      <+ t* := <map-with-index(create-subtype-task(|ctx, "<:", t2*))> t1*
+       ; l  := <new-task(|ctx)> Length(t2*)
+       ; m  := <type-match(|ctx, <length> t1*)> l 
+     
+    create-subtype-task(|ctx, op):
+      (t1, t2) -> <create-subtype-task(|ctx)> (op, t1, t2)
+     
+    create-subtype-task(|ctx, op, t*):
+      (i, t) -> st
+      where
+        t' := <new-task(|ctx)> Index(i, t*)
+      ; st := <create-subtype-task(|ctx)> (op, t, t')
+
 
 #### Parent Classes
 
