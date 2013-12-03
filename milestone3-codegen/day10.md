@@ -1,8 +1,47 @@
 # Day 10: Simple Code Generation
 
-In this lab, you develop a simple code generator, that generates Java Bytecode from simple MiniJava programs, which only print an integer constant in their main methods.
+In this lab, you develop a simple code generator, that generates Java Bytecode from simple MiniJava programs, which only print integer constants in their main methods.
 
-## Tasks
+## Overview
+
+### Objectives
+
+1. Write a Jasmin program which prints `42`.
+2. Implement a code generator that transforms MiniJava programs into Java Bytecode.
+The code generator should include
+    1. A transformation from MiniJava ASTs to Jasmin ASTs which handles 
+        * MiniJava programs 
+        * with only a main class 
+        * with a single print statement with
+        * an integer constant expression.
+    2. A menu action which invokes the transformation and pretty-prints the Jasmin AST to concrete syntax.
+    3. A menu action which generates a Java class file instead of a Jasmin file.
+    4. A menu action which runs the program (challenge).
+
+### Submission
+
+You need to submit your MiniJava project on Blackboard. As part of your submission, we ask you to provide a short paragraph explaining the organisation of your Stratego files. The deadline for submission is December 11, 17:59.
+
+### Grading
+
+You can earn up to 85 points for your implementation:
+
+* Jasmin program (10 points)
+* transformation (50 points)
+    * program (2 points)
+    * main class (18 points)
+    * main method (13 points)
+    * print statement (15 points)
+    * integer constant (2 points)
+* menu actions (15 points)
+    * Jasmin (5 points)
+    * Java class file (5 points)
+* challenges (10 points)
+
+You can earn up to 5 points for the organisation of your Stratego files and up to 10 points for the quality of your code. We focus on readibility in general, meaningful variable names and the consistent use of Stratego paragdims. 
+We will consider the fact that Stratego is new to you.
+
+## Detailed Instructions
 
 ### Write Jasmin Code
 
