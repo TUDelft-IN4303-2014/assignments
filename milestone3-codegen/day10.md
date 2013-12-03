@@ -27,16 +27,18 @@ You need to submit your MiniJava project on Blackboard. As part of your submissi
 You can earn up to 85 points for your implementation:
 
 * Jasmin program (10 points)
-* transformation (50 points)
+* transformation (55 points)
     * program (2 points)
     * main class (18 points)
     * main method (13 points)
-    * print statement (15 points)
+    * print statement (20 points)
     * integer constant (2 points)
-* menu actions (15 points)
+* menu actions (10 points)
     * Jasmin (5 points)
     * Java class file (5 points)
 * challenges (10 points)
+    * target directories (4 points)
+    * runner (6 points)
 
 You can earn up to 5 points for the organisation of your Stratego files and up to 10 points for the quality of your code. We focus on readibility in general, meaningful variable names and the consistent use of Stratego paragdims. 
 We will consider the fact that Stratego is new to you.
