@@ -45,7 +45,7 @@ We will consider the fact that Stratego is new to you.
 
 ### Write Jasmin Code
 
-The initial MiniJava project contains a very simple MiniJava program `examples/simple.mjv`:
+Consider the following simple MiniJava program:
 
     class Main {
         public static void main(String[] args) {
@@ -53,7 +53,9 @@ The initial MiniJava project contains a very simple MiniJava program `examples/s
         }
     }
 
-Write a Jasmin program `examples/simple.j`, which you expect to be the result of a MiniJava-to-Jasmin compiler. Generate a Java class file from it and run it. Improve your program until it runs without errors.
+Write a Jasmin program `simple.j`, which you expect to be the result of a MiniJava-to-Jasmin compiler. 
+Generate a Java class file from it and run it. 
+Improve your program until it runs without errors.
 
 ### Integrate Code Generation into the Editor
 
