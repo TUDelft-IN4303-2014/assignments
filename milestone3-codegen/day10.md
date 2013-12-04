@@ -24,18 +24,16 @@ You need to submit your MiniJava project on Blackboard. As part of your submissi
 
 ### Grading
 
-You can earn up to 85 points for your implementation:
+You can earn up to 10 points for your Jasmin program and up to 75 points for your code generator:
 
-* Jasmin program (10 points)
-* transformation (55 points)
+* transformation (50 points)
     * program (2 points)
     * main class (18 points)
     * main method (13 points)
-    * print statement (20 points)
-    * integer constant (2 points)
-* menu actions (10 points)
+    * print statement (17 points)
+* menu actions (15 points)
     * Jasmin (5 points)
-    * Java class file (5 points)
+    * Java class file (10 points)
 * challenges (10 points)
     * target directories (4 points)
     * runner (6 points)
