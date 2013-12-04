@@ -49,6 +49,7 @@ We provide you with a fresh MiniJava editor project, which already covers concre
     1. select the project folder
     2. select **Build Project** from the **Project** menu
     3. the console will report success or failure
+4. Place `jasmin.jar` from the Jasmin project in the `lib` directory of projects with `.j` files. 
 
 [GitHub-CC]: https://github.com/guwac/compiler-construction/downloads (Initial MiniJava Project on GitHub)
 
