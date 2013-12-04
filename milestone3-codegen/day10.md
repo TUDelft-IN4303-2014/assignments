@@ -150,7 +150,7 @@ The following strategies deal with directories:
 
 ### Automatic Code Generation
 
-Real-world compilers like the JDT generate code silently in the background. Implement a similar behaviour, using Spoofax's `on-save` builder. 
+Real-world compilers like the JDT generate code silently in the background. Implement a similar behaviour, using Spoofax's `on-save` builder. In your main Stratego file, change `editor-save` to run your compiler: `editor-save = where(analysis-save-default(|<language>)); generate-java-class-files`. `editor-save` has the same input interface as a builder, but the output should be `None()`. This means that you cannot return a `(filename, result)` tuple like a normal builder, but need to write to a file yourself.
 
 ### Run a MiniJava Program
 
