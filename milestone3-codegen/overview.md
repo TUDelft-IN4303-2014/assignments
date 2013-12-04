@@ -51,7 +51,7 @@ We provide you with a fresh MiniJava editor project, which already covers concre
     2. select **Build Project** from the **Project** menu
     3. the console will report success or failure
 
-[GitHub-CC]: https://github.com/guwac/compiler-construction/downloads (Initial MiniJava Project on GitHub)
+[GitHub-CC]: https://github.com/guwac/compiler-construction/releases (Initial MiniJava Project on GitHub)
 
 #### Implementation Details
 
