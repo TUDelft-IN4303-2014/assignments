@@ -23,7 +23,8 @@ We provide you with a Jasmin editor which was built with Spoofax.
     1. select the project folder
     2. select **Build Project** from the **Project** menu
     3. the console will report success or failure
-4. Place `jasmin.jar` from the [Jasmin][] project in the `lib` directory of projects with `.j` files, if you want to generate class files. 
+4. Go to the Jasmin Homepage and download the 2.4 release
+5. Take the `jasmin.jar` file and place it in the `lib` directory of Jasmin project in Eclipse
 
 #### Usage
 
