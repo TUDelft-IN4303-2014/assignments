@@ -16,8 +16,8 @@ We provide you with a Jasmin editor which was built with Spoofax.
     1. right-click into the Package Explorer or open the **File** menu
     2. select **Import...** from the context menu
     3. choose **General/Existing Projects into Workspace** from the list
-    4. select **archive file** (2nd choice) as a source if you downloaded the .zip file or **root directory** if you cloned the repository
-    5. select the downloaded Jasmin .zip file or the **org.spoofax.lang.jasmin** folder
+    4. select **archive file** (2nd choice) as a source if you downloaded the `.zip` file or **root directory** if you cloned the repository
+    5. select the downloaded Jasmin `.zip` file or the `org.spoofax.lang.jasmin` folder
     6. press the **Finish** button
 3. Build the project:
     1. select the project folder
@@ -55,7 +55,7 @@ We provide you with a fresh MiniJava editor project, which already covers concre
 
 #### Implementation Details
 
-The projects hides nearly its entire implementation from you. You can find the signature for MiniJava abstract syntax trees in  `lib/assignments/MiniJava.str`, and the signature for desugared ASTs in `lib/assignments/assignment2.str`. This file also connects external strategies which implementations are hidden, for example `type-of`.
+The projects hides nearly its entire implementation from you. You can find the signature for MiniJava abstract syntax trees in  `milestone1/MiniJava.str`, and the signature for desugared ASTs in `milestone2/MiniJava.core.str`.
 
 ## Material
 
