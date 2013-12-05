@@ -13,11 +13,11 @@ We provide you with a Jasmin editor which was built with Spoofax.
 
 1. Download the Jasmin editor project from [GitHub][GitHub-Jasmin]. You can either clone the project, or download the zip file.
 2. Import the project into your workspace:
-    1. right-click into the Package Explorer
+    1. right-click into the Package Explorer or open the **File** menu
     2. select **Import...** from the context menu
     3. choose **General/Existing Projects into Workspace** from the list
-    4. select **archive file** (2nd choice) as a source
-    5. select the downloaded Jasmin project
+    4. select **archive file** (2nd choice) as a source if you downloaded the .zip file or **root directory** if you cloned the repository
+    5. select the downloaded Jasmin .zip file or the **org.spoofax.lang.jasmin** folder
     6. press the **Finish** button
 3. Build the project:
     1. select the project folder
