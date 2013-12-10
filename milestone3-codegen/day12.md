@@ -72,7 +72,18 @@ Finally, you need to extend your code generator to cover parameters, local varia
 
 ### Challenges
 
-Challenges are meant to distinguish excellent solutions from good solutions. Typically, they are less guided and require more investigation and programming skills.
+Challenges are meant to distinguish excellent solutions from good solutions. 
+Typically, they are less guided and require more investigation and programming skills.
+
+#### Reusable Field Descriptors
+
+Store and retrieve field descriptors or field references instead of re-generating them in different places.
+See the challenges from last week to get an idea how this can be achieved.
+
+#### Reusable Variable Accessors
+
+In your current implementation, you generate load and store instructions for parameters and local variables over and over again.
+Avoid this by storing and retreiving these instructions instead of storing their index.
 
 #### Generate Debug Information
 
@@ -95,6 +106,10 @@ Next, replace applications of `exp-to-jbc` and `stmt-to-jbc` by `exp-to-jbc-ln` 
    To achieve this, you can try to store references to line numbers in the index. 
    When you encounter a new line number, you should add the line number directive and store a reference to the number.    In all other cases, you should find the line number already in the index and should not add another directive. 
 
+### Bonus
+
+A bonus is like a challenge, but it gives you extra points on top of the total points of an assignment.
+
 #### Generate Precise Ranges for Local Variables
 
 A precise range of a local variable covers only the parts in the code where the variable is defined and used:
@@ -105,10 +120,14 @@ A precise range of a local variable covers only the parts in the code where the 
 
 You should extend your code generator to generate precise ranges.
 
-1. Extend `stmt-to-jbc` to label the begin and end of instructions for a statement.
+1. Define a property `stmt-index` and assign an index to each statement.
+   In contrast to previous properties, you cannot store this index on a name.
+   Instead, you need to define `create-stmt-index-task` rules where you can apply `stmt-index-is`.
 
-2. Come up with a strategy `to-range` which maps a variable number to its range, represented as a pair of start and end labels. 
-   Similar to the stack limit challenge from last week, the analysis might be easier on the MiniJava code.
+2. Extend `stmt-to-jbc` to label the begin and end of instructions for a statement based on the index of this statement.
 
-3. Integrate `to-range` into your `method-to-jbc` rule.
+3. Come up with a strategy `to-range` which maps a variable to its range, represented as a pair of start and end labels. 
+   Similar to the stack limit challenge from last week, the analysis should be performed on the MiniJava code, not on the Java bytecode.
+
+4. Integrate `to-range` into your `method-to-jbc` rule.
 
