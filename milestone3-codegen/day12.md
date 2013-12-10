@@ -106,6 +106,7 @@ Next, replace applications of `exp-to-jbc` and `stmt-to-jbc` by `exp-to-jbc-ln` 
    To achieve this, you can try to store references to line numbers in the index. 
    When you encounter a new line number, you should add the line number directive and store a reference to the number.    In all other cases, you should find the line number already in the index and should not add another directive. 
 
+<!--
 ### Bonus
 
 A bonus is like a challenge, but it gives you extra points on top of the total points of an assignment.
@@ -130,4 +131,6 @@ You should extend your code generator to generate precise ranges.
    Similar to the stack limit challenge from last week, the analysis should be performed on the MiniJava code, not on the Java bytecode.
 
 4. Integrate `to-range` into your `method-to-jbc` rule.
+
+-->
 
