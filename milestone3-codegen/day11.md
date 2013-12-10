@@ -112,7 +112,7 @@ Now you need to define a strategy `method-to-jbc` to handle methods without loca
 4. Extend the rule for `class-to-jbc`, which handles empty classes, in order to include code generation for methods.
 
 5. Provide a rule for `exp-to-jbc`, which translates object creation expressions into sequences of Java bytecode instructions.
-6. 
+
 ## Challenges
 
 Challenges are meant to distinguish excellent solutions from good solutions. 
