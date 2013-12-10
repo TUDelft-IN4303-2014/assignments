@@ -130,21 +130,6 @@ You can use overlays like terms in your rules, both for matching and building:
 
 You should identify AST patterns in your code generation rules and come up with overlays to improve the readability of these rules.
 
-### Precise Stack Limit Directives
-
-A stack limit directive tells the Java Virtual Machine the maximum number of elements at the operand stack. 
-To give a precise limit, you need to write a strategy `stack-limit` that maps MiniJava expressions and statements to a stack limit ( **IMPORTANT**: Do not do this analysis on the Java Bytecode level). 
-For expressions, you need to consider the number of elements already on the stack before the expression is evaluated. You can either pass this number as a term parameter or adapt intermediate results accordingly. 
-For statements, you do not need this information since statements should not leave any elements on the stack.
-
-The following strategies might be useful:
-
-* `inc`  rewrites an integer number to its successor.
-* `max` rewrites a pair of integer numbers to the maximum of both numbers.
-* `addi` rewrites a pair of integer numbers to the sum of both numbers.
-* `foldr(s1, s2, f)` right-folds a list. 
-  `s1` yields the starting point of the folding, `s2` is the folding strategy, and `f` is applied to each element just before each folding step.
-
 ### Reusable Method Descriptors
 
 In Java Bytecode, method declarations and method calls include a method descriptor.
@@ -180,4 +165,19 @@ Finally, you can access the descriptor in your code generation rules with `get-d
       where
         descr := <get-descriptor> mname
       ; ...
-      
+
+### Precise Stack Limit Directives
+
+A stack limit directive tells the Java Virtual Machine the maximum number of elements at the operand stack. 
+To give a precise limit, you need to write a strategy `stack-limit` that maps MiniJava expressions and statements to a stack limit ( **IMPORTANT**: Do not do this analysis on the Java Bytecode level). 
+For expressions, you need to consider the number of elements already on the stack before the expression is evaluated. You can either pass this number as a term parameter or adapt intermediate results accordingly. 
+For statements, you do not need this information since statements should not leave any elements on the stack.
+
+The following strategies might be useful:
+
+* `inc`  rewrites an integer number to its successor.
+* `max` rewrites a pair of integer numbers to the maximum of both numbers.
+* `addi` rewrites a pair of integer numbers to the sum of both numbers.
+* `foldr(s1, s2, f)` right-folds a list. 
+  `s1` yields the starting point of the folding, `s2` is the folding strategy, and `f` is applied to each element just before each folding step.
+
