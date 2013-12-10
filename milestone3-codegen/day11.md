@@ -6,11 +6,31 @@ In this lab, you extend your code generator to handle expressions, statements, m
 
 ### Grading
 
+You can earn up to 25 points for your example MiniJava programs and their corresponding Jasmin programs.
+We will focus on completeness and correctness of your examples.
+Furthermore, you can earn up to 65 points for your code generator:
+
+* transformation (55 points)
+    * classes (8 points)
+    * methods (7 points)
+    * statements (13 points)
+        * block statements (2 points)
+        * `if` statements (5 points)
+        * `while` loops (6 points)
+    * expressions (27 points)
+        * logic constants (2 pointz)
+        * unary expressions (5 points)
+        * binary expressions (15 points)
+        * method calls (5 points)
 * challenges (10 points)
     * overlays (2 points)
-    * reusable method descriptors (3 points)
-    * stack limits (5 points)
-    
+    * reusable method descriptors (2 points)
+    * stack limits (6 points)
+
+You can earn up to 5 points for the organisation of your Stratego files and up to 5 points for the quality of your code. 
+We focus on readibility in general, meaningful variable names and the consistent use of Stratego paragdims. 
+We will consider the fact that Stratego is new to you.
+
 ## Detailed Instructions
 
 ### Write More Jasmin Code
