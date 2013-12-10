@@ -64,6 +64,7 @@ You now need to extend `stmt-to-jbc` and `exp-to-jbc` to cover all statements ex
 
 3. Provide rules for `stmt-to-jbc`, which translate `if` and `while` statements from MiniJava into sequences of Java bytecode instructions. 
    These rules should call `stmt-to-jbc` recursively to translate inner statements to Java bytecode sequences.
+   The JVM documentation discusses an efficient translation pattern for `while` loops.
 
 4. Provide rules for `exp-to-jbc`, which translate unary and binary expressions from MiniJava into sequences of Java bytecode instructions. 
    These rules should call `exp-to-jbc` recursively to translate subexpressions to Java bytecode sequences.
