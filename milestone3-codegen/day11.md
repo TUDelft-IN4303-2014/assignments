@@ -2,6 +2,15 @@
 
 In this lab, you extend your code generator to handle expressions, statements, methods without local parameters, and classes without fields.
 
+## Overview
+
+### Grading
+
+* challenges (10 points)
+    * overlays (2 points)
+    * reusable method descriptors (3 points)
+    * stack limits (5 points)
+    
 ## Detailed Instructions
 
 ### Write More Jasmin Code
@@ -74,6 +83,7 @@ Now you need to define a strategy `method-to-jbc` to handle methods without loca
     * `nabl-uri` extracts the URI from an annotated name.
     * `nabl-uri-parent` rewrites an URI to the URI of the enclosing scope. 
     * `nabl-uri-name` rewrites an URI to the name of the definition it identifies.
+   
    You can query the type associated with the method name with `get-type`.
 
 4. Extend the rule for `class-to-jbc`, which handles empty classes, in order to include code generation for methods.
