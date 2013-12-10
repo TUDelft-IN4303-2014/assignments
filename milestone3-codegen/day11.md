@@ -169,6 +169,12 @@ Next, you need to store the property at a method declaration by defining a rewri
 
 Finally, you can access the descriptor in your code generation rules with `get-descriptor`:
 
+    method-to-jbc:
+      Method(ty, mname, param*, var*, stmt*, exp) -> ...
+      where
+        descr := <get-descriptor> mname
+      ; ...
+      
     exp-to-jbc:
       Call(e, mname, e*) -> ...
       where
