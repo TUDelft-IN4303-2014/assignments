@@ -18,7 +18,7 @@ Furthermore, you can earn up to 65 points for your code generator:
         * `if` statements (5 points)
         * `while` loops (6 points)
     * expressions (27 points)
-        * logic constants (2 pointz)
+        * logic constants (2 points)
         * unary expressions (5 points)
         * binary expressions (15 points)
         * method calls (5 points)
