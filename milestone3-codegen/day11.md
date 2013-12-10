@@ -66,7 +66,15 @@ Now you need to define a strategy `method-to-jbc` to handle methods without loca
 
 2. Provide a rule for `exp-to-jbc`, which translates `this` expressions from MiniJava into sequences of Java bytecode instructions. 
 
-3. Provide a rule for `exp-to-jbc`, which translates method calls without arguments from MiniJava into sequences of Java bytecode instructions. This rule should call `exp-to-jbc` recursively to translate subexpressions to Java bytecode sequences.
+3. Provide a rule for `exp-to-jbc`, which translates method calls without arguments from MiniJava into sequences of Java bytecode instructions. 
+   This rule should call `exp-to-jbc` recursively to translate subexpressions to Java bytecode sequences.
+   For this rule, you need to know the name of the class containing the method and the type of the method.
+   You can extract the class name from the URI of the method name.
+   The following strategies might be useful:
+    * `nabl-uri` extracts the URI from an annotated name.
+    * `nabl-uri-parent` rewrites an URI to the URI of the enclosing scope. 
+    * `nabl-uri-name` rewrites an URI to the name of the definition it identifies.
+   You can query the type associated with the method name with `get-type`.
 
 4. Extend the rule for `class-to-jbc`, which handles empty classes, in order to include code generation for methods.
 
@@ -137,6 +145,11 @@ You can construct such an descriptor from the type associated with a method name
 In the current setup, you do this construction once for a method declaration and once for each method call.
 However, the descriptor for a call is the same as for the declaration the call refers to.
 You can avoid the reconstruction by storing a custom property on the method name.
+There are two variants to achieve this.
+In the first variant, you store method descriptors (`MethodDescriptor`).
+In the second variant, you store method references (`MethodRef`).
+
+#### Variant 1: Storing Method Descriptors
 
 First, you need to declare a property `descriptor` for namespace `Method` in a NaBL file:
 
@@ -164,6 +177,27 @@ Finally, you can access the descriptor in your code generation rules with `get-d
       Call(e, mname, e*) -> ...
       where
         descr := <get-descriptor> mname
+      ; ...
+
+#### Variant 2: Storing Method References
+
+In an alternative approach, you can store complete method references instead of just method descriptors.
+The property declaration in NaBL and the rewrite rule to store the property are similar to the first variant.
+But this variant will require you to extract descriptors from method references at definition sites:
+
+    method-to-jbc:
+      Method(ty, mname, param*, var*, stmt*, exp) -> ...
+      where
+        ref   := <get-reference> mname
+      ; descr := ... // extract descriptor from ref
+      ; ...
+      
+As a benefit, the rule for method calls becomes simpler:
+
+    exp-to-jbc:
+      Call(e, mname, e*) -> ...
+      where
+        ref := <get-reference> mname
       ; ...
 
 ### Precise Stack Limit Directives
