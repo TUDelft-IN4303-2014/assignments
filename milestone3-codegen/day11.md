@@ -20,7 +20,8 @@ Furthermore, you can earn up to 65 points for your code generator:
     * expressions (27 points)
         * logic constants (1 point)
         * unary expressions (5 points)
-        * binary expressions (15 points)
+        * binary expressions (14 points)
+        * object creation (1 point)
         * `this` expressions (1 point)
         * method calls (5 points)
 * challenges (10 points)
@@ -39,6 +40,7 @@ We will consider the fact that Stratego is new to you.
 Before you extend your code generator, you should come up with small example MiniJava programs, which cover the following constructs:
 
 * all kinds of unary and binary expressions,
+* object creation,
 * `this` expressions,
 * method calls without arguments,
 * block statements, 
@@ -109,6 +111,8 @@ Now you need to define a strategy `method-to-jbc` to handle methods without loca
 
 4. Extend the rule for `class-to-jbc`, which handles empty classes, in order to include code generation for methods.
 
+5. Provide a rule for `exp-to-jbc`, which translates object creation expressions into sequences of Java bytecode instructions.
+6. 
 ## Challenges
 
 Challenges are meant to distinguish excellent solutions from good solutions. 
@@ -171,7 +175,7 @@ You should identify AST patterns in your code generation rules and come up with 
 
 ### Reusable Method Descriptors
 
-In Java Bytecode, method declarations and method calls include a method descriptor.
+In Java bytecode, method declarations and method calls include a method descriptor.
 You can construct such an descriptor from the type associated with a method name.
 In the current setup, you do this construction once for a method declaration and once for each method call.
 However, the descriptor for a call is the same as for the declaration the call refers to.
@@ -234,7 +238,7 @@ As a benefit, the rule for method calls becomes simpler:
 ### Precise Stack Limit Directives
 
 A stack limit directive tells the Java Virtual Machine the maximum number of elements at the operand stack. 
-To give a precise limit, you need to write a strategy `stack-limit` that maps MiniJava expressions and statements to a stack limit ( **IMPORTANT**: Do not do this analysis on the Java Bytecode level). 
+To give a precise limit, you need to write a strategy `stack-limit` that maps MiniJava expressions and statements to a stack limit ( **IMPORTANT**: Do not do this analysis on the Java bytecode level). 
 For expressions, you need to consider the number of elements already on the stack before the expression is evaluated. You can either pass this number as a term parameter or adapt intermediate results accordingly. 
 For statements, you do not need this information since statements should not leave any elements on the stack.
 
