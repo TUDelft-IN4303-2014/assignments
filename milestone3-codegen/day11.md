@@ -73,6 +73,10 @@ Write corresponding Jasmin programs, which you expect to be the result of a Mini
 Generate Java class files from them and run them. 
 Improve your programs until they run without errors.
 
+Do not write all the MiniJava programs and the corresponding Jasmin code in one go.
+Instead, you should extend your code generator once you figured out the Jasmin code for a certain construct.
+This way, you can go back and forth between manually writing Jasmin code and extending the code generator.
+
 ### Generate Code for Expressions and Statements
 
 You now need to extend `stmt-to-jbc` and `exp-to-jbc` to cover all statements except assignments. 
