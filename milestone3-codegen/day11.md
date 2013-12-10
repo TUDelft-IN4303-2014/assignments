@@ -6,6 +6,18 @@ In this lab, you extend your code generator to handle expressions, statements, m
 
 ### Objectives
 
+1. Write MiniJava programs and corresponding Jasmin programs which cover the following constructs:
+    * all kinds of unary and binary expressions,
+    * object creation,
+    * `this` expressions,
+    * method calls without arguments,
+    * block statements, 
+    * `if` statements,
+    * `while` statements,
+    * methods without parameters and local variables,
+    * classes without fields.
+2. Extend your code generator to handle these constructs.
+
 ### Submission
 
 You need to submit your MiniJava project on Blackboard. 
