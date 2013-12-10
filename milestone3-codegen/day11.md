@@ -100,7 +100,8 @@ One way to avoid code duplication, are helper strategies.
 For example, you can have a strategy `to-jbc-constructor` which rewrites a pair of class and super class names to the default constructor. 
 Alternatively, you can use _overlays_, which allow the specification of pattern abstractions.
 
-Overlays are specified in their own section. They are named, can be parametrised, and can be nested:
+Overlays are specified in their own section. 
+They are named, can be parametrised, and can be nested:
 
     overlays
      
@@ -129,7 +130,7 @@ You can use overlays like terms in your rules, both for matching and building:
 
 You should identify AST patterns in your code generation rules and come up with overlays to improve the readability of these rules.
 
-### Generate Stack Limit Directives
+### Precise Stack Limit Directives
 
 A stack limit directive tells the Java Virtual Machine the maximum number of elements at the operand stack. 
 To give a precise limit, you need to write a strategy `stack-limit` that maps MiniJava expressions and statements to a stack limit ( **IMPORTANT**: Do not do this analysis on the Java Bytecode level). 
@@ -143,3 +144,34 @@ The following strategies might be useful:
 * `addi` rewrites a pair of integer numbers to the sum of both numbers.
 * `foldr(s1, s2, f)` right-folds a list. 
   `s1` yields the starting point of the folding, `s2` is the folding strategy, and `f` is applied to each element just before each folding step.
+
+### Reusable Method Descriptors
+
+In Java Bytecode, method declarations and method calls include a method descriptor.
+You can construct such an descriptor from the type associated with a method name.
+In the current setup, you do this construction once for a method declaration and once for each method call.
+However, the descriptor for a call is the same as for the declaration the call refers to.
+You can avoid the reconstruction by storing a custom property on the method name.
+
+First, you need to declare a property `descriptor` for namespace `Method` in a NaBL file:
+
+    properties
+     
+      descriptor of Method: MethodDescriptor
+      
+Next, you need to store the property at a method declaration by defining a rewrite rule for `nabl-prop-site`:
+
+    nabl-prop-site(|lang, ctx, uris, states, implicits):
+      Method(ty, mname, param*, var*, stmt*, exp) -> <fail>
+      where
+        descr := ... // create descriptor
+      ; <store-descriptor(|ctx, descr)> mname
+
+Finally, you can access the descriptor in your code generation rules with `get-descriptor`:
+
+    exp-to-jbc:
+      Call(e, mname, e*) -> ...
+      where
+        descr := <get-descriptor> mname
+      ; ...
+      
