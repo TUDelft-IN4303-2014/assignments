@@ -4,6 +4,14 @@ In this lab, you extend your code generator to handle expressions, statements, m
 
 ## Overview
 
+### Objectives
+
+### Submission
+
+You need to submit your MiniJava project on Blackboard. 
+As part of your submission, we ask you to provide a short paragraph explaining the organisation of your MiniJava examples, the corresponding Jasmin files, and your Stratego files. 
+The deadline for submission is December 18, 17:59.
+
 ### Grading
 
 You can earn up to 25 points for your example MiniJava programs and their corresponding Jasmin programs.
