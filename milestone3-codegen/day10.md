@@ -1,13 +1,13 @@
 # Day 10: Simple Code Generation
 
-In this lab, you develop a simple code generator, that generates Java Bytecode from simple MiniJava programs, which only print integer constants in their main methods.
+In this lab, you develop a simple code generator, that generates Java bytecode from simple MiniJava programs, which only print integer constants in their main methods.
 
 ## Overview
 
 ### Objectives
 
 1. Write a Jasmin program which prints `42`.
-2. Implement a code generator that transforms MiniJava programs into Java Bytecode.
+2. Implement a code generator that transforms MiniJava programs into Java bytecode.
 The code generator should include
     1. A transformation from MiniJava ASTs to Jasmin ASTs which handles 
         * MiniJava programs 
