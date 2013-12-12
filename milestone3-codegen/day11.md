@@ -90,6 +90,9 @@ You now need to extend `stmt-to-jbc` and `exp-to-jbc` to cover all statements ex
    These rules should call `stmt-to-jbc` recursively to translate inner statements to Java bytecode sequences.
    The JVM documentation discusses an efficient translation pattern for `while` loops.
 
+   These statements require labels.
+   You can apply `newname` from Stratego's standard library to a string, to obtain a fresh name starting with the given string.
+   
 4. Provide rules for `exp-to-jbc`, which translate unary and binary expressions from MiniJava into sequences of Java bytecode instructions. 
    These rules should call `exp-to-jbc` recursively to translate subexpressions to Java bytecode sequences.
    Furthermore, they should call a strategy `op-to-jbc` to translate unary and binary operators to Java bytcode instructions.
