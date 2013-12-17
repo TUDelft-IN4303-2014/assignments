@@ -364,8 +364,8 @@ To achieve this, you need to extend your `create-type-task` rule for `extends` p
       ... -> ty
       where
         ty1 := ... // your initial type
-        ty2 := ... // type lookup from parent class
-        ty  := <new-task(|ctx)> Combine([ty1, ty2])
+      ; ty2 := ... // type lookup from parent class
+      ; ty  := <new-task(|ctx)> Combine([ty1, ty2])
         
 There is currently no way to express this rule in TS.
 
