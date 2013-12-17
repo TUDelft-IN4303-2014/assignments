@@ -139,7 +139,7 @@ Now you need to define a strategy `method-to-jbc` to handle methods without loca
    This requires access to the index and the task engine, which needs to be setup.
    You should do this in your builder strategies by adding the following strategy calls:
 
-        index-setup(|<language>, project-path, path); task-setup(|project-path)
+        index-setup(|<language>, project-path); task-setup(|project-path)
 
 4. Extend the rule for `class-to-jbc`, which handles empty classes, in order to include code generation for methods.
 
