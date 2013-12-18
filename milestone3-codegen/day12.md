@@ -178,3 +178,5 @@ You should extend your code generator to generate precise ranges.
 
 4. Integrate `to-range` into your `method-to-jbc` rule.
 
+In an alternative, better approach, you will introduce labels only where needed.
+
