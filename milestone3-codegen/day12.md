@@ -44,6 +44,9 @@ You can earn up to 5 points for the organisation of your Stratego files and up t
 We focus on readibility in general, meaningful variable names and the consistent use of Stratego paragdims. 
 We will consider the fact that Stratego is new to you.
 
+In this assignment, we also give you the chance to earn up to 10 bonus points.
+This works like a challenge, but it gives you extra points on top of the total points of your assignment.
+
 ## Detailed Instructions
 
 ### Write Even More Jasmin Code
@@ -154,9 +157,6 @@ Next, replace applications of `exp-to-jbc` and `stmt-to-jbc` by `exp-to-jbc-ln` 
 
 
 ### Bonus
-
-In this assignment, we also give you the chance to earn up to 10 bonus points.
-This works like a challenge, but it gives you extra points on top of the total points of your assignment.
 
 #### Generate Precise Ranges for Local Variables
 
