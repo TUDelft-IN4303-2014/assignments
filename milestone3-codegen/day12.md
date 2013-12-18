@@ -167,16 +167,5 @@ A precise range of a local variable covers only the parts in the code where the 
 * Loops might extend the range, since they might require a variable to survive.
 
 You should extend your code generator to generate precise ranges.
-
-1. In a preprocessing step, assign an index to each statement.
-   You can do this either with an annotation, or with a dedicated constructor which wraps regular statements.
-   
-2. Extend `stmt-to-jbc` to label the begin and end of instructions for a statement based on the index of this statement.
-
-3. Come up with a strategy `to-range` which maps a variable to its range, represented as a pair of start and end labels. 
-   Similar to the stack limit challenge from last week, the analysis should be performed on the MiniJava code, not on the Java bytecode.
-
-4. Integrate `to-range` into your `method-to-jbc` rule.
-
-In an alternative, better approach, you will introduce labels only where needed.
+Similar to the stack limit challenge from last week, the analysis should be performed on the MiniJava code, not on the Java bytecode.
 
