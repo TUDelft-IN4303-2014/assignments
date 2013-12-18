@@ -103,8 +103,12 @@ Next, replace applications of `exp-to-jbc` and `stmt-to-jbc` by `exp-to-jbc-ln` 
 
 3. It is pretty common, that several expression occur in the same line. 
    In this case, you should generate only a single line number directive. 
-   To achieve this, you can try to store references to line numbers in the index. 
-   When you encounter a new line number, you should add the line number directive and store a reference to the number.    In all other cases, you should find the line number already in the index and should not add another directive. 
+   To achieve this, you have various options:
+
+    1. Remove redundant line number directives in a post-processing step.
+    2. Keep track of already used line numbers by passing a state as a term argument to strategy invocations.
+    3. Maintain a state using [dynamic rules](http://eelcovisser.org/post/268/dynamic-rewrite-rules---the-good-parts).
+    4. Maintain a state in the index. 
 
 <!--
 ### Bonus
