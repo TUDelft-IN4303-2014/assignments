@@ -29,16 +29,16 @@ You can earn up to 25 points for your example MiniJava programs and their corres
 We will focus on completeness and correctness of your examples.
 Furthermore, you can earn up to 65 points for your code generator:
 
-* transformation (50 points)
+* transformation (55 points)
     * types (5 points)
     * fields (10 points)
     * methods (15 points)
     * variables (10 points)
-    * assignments (10 points)
-* challenges (15 points)
+    * assignments (15 points)
+* challenges (10 points)
     * reusable field descriptors (2 points)
-    * reusable variable accessors (3 points)
-    * debug information (10 points)
+    * reusable variable accessors (2 points)
+    * debug information (6 points)
 
 You can earn up to 5 points for the organisation of your Stratego files and up to 5 points for the quality of your code. 
 We focus on readibility in general, meaningful variable names and the consistent use of Stratego paragdims. 
