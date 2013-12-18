@@ -2,6 +2,29 @@
 
 In this lab, you complete your code generator to handle arbitrary MiniJava programs.
 
+## Overview
+
+### Objectives
+
+1. Write MiniJava programs and corresponding Jasmin programs which cover the following constructs:
+    
+    * classes with fields,
+    * methods with parameters and local variables,
+    * variable and field access,
+    * both kinds of assignments,
+    * method calls with arguments.
+    
+2. Extend your code generator to handle these constructs.
+
+### Submission
+
+You need to submit your MiniJava project on Blackboard. 
+As part of your submission, we ask you to provide a short paragraph explaining the organisation of your MiniJava examples, the corresponding Jasmin files, and your Stratego files. 
+When you solved challenges, you should provide another paragraph sketching your approach.
+The deadline for submission is January 8, 17:59.
+
+### Grading
+
 ## Detailed Instructions
 
 ### Write Even More Jasmin Code
