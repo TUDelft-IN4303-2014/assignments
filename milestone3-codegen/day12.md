@@ -25,6 +25,25 @@ The deadline for submission is January 8, 17:59.
 
 ### Grading
 
+You can earn up to 25 points for your example MiniJava programs and their corresponding Jasmin programs.
+We will focus on completeness and correctness of your examples.
+Furthermore, you can earn up to 65 points for your code generator:
+
+* transformation (50 points)
+    * types (5 points)
+    * fields (10 points)
+    * methods (15 points)
+    * variables (10 points)
+    * assignments (10 points)
+* challenges (15 points)
+    * reusable field descriptors (2 points)
+    * reusable variable accessors (3 points)
+    * debug information (10 points)
+
+You can earn up to 5 points for the organisation of your Stratego files and up to 5 points for the quality of your code. 
+We focus on readibility in general, meaningful variable names and the consistent use of Stratego paragdims. 
+We will consider the fact that Stratego is new to you.
+
 ## Detailed Instructions
 
 ### Write Even More Jasmin Code
