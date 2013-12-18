@@ -152,10 +152,11 @@ Next, replace applications of `exp-to-jbc` and `stmt-to-jbc` by `exp-to-jbc-ln` 
     3. Maintain a state using [dynamic rules](http://eelcovisser.org/post/268/dynamic-rewrite-rules---the-good-parts).
     4. Maintain a state in the index. 
 
-<!--
+
 ### Bonus
 
-A bonus is like a challenge, but it gives you extra points on top of the total points of an assignment.
+In this assignment, we also give you the chance to earn up to 10 bonus points.
+This works like a challenge, but it gives you extra points on top of the total points of your assignment.
 
 #### Generate Precise Ranges for Local Variables
 
@@ -163,20 +164,17 @@ A precise range of a local variable covers only the parts in the code where the 
 
 * There is only one continuous range for each variable (in contrast, variable liveness as discussed in the lecture can be fragmented). 
 * The range should cover at least all instructions between the first and last load or store (whatever comes first/last) of a local variable. 
-* Jumps might extend the range, since they might require a variable to survive.
+* Loops might extend the range, since they might require a variable to survive.
 
 You should extend your code generator to generate precise ranges.
 
-1. Define a property `stmt-index` and assign an index to each statement.
-   In contrast to previous properties, you cannot store this index on a name.
-   Instead, you need to define `create-stmt-index-task` rules where you can apply `stmt-index-is`.
-
+1. In a preprocessing step, assign an index to each statement.
+   You can do this either with an annotation, or with a dedicated constructor which wraps regular statements.
+   
 2. Extend `stmt-to-jbc` to label the begin and end of instructions for a statement based on the index of this statement.
 
 3. Come up with a strategy `to-range` which maps a variable to its range, represented as a pair of start and end labels. 
    Similar to the stack limit challenge from last week, the analysis should be performed on the MiniJava code, not on the Java bytecode.
 
 4. Integrate `to-range` into your `method-to-jbc` rule.
-
--->
 
