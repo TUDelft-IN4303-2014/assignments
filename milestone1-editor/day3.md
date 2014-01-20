@@ -65,7 +65,7 @@ The actual language definition is spread over three folders:
 * `editor` contains editor service definition files, including the main file `MiniJava.main.esv`,
   which you have seen already during the last lab.
   
-In all of these folders you will find files which where generated from your syntax definition. 
+In all of these folders you will find files which were generated from your syntax definition. 
 For each file `<name>.sdf3`, there are generated files
 
 * `syntax/<name>.sdf`: an SDF2 definition which is equivalent to the SDF3 definition.
