@@ -49,16 +49,16 @@ The total number of points depends on how many test cases you pass in each of th
 
 You can earn up to 10 points for your messages in errors and warnings.
 We particular focus on 
- readibility, 
+ readability, 
  precision, 
  and the level of detail in your messages.
 
 Finally, you can earn up to 5 points for the organisation of your NaBL, TS and Stratego files and 
 up to 10 points for the quality of your code.
 We focus on
-  readibility in general,
+  readability in general,
   meaningful variable names and
-  the consistent use of NaBL Stratego paragdims.
+  the consistent use of NaBL Stratego paradigms.
 We will consider the fact that these languages are new to you.
 
 ### Update Library

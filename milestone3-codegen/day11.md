@@ -50,7 +50,7 @@ Furthermore, you can earn up to 65 points for your code generator:
     * stack limits (6 points)
 
 You can earn up to 5 points for the organisation of your Stratego files and up to 5 points for the quality of your code. 
-We focus on readibility in general, meaningful variable names and the consistent use of Stratego paragdims. 
+We focus on readability in general, meaningful variable names and the consistent use of Stratego paradigms. 
 We will consider the fact that Stratego is new to you.
 
 ## Detailed Instructions

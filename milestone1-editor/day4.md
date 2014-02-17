@@ -40,7 +40,7 @@ The deadline for submission is October 16, 17:59.
 You can earn up to 40 points for your outline view:
 
 * names in labels (8 points)
-* super classes in lables (2 points)
+* super classes in labels (2 points)
 * types in labels (25 points)
 * challenge (5 points)
 

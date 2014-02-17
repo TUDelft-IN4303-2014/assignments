@@ -38,7 +38,7 @@ You can earn up to 10 points for your Jasmin program and up to 75 points for you
     * target directories (4 points)
     * runner (6 points)
 
-You can earn up to 5 points for the organisation of your Stratego files and up to 10 points for the quality of your code. We focus on readibility in general, meaningful variable names and the consistent use of Stratego paragdims. 
+You can earn up to 5 points for the organisation of your Stratego files and up to 10 points for the quality of your code. We focus on readability in general, meaningful variable names and the consistent use of Stratego paradigms. 
 We will consider the fact that Stratego is new to you.
 
 ## Detailed Instructions
