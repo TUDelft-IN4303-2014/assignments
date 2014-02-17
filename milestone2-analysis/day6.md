@@ -291,6 +291,6 @@ Typically, they are less guided and require more investigation or higher program
    For example, you might want to mention the surrounding method of a variable which hides a field.
    You can retrieve such information from the annotations of a binding instance.
    To retrieve annotations, you should use strategies from the [standard library](http://releases.strategoxt.org/docs/api/libstratego-lib/stable/docs/).
-   To analyse the anotated URIs, you should use strategies from `lib/runtime/nabl/uri`.
+   To analyse the annotated URIs, you should use strategies from `lib/runtime/nabl/uri`.
 
 2. In a post-analysis desugaring, replace `VarRef(x)` terms which refer to fields and not to variables with a term `FieldRef(x)`.

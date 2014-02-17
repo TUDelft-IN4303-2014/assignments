@@ -95,7 +95,7 @@ You now need to extend `stmt-to-jbc` and `exp-to-jbc` to cover all statements ex
    
 4. Provide rules for `exp-to-jbc`, which translate unary and binary expressions from MiniJava into sequences of Java bytecode instructions. 
    These rules should call `exp-to-jbc` recursively to translate subexpressions to Java bytecode sequences.
-   Furthermore, they should call a strategy `op-to-jbc` to translate unary and binary operators to Java bytcode instructions.
+   Furthermore, they should call a strategy `op-to-jbc` to translate unary and binary operators to Java bytecode instructions.
    The only exception is the `&&` operator, which needs to be treated differently, due to its lazy evaluation semantics.
 
 You can test each rule by selecting a code fragment in the MiniJava editor and running your code generation builder.

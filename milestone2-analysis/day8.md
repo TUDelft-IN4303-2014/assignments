@@ -133,7 +133,7 @@ A task is a unit of computation, which might depend on index entries (such as de
 Tasks are collected in a traversal, before they are evaluated.
 Results of evaluated tasks are cached.
 When a file is changed, tasks are only re-collected for this file.
-A task is only re-eveluated, if it is new or if one of its dependencies changed.
+A task is only re-evaluated, if it is new or if one of its dependencies changed.
 This might include tasks which originated from a different file than the file that changed.
 
 #### Building
@@ -194,7 +194,7 @@ You can navigate the dependencies of tasks to find the reasons for failing tasks
 The following instructions exist:
 
 * `resolve ns n in s* wrt props []` resolves a name `n` of namespace `ns` in scopes `s*`.
-* `choose x <+ y` chooses from alternatives `x` and `y` deterministicly. 
+* `choose x <+ y` chooses from alternatives `x` and `y` deterministically. 
   If `x` is a term or a task with a result, `x` is chosen.
   Otherwise, `y` is chosen.
 * `concat t1 + t2` combines the results of tasks `t1` and `t2`.
@@ -223,7 +223,7 @@ You have already used `type-lookup` and `type-match` in the assignment on name a
 #### Literals
 
 In the simplest case, the type of an expression is directly known.
-An typical example for such expessions are literals.
+An typical example for such expressions are literals.
 For example, integer literals are of type `int`.
 The following rule matches an integer literal and creates a task which will result in the type `int`:
 
@@ -320,7 +320,7 @@ You might want to reuse an existing namespace or define a new one for `this`.
 If you use a new namespace, you need to scope this namespace properly.
 As a name, you should use the constructor for `this`.
 You can find this constructor in the abstract syntax of MiniJava.
-Implicit defintions can also have properties, which allows you to specify the type of `this`.
+Implicit definitions can also have properties, which allows you to specify the type of `this`.
 
 Next, you should specify a rule which resolves `this` to the implicit definition you just added.
 Again, you should use the constructor for `this` as the name in this rule.
@@ -445,7 +445,7 @@ In TS, you can specify constraints in special rules:
 
     s :-
         where e: t
-         else error "Yet another meaningfull error message should be here" on e
+         else error "Yet another meaningful error message should be here" on e
         
 #### Method Declarations
 

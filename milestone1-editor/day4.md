@@ -107,7 +107,7 @@ In case you do not see any outline view, you can select it in *Show View* from E
 In Stratego, we use the following naming conventions:
 
 * constructor and sort names: camel case, starting with an upper case (e.g. `Add`, `BinExp`)
-* rule names, strategy names, variable names: lower case, multiple words seperated by `-` (e.g. `e1`, `project-path`)
+* rule names, strategy names, variable names: lower case, multiple words separated by `-` (e.g. `e1`, `project-path`)
 
 #### String Interpolation
 
@@ -191,7 +191,7 @@ You can specify the icon to use in an annotation:
 
 We do not require you to use icons and you will not earn any points with them.
 If you want to use them anyway, you should put the icons into the folder `icons`
-and place a proper attribution or licence file next to them.
+and place a proper attribution or license file next to them.
 
 #### Challenge
 
@@ -202,7 +202,7 @@ Typically, they are less guided and require more investigation or higher program
 See `lib/runtime/editor/origins/` for a suitable strategy.
 2. Outline the main method as a subnode of the main class.
 This requires you to drop the import `editor/MiniJava-Outliner.generated`.
-Instead, you need tp define a strategy 
+Instead, you need to define a strategy 
 
         outline = custom-label-outline(to-outline-label, to-outline-node)
     Visit `lib/runtime/editor/outline-library` for inspiration.

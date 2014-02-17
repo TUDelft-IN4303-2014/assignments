@@ -128,7 +128,7 @@ See the challenges from last week to get an idea how this can be achieved.
 #### Reusable Variable Accessors
 
 In your current implementation, you generate load and store instructions for parameters and local variables over and over again.
-Avoid this by storing and retreiving these instructions instead of storing their index.
+Avoid this by storing and retrieving these instructions instead of storing their index.
 
 #### Generate Debug Information
 

@@ -120,7 +120,7 @@ There are three kinds of triggers:
 * `Success(t)` requires that task `t` has at least one result.
 * `Multiple(t)` requires that task `t` has at least two results.
 
-The message `msg` will only be shown if the requirements of all triggers are fullfilled.
+The message `msg` will only be shown if the requirements of all triggers are fulfilled.
 
 ### Update Spoofax
 
