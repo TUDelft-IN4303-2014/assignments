@@ -135,6 +135,10 @@ Define a new builder *Generate Java class files* with corresponding builder stra
 
 To figure out how to translate a Jasmin file into a Java class file, inspect the corresponding builder in the Jasmin project.
 
+### Notes on names in Jasmin
+
+Even though in MiniJava some keywords are reserved, Jasmin has its own keywords. Some Jasmin implementations consider those as reserved, some do not. Typical examples are keywords such as `field` or `class`. In the Spoofax implementation, we do not reserve these, but other Jasmin implementations might do, particularly if they may not have the latest updates (Debian for example). See [StackOverflow](http://stackoverflow.com/questions/10371352/how-to-handle-field-named-as-keywords-in-jasmin) for more information about this.
+
 ## Challenges
 
 Challenges are meant to distinguish excellent solutions from good solutions. Typically, they are less guided and require more investigation and programming skills.
