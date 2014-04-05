@@ -43,7 +43,7 @@ The deadline for submission is November 13, 17:59.
 ### Grading
 
 You can earn up to 70 points for the correctness of your name analysis.
-Therefor, we run several test cases against your implementation. 
+Therefore, we run several test cases against your implementation. 
 You earn points, when your implementation passes test cases.
 The total number of points depends on how many test cases you pass in each of the following groups:
 
@@ -62,16 +62,16 @@ The total number of points depends on how many test cases you pass in each of th
 
 You can earn up to 15 points for your messages in errors and warnings.
 We particular focus on 
- readibility, 
+ readability, 
  precision, 
  and the level of detail in your messages.
 
 Finally, you can earn up to 5 points for the organisation of your NaBL and Stratego files and 
 up to 10 points for the quality of your code.
 We focus on
-  readibility in general,
+  readability in general,
   meaningful variable names and
-  the consistent use of NaBL Stratego paragdims.
+  the consistent use of NaBL Stratego paradigms.
 We will consider the fact that both languages are new to you.
 
 ### Spoofax Update
@@ -291,6 +291,6 @@ Typically, they are less guided and require more investigation or higher program
    For example, you might want to mention the surrounding method of a variable which hides a field.
    You can retrieve such information from the annotations of a binding instance.
    To retrieve annotations, you should use strategies from the [standard library](http://releases.strategoxt.org/docs/api/libstratego-lib/stable/docs/).
-   To analyse the anotated URIs, you should use strategies from `lib/runtime/nabl/uri`.
+   To analyse the annotated URIs, you should use strategies from `lib/runtime/nabl/uri`.
 
 2. In a post-analysis desugaring, replace `VarRef(x)` terms which refer to fields and not to variables with a term `FieldRef(x)`.

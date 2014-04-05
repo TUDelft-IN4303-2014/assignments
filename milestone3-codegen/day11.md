@@ -50,7 +50,7 @@ Furthermore, you can earn up to 65 points for your code generator:
     * stack limits (6 points)
 
 You can earn up to 5 points for the organisation of your Stratego files and up to 5 points for the quality of your code. 
-We focus on readibility in general, meaningful variable names and the consistent use of Stratego paragdims. 
+We focus on readability in general, meaningful variable names and the consistent use of Stratego paradigms. 
 We will consider the fact that Stratego is new to you.
 
 ## Detailed Instructions
@@ -95,7 +95,7 @@ You now need to extend `stmt-to-jbc` and `exp-to-jbc` to cover all statements ex
    
 4. Provide rules for `exp-to-jbc`, which translate unary and binary expressions from MiniJava into sequences of Java bytecode instructions. 
    These rules should call `exp-to-jbc` recursively to translate subexpressions to Java bytecode sequences.
-   Furthermore, they should call a strategy `op-to-jbc` to translate unary and binary operators to Java bytcode instructions.
+   Furthermore, they should call a strategy `op-to-jbc` to translate unary and binary operators to Java bytecode instructions.
    The only exception is the `&&` operator, which needs to be treated differently, due to its lazy evaluation semantics.
 
 You can test each rule by selecting a code fragment in the MiniJava editor and running your code generation builder.
