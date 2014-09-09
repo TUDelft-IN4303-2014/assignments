@@ -10,11 +10,11 @@ We split this task into three milestones of weekly individual assignments:
 
 All assignments are publicly available on GitHub:
 
-* Milestone 1
-  1. Testing Syntax Analysis (due to 22 September)
-  2. Syntax Definition (due to 29 September)
-  3. Syntactic Editor Services (due to 06 October)
-  4. Simple Term Rewriting (due to 13 October)
+* [Milestone 1: Syntax Analysis](milestone1-editor)
+  1. [Testing Syntax Analysis](milestone1-editor/day1.md) (due to 22 September)
+  2. [Syntax Definition](milestone1-editor/day2.md) (due to 29 September)
+  3. [Syntactic Editor Services](milestone1-editor/day3.md) (due to 06 October)
+  4. [Simple Term Rewriting](milestone1-editor/day4.md) (due to 13 October)
 * Milestone 2
   5. Testing Name Analysis (due to 20 October)
   6. Name Analysis (due to 10 November)
