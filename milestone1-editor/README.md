@@ -30,10 +30,7 @@ Since we use automated grading tools, it is important to get the following steps
     3. Choose **Project...** from the list.
     4. Select the **Spoofax editor project** wizard.
     5. Switch to the **Next** tab.
-    6. As **Project name**, use `MiniJava-<YourNetID>`. 
-       Your NetID is your login name on Blackboard. 
-       It is not your student number.
-       For example, my project is called `MiniJava-gwachsmuth`.
+    6. As **Project name**, use `MiniJava`. 
     7. As **Language name**, use `MiniJava`.
     8. Keep the **Plugin ID and package name** as suggested by the wizard.
     9. As **File extensions**, use `mjv`.
@@ -49,7 +46,7 @@ You should create a separate project for your test cases and example programs:
 3. Choose **Project...** from the list.
 4. Select the **Project** wizard from **General**.
 5. Switch to the **Next** tab.
-6. As **Project name**, use `MiniJava-tests-<YourNetID>`. 
+6. As **Project name**, use `MiniJava-tests`. 
 7. Press the **Finish** button.
 
 ## Resources
