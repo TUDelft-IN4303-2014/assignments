@@ -21,7 +21,7 @@ Improve your syntax definition to support
 You need to submit your MiniJava project on Blackboard. 
 As part of your submission,
   we ask you to provide a short paragraph explaining the organisation of your syntax definition.
-The deadline for submission is October 9, 17:59.
+The deadline for submission is October 6, 17:59.
 
 ### Grading
 
@@ -34,15 +34,6 @@ We will focus on readability of pretty-printed code and completion suggestions a
 on consistent indentations.
 
 Finally, you can earn up to 20 points for hand-written completion templates.
-
-### Spoofax Update
-
-We fixed some bugs in SDF3.
-When you want to benefit from these fixes, you should update Spoofax to the latest unstable release.
-
-1. Choose *Install New Software* from the *Help* menu.
-2. Choose `http://download.spoofax.org/update/unstable/` as an update site.
-3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
 
 ## Detailed Instructions
 
@@ -65,7 +56,7 @@ The actual language definition is spread over three folders:
 * `editor` contains editor service definition files, including the main file `MiniJava.main.esv`,
   which you have seen already during the last lab.
   
-In all of these folders you will find files which were generated from your syntax definition. 
+In the `src-gen` folder, you will find files which were generated from your syntax definition. 
 For each file `<name>.sdf3`, there are generated files
 
 * `syntax/<name>.sdf`: an SDF2 definition which is equivalent to the SDF3 definition.
@@ -87,7 +78,7 @@ You can find more generated files in `editor` and `include` folders:
 Before you start with the actual assignment, you should make sure that
 
 1. your syntax definition provides all start symbols needed by your test cases,
-2. your context-free syntax is specified in `templates` sections by productions of the form
+2. your context-free syntax is specified in templates of the form
 
         Sort             = <...>
         Sort.Constructor = <...>
