@@ -28,9 +28,10 @@ For grading, it is required to comply with these sort names literally.
 
 ### Submission
 
-You need to submit your test project on Blackboard.
+You need to submit your test project with a pull request on GitHub.
+Your GitHub repository contains a step-by-step procedure how to file such a request.
 As part of your submission, we ask you to provide a short paragraph explaining the organisation of your test project.
-The deadline for submission is September 25, 17:59.
+The deadline for submission is September 22, 17:59.
 
 ### Grading
 
