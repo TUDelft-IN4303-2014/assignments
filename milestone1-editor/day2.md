@@ -16,7 +16,7 @@ The definition should include:
   * whitespaces,
   * single line comments and
   * nested block comments.
-2. A context-free syntax definition or templates for sorts
+2. A context-free syntax definition for sorts
   * `Program`,
   * `MainClass`,
   * `ClassDecl`,
@@ -32,10 +32,9 @@ For grading, it is required to comply with all sort names literally.
 
 ### Submission
 
-You need to submit your MiniJava project on Blackboard. 
-As part of your submission,
+You need to submit your MiniJava project with a pull request on GitHub. Your GitHub repository contains a step-by-step procedure how to file such a request. As part of your submission,
   we ask you to provide a short paragraph explaining the organisation of your syntax definition.
-The deadline for submission is October 2, 17:59.
+The deadline for submission is September 29, 17:59.
 
 ### Grading
 
@@ -71,15 +70,6 @@ We particular focus on
  distinctness of different constructs,
  and the representation of formal and actual parameter lists.
 
-### Spoofax Update
-
-You should define your syntax in SDF3.
-This requires you to update Spoofax to the latest unstable release.
-
-1. Choose *Install New Software* from the *Help* menu.
-2. Add `http://download.spoofax.org/update/unstable/` as an update site.
-3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
-
 ## Detailed Instructions
 
 ### Agile Software Language Engineering
@@ -114,34 +104,22 @@ You can start by creating a new file `syntax/MiniJava.sdf3` in your MiniJava pro
     module MiniJava
     
     context-free start-symbols 
-    
-When you save this file, you should get a corresponding file `syntax/MiniJava.sdf`.
+
+When you save this file, you should get a corresponding file `src-gen/syntax/MiniJava.sdf`.
 You can also split your syntax definition over several modules in `syntax/`. 
 Do only import modules that you wrote yourself.
 
 ### Lexical Syntax
 
 Start with the lexical syntax definition including identifiers, integer, and simple layout. 
-First, define lexical syntax rules.
-You can write these rules in 
+First, define lexical syntax rules:
 
-* reductive form (classic SDF2 rules)
-
-        lexical syntax
-        
-          ... -> ID
-          ... -> INT
-          ... -> LAYOUT
-     
-* productive form (new in SDF3)
-
-        lexical syntax
-    
-          ID     = ...
-          INT    = ...
-          LAYOUT = ...
-    
-It is not allowed to mix reductive and productive rules inside the same `lexical syntax` section.
+   lexical syntax
+   
+     ID     = ...
+     INT    = ...
+     LAYOUT = ...
+      
 
 Second, define follow restrictions to ensure longest matches:
 
@@ -152,50 +130,18 @@ Second, define follow restrictions to ensure longest matches:
     
     context-free restrictions
     
-      LAYOUT? -/- ...
-    
+     LAYOUT? -/- ...
+     
 Finally, use rejection rules to rule out reserved words.
-Again, you can use 
 
-* reductive rules
-
-        lexical syntax
-        
-          ... -> ID {reject}
-
-* productive rules
-
-        lexical syntax
+    lexical syntax
     
-          ID = ... {reject}
-    
+      ID = ... {reject}
+ 
 ### Context-free Syntax
 
 Continue with the context-free syntax of the language. 
 Use the context-free grammar in the *MiniJava Language Reference Manual* as a reference.
-There are three different ways to specify context-free syntax in SDF3:
-
-* reductive rules (classic SDF2 rules)
-
-        context-free syntax
-        
-          ... -> Program {"SomeFancyConstructor"}
-          
-
-* productive rules (new in SDF3)
-
-        context-free syntax
-        
-          Program.SomeFancyConstructor = ...
-          
-* templates (new in SDF3)
-
-        templates
-        
-          Program.SomeFancyConstructor = <...>
-          
-Similar to `lexical syntax` sections, 
- it is not allowed to mix reductive and productive rules in the same `context-free syntax` section.
 We recommend to use templates for your context-free syntax definition,
  since this will give you a head start for the next lab.
 In case you want to use `<` or `>` as symbols inside a template, you can use alternate template brackets `[...]`.
@@ -204,36 +150,12 @@ You need disambiguation constructs to disambiguate your syntax definition.
 You can specify the associativity with attributes `left`, `right`, or `non-assoc`.
 These attributes are added to the end of a rule:
 
-* reductive rules
+    context-free syntax
+    
+      Exp.Constr1 = ... {left}
 
-        context-free syntax
-        
-          ... -> Exp {"Constr1", left}
-          
-
-* productive rules
-
-        context-free syntax
-        
-          Exp.Constr1 = ... {left}
-          
-* templates
-
-        templates
-        
-          Program.Constr1 = <...> {left}
-          
 You can specify precedence in a `context-free priorities` section.
 In this section, you order groups of rules:
-
-    context-free priorities
-    
-      { 
-        ... -> Exp
-        ... -> Exp
-      } > { ... } > ...
-
-Instead of repeating rules, you can use sorts and constructors as references:
 
     context-free priorities
     
@@ -241,7 +163,7 @@ Instead of repeating rules, you can use sorts and constructors as references:
         Exp.Constr1
         Exp.Constr2
       } > { ... } > ...
-   
+
 You can also define the associativity of a group:
 
     context-free priorities
