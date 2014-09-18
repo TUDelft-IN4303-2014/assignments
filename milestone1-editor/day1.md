@@ -29,9 +29,8 @@ For grading, it is required to comply with these sort names literally.
 ### Submission
 
 You need to submit your test project with a pull request on GitHub.
-Your GitHub repository contains a step-by-step procedure how to file such a request.
-As part of your submission, we ask you to provide a short paragraph explaining the organisation of your test project.
-The deadline for submission is September 22, 17:59.
+Your GitHub repository contains a `README.md` with a step-by-step procedure how to file such a request. Make sure your solutions are in branch `assignment1`. We expect to find your Spoofax project `MiniJava` and your test project `MiniJava-tests` next to each other in the root of the repository. The test project should contain a `README.md` with 
+a short paragraph explaining the organisation of your test project. The deadline for submission is September 24, 17:59.
 
 ### Grading
 
@@ -44,7 +43,8 @@ You earn points,
   while passing correct implementations.
 The total number of points depends only on how many kinds of errors you reveal, 
   not on the number of test cases that reveal these errors.
-  
+**Note:** It is important to name tests in a testsuite uniquely. Tests in different test suites can have the same name, but for grading, we need to be able to distinguish tests in the same test suite by their name.
+
 ## Detailed Instructions
 
 ### Anatomy of a Test Suite
