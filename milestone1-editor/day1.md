@@ -30,7 +30,7 @@ For grading, it is required to comply with these sort names literally.
 
 You need to submit your test project with a pull request on GitHub.
 Your GitHub repository contains a `README.md` with a step-by-step procedure how to file such a request. Make sure your solutions are in branch `assignment1`. We expect to find your Spoofax project `MiniJava` and your test project `MiniJava-tests` next to each other in the root of the repository. The test project should contain a `README.md` with 
-a short paragraph explaining the organisation of your test project. The deadline for submission is September 24, 17:59.
+a short paragraph explaining the organisation of your test project. The deadline for submission is ~~September 22~~ **September 24**, 17:59.
 
 ### Grading
 
