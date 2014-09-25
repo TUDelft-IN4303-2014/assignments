@@ -32,7 +32,7 @@ For grading, it is required to comply with all sort names literally.
 
 ### Submission
 
-You need to submit your MiniJava project with a pull request on GitHub. Your GitHub repository contains a step-by-step procedure how to file such a request. As part of your submission,
+You need to submit your MiniJava project with a pull request against branch `assignment2` on GitHub. Your GitHub repository contains a step-by-step procedure how to file such a request. As part of your submission,
   we ask you to provide a short paragraph explaining the organisation of your syntax definition.
 The deadline for submission is September 29, 17:59.
 
@@ -71,6 +71,34 @@ We particular focus on
  and the representation of formal and actual parameter lists.
 
 ## Detailed Instructions
+
+### Preliminaries
+
+#### Repository Branch
+
+We created a branch `assignment2` in the student repositories. Make sure to start your work from this branch. You are free to work on your own branches, but should submit with a pull request against `assignment2`. We will give you early feedback only on pull requests against this branch.
+
+#### Spoofax Version
+
+To be able to react quickly on problems you discover, we have a special update site for the course. Go to the *Help > Software Updates* menu in Eclipse. Then select "Add...", enter the site name "Spoofax IN4303", and the update site URL:
+
+       http://download.spoofax.org/update/in4303/
+       
+Now select Spoofax Core (you may have to reselect the update site you just entered), and follow the steps of the wizard.
+
+Unfortunately, you have to delete your still empty `MiniJava` project and create a new one:
+
+1. Right-click into the Package Explorer.
+2. Select **New** from the context menu.
+3. Choose **Project...** from the list.
+4. Select the **Spoofax editor project** wizard.
+5. Switch to the **Next** tab.
+6. As **Project name**, use `MiniJava`. 
+7. As **Language name**, use `MiniJava`.
+8. Keep the **Plugin ID and package name** as suggested by the wizard.
+9. As **File extensions**, use `mjv`.
+10. Select both checkboxes.
+11. Press the **Finish** button.
 
 ### Agile Software Language Engineering
 
