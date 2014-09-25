@@ -34,11 +34,8 @@ Yes that is possible. You can have the following directory tree for example:
 
     syntax/
       subdir/
-        c.sdf
         c.sdf3
-      b.sdf
       b.sdf3
-      MyLanguage.sdf
       MyLanguage.sdf3
 
 `MyLanguage.sdf3` should have the following imports if it depends on `b` and `c`:
@@ -53,11 +50,7 @@ and `c` should be declared as
 
     module subdir/c
     
-If you get errors while you think you shouldn't, do the following:
-
-1. Delete all `.sdf` files.
-2. Open all `.sdf3` files and run *Generate SDF (concrete, for selection)* from the *Transform* button.
-   If this does not result in a corresponding `.sdf` file, something is wrong in your `.sdf3` file.
+If you get errors while you think you shouldn't, open all `.sdf3` files and run *Generate SDF (concrete, for selection)* from the *Transform* button. If this does not result in a corresponding `.sdf` file, something is wrong in your `.sdf3` file.
 
 ##### Why does the `bracket` attribute has no effect?
 
@@ -68,7 +61,6 @@ This is a mistake.
 
 There is an error in these priorities, which causes the generator to fail.
 You probably made a typo in a constructor name. 
-The priorities section does not show errors on undefined constructor names. 
 
 # Syntactic Editor Services
 
