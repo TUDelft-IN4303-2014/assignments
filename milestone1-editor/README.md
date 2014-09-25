@@ -59,3 +59,4 @@ The [MiniJava project](http://www.cambridge.org/us/features/052182060X/)
 by Joao Cangussu, Jens Palsberg and Vidyut Samanta provides some example programs 
 and an HTML version of the reference manual.
 
+We provide [answers to frequently asked questions](questions.md) for this milestone. 
