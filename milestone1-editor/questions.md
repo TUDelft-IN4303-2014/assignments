@@ -62,11 +62,20 @@ This is a mistake.
 There is an error in these priorities, which causes the generator to fail.
 You probably made a typo in a constructor name. 
 
-##### Why are my tests taking forever to run? (Unresponsive IDE when opening test files or trying to run them)
+##### Why does Eclipse become unresponsive when I open or run test files?
 
-There is very likely an error in your LAYOUT rules. Compare them with those
-found on the slides or in the generated Common for a new language project.
+There is very likely an error in your rules for `LAYOUT`. 
+Study the rules found on the slides or in the generated `Common.sdf3` in a new language project.
 Fixing these issues should make running your tests way faster.
+
+##### Why do I get a StackOverflowException and how should I handle this?
+
+This is also very likely caused by erroneous rules for `LAYOUT`. 
+
+1. Close Eclipse. 
+2. Delete all files in the `include` folder in your MiniJava project.
+3. Fix the erroneous rules.
+4. Build your project.
 
 # Syntactic Editor Services
 
