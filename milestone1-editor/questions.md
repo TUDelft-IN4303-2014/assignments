@@ -62,6 +62,13 @@ This is a mistake.
 There is an error in these priorities, which causes the generator to fail.
 You probably made a typo in a constructor name. 
 
+##### Why are my tests taking forever to run? (Unresponsive IDE when opening
+test files or trying to run them)
+
+There is very likely an error in your LAYOUT rules. Compare them with those
+found on the slides or in the generated Common for a new language project.
+Fixing these issues should make running your tests way faster.
+
 # Syntactic Editor Services
 
 # Simple Term Rewriting
