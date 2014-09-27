@@ -60,3 +60,5 @@ by Joao Cangussu, Jens Palsberg and Vidyut Samanta provides some example program
 and an HTML version of the reference manual.
 
 We provide [answers to frequently asked questions](questions.md) for this milestone. 
+
+[This website](http://metaborg.org/wiki/sdf/sdf3-intro) gives you a nice overview of all the syntax of sdf3.
