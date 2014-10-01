@@ -31,9 +31,10 @@ For grading, it is required to comply with all rule and strategy names literally
 
 ### Submission
 
-You need to submit your MiniJava project on Blackboard. 
-As part of your submission, we ask you to provide a short paragraph explaining some choices you made in your implementation. 
-The deadline for submission is October 16, 17:59.
+You need to submit your MiniJava project with a pull request against branch `assignment4` on GitHub. 
+Your GitHub repository contains a step-by-step procedure how to file such a request. 
+As part of your submission, we ask you to provide a short paragraph explaining some choices you made in your implementation in `MiniJava/README.md`. 
+The deadline for submission is October 15, 17:59.
 
 ### Grading
 
@@ -55,15 +56,17 @@ You can earn up to 60 points for your desugarings:
 
 ### Initial Editor Project
 
-1. Download the [initial project](https://github.com/guwac/compiler-construction/releases/download/ms1/MiniJava.zip).
-2. Import the project into your workspace:
+We provide you with an initial MiniJava project in the branch `assignment4`.
+Make sure you have this branch in your fork as well, before you start working on this assignment.
+
+1. Import the project into your workspace:
     1. right-click into the Package Explorer
     2. select **Import...** from the context menu
     3. choose **General/Existing Projects into Workspace** from the list
     4. select **archive file** (2nd choice) as a source
     5. select the downloaded MiniJava project
     6. press the **Finish** button
-3. Build the project:
+2. Build the project:
     1. select the project folder
     2. select **Build Project** from the **Project** menu
     3. the console will report success or failure
