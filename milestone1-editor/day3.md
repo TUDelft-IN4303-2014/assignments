@@ -18,10 +18,10 @@ Improve your syntax definition to support
 
 ### Submission
 
-You need to submit your MiniJava project on Blackboard. 
-As part of your submission,
-  we ask you to provide a short paragraph explaining the organisation of your syntax definition.
-The deadline for submission is October 6, 17:59.
+You need to submit your MiniJava project with a pull request against branch `assignment3` on GitHub. 
+Your GitHub repository contains a step-by-step procedure how to file such a request. 
+As part of your submission, we ask you to provide a short explanation of the organisation of your syntax definition in `MiniJava/syntax/README.md`. 
+The deadline for submission is October 8, 17:59.
 
 ### Grading
 
@@ -29,7 +29,7 @@ You can earn up to 10 points for your folding patterns.
 We will take the overall editor experience into account and
 we will deduct points for too many (and by this unusable) folding options.
 
-You can further earn up to 70 points for your improved templates.
+You can further earn up to 70 points for your improved syntax templates.
 We will focus on readability of pretty-printed code and completion suggestions and 
 on consistent indentations.
 
@@ -85,7 +85,7 @@ Before you start with the actual assignment, you should make sure that
         Sort             = [...]
         Sort.Constructor = [...]
 
-3. your start symbol is set to Program so that your editor accepts only complete MiniJava programs. 
+3. your start symbol is set to `Program` or `Start` so that your editor accepts only complete MiniJava programs. 
 
 ### Folding Rules
 
@@ -140,8 +140,9 @@ allowing the expressions to be filled in as the user continues typing.
 Spoofax generates completion templates from `templates` sections in your syntax definition.
 You can find these templates in `editor/<name>.generated.esv`files. 
 Until now, these completion templates are not integrated into your editor.
-You can change this, by __importing all the generated esv files in__ `editor/MiniJava-Completions.esv`.
-After building your project, you can test completion by pressing `Ctrl + Space`.
+You can change this, by importing the generated `src-gen/editor/MiniJava.generated.esv` file into `editor/MiniJava-Completions.esv`.
+For a successfull build, it is important to avoid any cyclic import in your syntax definition.
+After building your project, you can test completion in a MiniJava editor by pressing `Ctrl + Space`.
 
 Typically, your completion templates lack proper indentation and line breaks. 
 You can fix this by improving your templates in the syntax definition.
@@ -158,7 +159,7 @@ This might involve larger code patterns or useful variants of the generated temp
 ### Pretty-Printing
 
 Spoofax also generates pretty-printing rules from your syntax definition.
-You can find these rules in `trans/<name>.pp.generated.str`.
+You can find these rules in `src-gen/trans/<name>.pp.generated.str`.
 You need to define a builder and a corresponding build strategy 
   to hook a pretty-printing option into the *Transform* menu of your MiniJava editor.
 You define builders in `editor/MiniJava-Builders.esv`:
