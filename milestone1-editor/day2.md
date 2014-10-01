@@ -70,6 +70,12 @@ We particular focus on
  distinctness of different constructs,
  and the representation of formal and actual parameter lists.
 
+### Early Feedback
+
+We provide early feedback for the correctness of your syntax definition.
+This feedback gives you an indication which parts of your syntax definition might still be wrong.
+It includes a summary on how many tests you pass and how many points you earn by passing them.
+
 ## Detailed Instructions
 
 ### Preliminaries
