@@ -23,6 +23,10 @@ Your GitHub repository contains a step-by-step procedure how to file such a requ
 As part of your submission, we ask you to provide a short explanation of the organisation of your syntax definition in `MiniJava/syntax/README.md`. 
 The deadline for submission is October 8, 17:59.
 
+### Early Feedback
+
+We do not provide early feedback for this submission.
+
 ### Grading
 
 You can earn up to 10 points for your folding patterns.
