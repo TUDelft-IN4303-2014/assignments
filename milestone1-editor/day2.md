@@ -165,7 +165,15 @@ Finally, use rejection rules to rule out reserved words.
     lexical syntax
     
       ID = ... {reject}
- 
+
+In your tests, you declare `ID` and `INT` as start symbols for those tests. To get those tests running, you also need to define those as start symbols in your grammar:
+
+    context-free start-symbols
+    
+      ID INT
+
+You now can run your tests. It is important to get your grammar working at this stage. Do not move on if you have issues here, since there is a high chance that these issues influence your other tests as well. If you experience long running times for your tests, this is most likely caused by an erroneous definition of `LAYOUT`.
+
 ### Context-free Syntax
 
 Continue with the context-free syntax of the language. 
