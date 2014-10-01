@@ -37,7 +37,7 @@ Finally, you can earn up to 20 points for hand-written completion templates.
 
 ### Early Feedback
 
-We do not provide early feedback for this submission.
+This assignment is graded manually. Thus, we do not provide early feedback for this submission.
 
 ## Detailed Instructions
 
