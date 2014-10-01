@@ -85,7 +85,7 @@ Before you start with the actual assignment, you should make sure that
         Sort             = [...]
         Sort.Constructor = [...]
 
-3. your start symbol is set to `Program` or `Start` so that your editor accepts only complete MiniJava programs. 
+3. your start symbol in `editor/MiniJava.main.esv` is set to `Program` or `Start` so that your editor accepts only complete MiniJava programs. 
 
 ### Folding Rules
 
