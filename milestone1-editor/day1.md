@@ -45,6 +45,12 @@ The total number of points depends only on how many kinds of errors you reveal,
   not on the number of test cases that reveal these errors.
 **Note:** It is important to name tests in a testsuite uniquely. Tests in different test suites can have the same name, but for grading, we need to be able to distinguish tests in the same test suite by their name.
 
+### Early Feedback
+
+We provide early feedback for the effectiveness of your test cases.
+This feedback gives you an indication which parts of the syntax definition might still be uncovered by your tests. 
+It includes a summary on how many erroneous syntax definitions you reveal and how many points you earn by detecting them.
+
 ## Detailed Instructions
 
 ### Anatomy of a Test Suite
