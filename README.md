@@ -12,19 +12,19 @@ All assignments are publicly available on GitHub:
 
 * [Milestone 1: Syntax Analysis](milestone1-editor)
   1. [Testing Syntax Analysis](milestone1-editor/day1.md) (due to ~~22 September~~ **24 September**)
-  2. [Syntax Definition](milestone1-editor/day2.md) (due to 29 September)
-  3. [Syntactic Editor Services](milestone1-editor/day3.md) (due to 06 October)
-  4. [Simple Term Rewriting](milestone1-editor/day4.md) (due to 13 October)
+  2. [Syntax Definition](milestone1-editor/day2.md) (due to ~~29 September~~ **01 October**)
+  3. [Syntactic Editor Services](milestone1-editor/day3.md) (due to 08 October)
+  4. [Simple Term Rewriting](milestone1-editor/day4.md) (due to 15 October)
 * Milestone 2
-  5. Testing Name Analysis (due to 20 October)
-  6. Name Analysis (due to 10 November)
-  7. Testing Type Analysis (due to 17 November)
-  8. Basic Type Analysis (due to 24 November)
-  9. Inheritance and Subtyping (due to 1 December)
+  5. Testing Name Analysis (due to 22 October)
+  6. Name Analysis (due to 12 November)
+  7. Testing Type Analysis (due to 19 November)
+  8. Basic Type Analysis (due to 26 November)
+  9. Inheritance and Subtyping (due to 3 December)
 * Milestone 3
-  10. Compiling Minimal Programs (due to 8 December)
-  11. Compiling Expressions and Statements (due to 15 December)
-  12. Compiling, Fields, Parameters, and Variables (due to 9 January)
+  10. Compiling Minimal Programs (due to 10 December)
+  11. Compiling Expressions and Statements (due to 17 December)
+  12. Compiling, Fields, Parameters, and Variables (due to 11 January)
 
 ## Submitting Assignments
 
