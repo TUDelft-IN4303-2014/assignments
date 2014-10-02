@@ -92,6 +92,12 @@ Before you start with the actual assignment, you should make sure that
 
 3. your start symbol in `editor/MiniJava.main.esv` is set to `Program` or `Start` so that your editor accepts only complete MiniJava programs. 
 
+#####Hint: 
+For old SDF3 files, with deprecated constructors, you can also apply the ``Lift to SDF3`` builder to lift your grammar into the new SDF3 style, getting a new file in the ``src-gen/formatted`` folder, with no deprecated constructs.
+
+``Lift to SDF3`` has two different versions: it can **lift productions into templates** or it can **lift them into productive productions**. Therefore, it can be used to generate default templates from regular productive productions in a different file, on src-gen/formatted. All .sdf3 files in the ``src-gen`` folder are only temporary and are deleted when building the project.
+
+
 ### Folding Rules
 
 Presentational editor services such as code folding and syntax highlighting are defined 
@@ -165,72 +171,28 @@ This might involve larger code patterns or useful variants of the generated temp
 
 Spoofax also generates pretty-printing rules from your syntax definition.
 You can find these rules in `src-gen/pp/<name>-pp.str`.
-You need to define a builder and a corresponding build strategy 
-  to hook a pretty-printing option into the *Transform* menu of your MiniJava editor.
-You define builders in `editor/MiniJava-Builders.esv`:
 
-    builder : "Pretty-print" = pp-builder (source) (openeditor)                                              
+There is already a menu entry named `Format` that uses the strategy `pp-debug` in the `trans/pp.str` file to pretty-print a MiniJava file. However, to add parentheses to your MiniJava program following the priority rules from your syntax definition, it is important that you add the `include/MiniJava-parenthesize` to the imports and also change the strategy `pp-MiniJava-string` to apply the parenthesize strategies to your ast.
 
-This builder definition adds a new entry to the *Transform* menu.
-The left-hand side of the definition specifies the label used in the menu.
-The right-hand side indicates a Stratego strategy which implements the corresponding action.
-The `(source)` annotation specifies that the strategy is applied to the original, un-desugared, un-analyzed AST.
-The `(openeditor)` annotation specifies that the action opens an editor with the result.
-
-You still need to implement the strategy `pp-builder` which is responsible
-for performing the action of the *Pretty-print* menu entry.
-You can do this in a new file `trans/pp.str`:
 
     module pp
     
     imports
-      libstratego-gpp
-      lib/runtime/tmpl/pp
+      ...
       include/MiniJava-parenthesize
       ...
+    
+    pp-MiniJava-string =
+      parenthesize-MiniJava
+    ; prettyprint-SDF-start-symbols
+    ; !V([], <id>)
+    ; box2text-string(|120)
 
-This defines a module `pp` which imports Stratego's generic pretty-print library `libstratego-gpp` 
-and a module `MiniJava-parenthesize`.
-The latter is generated from your syntax definition and provides strategies to add parentheses to an AST.
-These strategies obey the priority rules of your syntax definition.
-__You also need to import all the generated__ `*-pp.str` __files here__.
-These generated files contain errors, but they can be safely ignored. 
+    ...
 
-Now, you can define `pp-builder`:
+The strategies from `include/MiniJava-parenthesize` obey the priority rules of your syntax definition.
+__You might need to import the generated__ `src-gen/pp/*-pp.str` __files here if your start symbols are not defined in the main SDF3 module__.
 
-    rules
-	
-     	pp-builder:
-        (selected, position, ast, path, project-path) -> (name, content)
-        with
-          name    := <guarantee-extension(|"pp.mjv")> path
-        ; ast'    := <parenthesize-MiniJava> ast
-        ; box     := V([], <prettyprint-Program> ast')
-        ; content := <box2text-string(|100)> box
-
-This rule follows a fixed interface for interoperability with the editor. 
-The left-hand side of the rule is a tuple of
-* the `selected` node,
-* its `position` in the tree,
-* the complete `ast` of the file, 
-* the file `path` and 
-* the `project-path`.
-
-The right-hand side specifies a file which should be changed (or created) by
-* its `name` and
-* its `content`.
-
-The `with` clause specifies how to bind these variables. 
-The output file `name` is derived from the `path` of the file opened in the editor.
-Its `content` is derived in three steps:
-
-1. We add parentheses to the  `ast` of the input file, which results in a new `ast'`.
-2. We pretty-print `ast'` with the generated `prettyprint-Program` strategy. 
-   This results in some nested *boxes*, which we surround with a vertical (`V`) `box`.
-   These boxes are a fundamental concept of the generic pretty-print library.
-3. We turn the `box` into text with a maximal width of `100`.
-   This results in the `content` of our output file.
-
-In order to test the pretty-print builder, you need to import `pp.str` from `trans/minijava.str` and build your project.
-Create or open a `.mjv` test file with a valid program, press the down-facing arrow on the right of the Transform button and choose `Pretty-print`.
-This will apply `pp-builder` to the current file and show the result in a new editor.
+In order to test the pretty-print builder, you need to build your project.
+Create or open a `.mjv` test file with a valid program, press the down-facing arrow on the right of the `Syntax` button and choose `Format`.
+This will apply `Format` to the current file and show the result in a new editor.
