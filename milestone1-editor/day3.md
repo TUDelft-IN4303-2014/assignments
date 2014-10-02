@@ -98,7 +98,7 @@ For old SDF3 files, with deprecated constructors, you can also apply the ``Lift 
 
 ``Lift to SDF3`` has two different versions: it can **lift productions into templates** or it can **lift them into productive productions**. Therefore, it can be used to generate default templates from regular productive productions in a different file, on src-gen/formatted. All .sdf3 files in the ``src-gen`` folder are only temporary and should be manually deleted before building the project.
 
-If you are using Windows, you might not be able to build your project because it locks your `minijava-jar.jar` file, forbidding updates to this file. This can be solved by manually deleting this file before building the project.
+If you are using Windows, you might not be able to build your project because it locks your `minijava-jar.jar`, forbidding updates to this file. This can be solved by manually deleting it before building the project.
 
 If you were able to update Spoofax, those deletions are automatic.
 
