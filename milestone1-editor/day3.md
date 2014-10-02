@@ -64,8 +64,9 @@ In the `src-gen` folder, you will find files which were generated from your synt
 For each file `<name>.sdf3`, there are generated files
 
 * `syntax/<name>.sdf`: an SDF2 definition which is equivalent to the SDF3 definition.
-* `editor/<name>.generated.esv`: completion templates derived from SDF3 templates.
-* `trans/<name>.pp.generated.str`: pretty-printing strategies derived from SDF3 templates.
+* `completions/<name>-esv.esv`: completion templates derived from SDF3 templates.
+* `pp/<name>-pp.str`: pretty-printing strategies derived from SDF3 templates.
+* `signatures/<name>-sig.str`: signatures derived from SDF3 templates.
 
 You can find more generated files in `editor` and `include` folders:
 
@@ -142,9 +143,9 @@ The editor automatically moves the cursor to these expressions once the user sel
 allowing the expressions to be filled in as the user continues typing.
 
 Spoofax generates completion templates from `templates` sections in your syntax definition.
-You can find these templates in `editor/<name>.generated.esv`files. 
+You can find these templates in `src-gen/completions/<name>-esv.esv` files. 
 Until now, these completion templates are not integrated into your editor.
-You can change this, by importing the generated `src-gen/editor/MiniJava.generated.esv` file into `editor/MiniJava-Completions.esv`.
+You can change this, by importing the generated `src-gen/completions/MiniJava-esv.esv` file into `editor/MiniJava-Completions.esv`.
 For a successfull build, it is important to avoid any cyclic import in your syntax definition.
 After building your project, you can test completion in a MiniJava editor by pressing `Ctrl + Space`.
 
@@ -163,7 +164,7 @@ This might involve larger code patterns or useful variants of the generated temp
 ### Pretty-Printing
 
 Spoofax also generates pretty-printing rules from your syntax definition.
-You can find these rules in `src-gen/trans/<name>.pp.generated.str`.
+You can find these rules in `src-gen/pp/<name>-pp.str`.
 You need to define a builder and a corresponding build strategy 
   to hook a pretty-printing option into the *Transform* menu of your MiniJava editor.
 You define builders in `editor/MiniJava-Builders.esv`:
@@ -192,7 +193,7 @@ This defines a module `pp` which imports Stratego's generic pretty-print library
 and a module `MiniJava-parenthesize`.
 The latter is generated from your syntax definition and provides strategies to add parentheses to an AST.
 These strategies obey the priority rules of your syntax definition.
-__You also need to import all the generated__ `*.pp.generated.str` __files here__.
+__You also need to import all the generated__ `*-pp.str` __files here__.
 These generated files contain errors, but they can be safely ignored. 
 
 Now, you can define `pp-builder`:

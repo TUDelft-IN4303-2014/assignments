@@ -10,8 +10,8 @@
 
 ##### How do I get started?
 
-1. Create a Spoofax editor project ([instructions](https://github.com/guwac/compiler-construction/blob/master/assignments/milestone1-editor/overview.md#initial-spoofax-project)) 
-   and a test project ([instructions](https://github.com/guwac/compiler-construction/blob/master/assignments/milestone1-editor/overview.md#initial-test-project)) in Eclipse.
+1. Create a Spoofax editor project ([instructions](https://github.com/TUDelft-IN4303/assignments/tree/master/milestone1-editor#initial-spoofax-project)) 
+   and a test project ([instructions](https://github.com/TUDelft-IN4303/assignments/tree/master/milestone1-editor#initial-test-project)) in Eclipse.
 2. Create a new test suite in the test project. 
    1. Select *File > New > File* from the menu.
    2. Use `.spt` as a file extension.
