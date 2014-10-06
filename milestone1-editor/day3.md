@@ -91,12 +91,12 @@ Before you start with the actual assignment, you should make sure that
         Sort.Constructor = [...]
 
 3. your start symbol in `editor/MiniJava.main.esv` is set to `Program` or `Start` so that your editor accepts only complete MiniJava programs. 
-4. check if there is an update on Spoofax.
+4. your Spoofax is up-to-date.
 
 #####Hints: 
-For old SDF3 files, with deprecated constructors, you can also apply the ``Lift to SDF3`` builder to lift your grammar into the new SDF3 style, getting a new file in the ``src-gen/formatted`` folder, with no deprecated constructs.
+For old SDF3 files, with deprecated constructors, you can also apply the ``Lift to SDF3`` builder, under the `Format` menu, to lift your grammar into the new SDF3 style, getting a new file in the ``src-gen/formatted`` folder, with no deprecated constructs.
 
-``Lift to SDF3`` has two different versions: it can **lift productions into templates** or it can **lift them into productive productions**. Therefore, it can be used to generate default templates from regular productive productions in a different file, on src-gen/formatted. All .sdf3 files in the ``src-gen`` folder are only temporary and should be manually deleted before building the project.
+``Lift to SDF3`` has two different versions: it can **lift productions into templates** or it can **lift them into productive productions**. Therefore, it can be used to generate default templates from regular productive productions in a different file, on `src-gen/formatted`. All .sdf3 files in the ``src-gen`` folder are only temporary and should be manually deleted before building the project.
 
 If you are using Windows, you might not be able to build your project because it locks your `minijava-jar.jar`, forbidding updates to this file. This can be solved by manually deleting it before building the project.
 
