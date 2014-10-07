@@ -9,10 +9,12 @@ You add an outline view and a desugaring transformation to an initial editor pro
 
 For this lab and the following milestone 2, we provide you with an initial editor project.
 This project is a common starting point for all of you.
-It includes 
-* a parse table `assignment1/MiniJava.tbl` which passes all syntax tests,
-* a corresponding signature `assignment1/MiniJava.str` and a
-* pretty-printing definition `assignment1/pp.rtree`.
+It includes:
+
+* a parse table `common/Minimal.tbl` which passes all syntax tests,
+* a corresponding signature `common/src-gen/signatures/MiniJava-sig.str`,
+* a pretty-printing definition `common/src-gen/pp/MiniJava-pp.str`, and a
+* content-completion definition `common/src-gen/completions/MiniJava-esv.esv`.
 
 ### Objectives
 
@@ -76,15 +78,15 @@ Make sure you have this branch in your fork as well, before you start working on
 Signatures declare sorts and constructors for terms. 
 In Spoofax, terms are used to represent abstract syntax trees. 
 The corresponding signature is generated from the constructors in a syntax definition. 
-You can find a signature for MiniJava in `assignment1/MiniJava.str`. 
+You can find a signature for MiniJava in `common/src-gen/signatures/MiniJava-sig.str`. 
 It was generated from a syntax definition, which itself is not included in the initial project.
-If you write your own syntax definition, the generated signature can be found in `include/<LanguageName>.str`.
+If you write your own syntax definition, the generated signatures can be found in `src-gen/signatures/*`.
 
 ### Outline View
 
 #### Rewrite Rules
 
-An outline view can be specified by rewrite rules `to-outline-label` in `trans/editor/outline.str`.
+An outline view can be specified by rewrite rules `to-outline-label` in `editor/MiniJava-Outliner`.
 These rules should rewrite AST nodes to their label in an outline view.
 For example, the following rule rewrites a variable declaration to its name, which will be used as a label.
 
@@ -204,8 +206,7 @@ Typically, they are less guided and require more investigation or higher program
 1. Provide the file name as the root node label. 
 See `lib/runtime/editor/origins/` for a suitable strategy.
 2. Outline the main method as a subnode of the main class.
-This requires you to drop the import `editor/MiniJava-Outliner.generated`.
-Instead, you need to define a strategy 
+You need to replace this strategy 
 
         outline = custom-label-outline(to-outline-label, to-outline-node)
     Visit `lib/runtime/editor/outline-library` for inspiration.
@@ -218,7 +219,7 @@ To get such a uniform representation, you need to desugar abstract syntax trees 
 #### Signature
 
 Before you can implement a desugaring, 
-you need to define a signature for the uniform representation of expressions in `trans/analysis/desugar.str`:
+you need to define a signature for the uniform representation of expressions in `trans/desugar.str`:
 
 1. Identify unary and binary expressions in MiniJava. 
 A unary expression has one subexpression and an operator.
@@ -246,13 +247,13 @@ On the right-hand side, the rule instantiates a binary expression (in a uniform 
 During the instantiation, variables `e1` and `e2` are replaced with the terms they are bound to.
 You can extend `desugar` to replace the different unary and binary expressions in the abstract syntax tree 
 with a uniform representation of these expressions. 
-Define a rewrite rule `desugar` in `trans/analysis/desugar.str` for every unary or binary operator, 
+Define a rewrite rule `desugar` in `trans/desugar.str` for every unary or binary operator, 
 which transforms the original expression into a uniform representation.
 
 #### Editor Integration
 
 To test your transformation, you need to define a builder. 
-This is done similar to the builder for pretty-printing. Add the following rewrite rule to `trans/editor/builders.str`:
+This is done similar to the builder for pretty-printing. Add the following rewrite rule to `trans/minijava.str`:
 
     editor-desugar:
       (selected, position, ast, path, project-path) -> (filename, text)
@@ -272,20 +273,20 @@ On the right-hand site, it instantiates a pair, consisting of a `filename` and t
 Both variables are bound in the `where` clause. 
 The file name is derived from the path of the current file, 
 while the content of the file is a desugared version of the selected AST node.
-You also need to hook your strategy into the editor, making desugaring available in the *Transform* menu. 
-You can do this in `editor/MiniJava-Builders.esv`:
+You also need to hook your strategy into the editor, making desugaring available in the *Syntax* menu. 
+You can do this in `editor/MiniJava-Menus.esv`:
 
-    builder : "Desugar AST (selection)" = editor-desugar (openeditor) (realtime) (meta) (source)
+    action : "Show desugared syntax" = editor-desugar (realtime) (meta) (source)
 
 This rule defines 
 
 * a builder, 
-* its label in the *Transform* menu, and 
+* its label in the *Syntax* menu, and 
 * its implementation strategy `editor-desugar`. 
 
 Annotations can be used for different variants of builders:
 
-* `(openeditor)` ensures that a new editor window is opened for the result. 
+* `(openeditor)` from the Syntax menu ensures that a new editor window is opened for the result. 
 * `(realtime)` requires this editor to be updated whenever the content in the original editor changes. 
 * `(meta)` restricts the builder to be only available to the language engineer, but not to the language user. 
 While you can invoke the builder, people who install your MiniJava plugin cannot. 
@@ -310,7 +311,7 @@ which tries to apply its parameter inside a tree, starting at the leaves (bottom
 Whenever an application is successful, the result is traversed again. 
 
 Same results can be achieved with different generic traversals. 
-You should try different traversals in `trans/analysis/desugar.str`:
+You should try different traversals in `trans/desugar.str`:
 
 * `desugar-all = innermost(desugar)`
 * `desugar-all = topdown(desugar)`
@@ -330,7 +331,7 @@ For the submission, you need to prepare an explanation (1 paragraph) of
 
 #### Editor Integration Revisited
 
-With a builder, you can invoke a transformation manually from the *Transform* menu. 
+With a builder, you can invoke a transformation manually from any of the menus. 
 However, desugaring should be an automatic transformation as part of static analysis. 
 In Spoofax, static analysis is performed by strategies. 
 In the initial project, these strategies are implemented in `trans/minijava.str`:
