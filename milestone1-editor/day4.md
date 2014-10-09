@@ -65,9 +65,8 @@ Make sure you have this branch in your fork as well, before you start working on
     1. right-click into the Package Explorer
     2. select **Import...** from the context menu
     3. choose **General/Existing Projects into Workspace** from the list
-    4. select **archive file** (2nd choice) as a source
-    5. select the downloaded MiniJava project
-    6. press the **Finish** button
+    4. select the MiniJava project
+    5. press the **Finish** button
 2. Build the project:
     1. select the project folder
     2. select **Build Project** from the **Project** menu
