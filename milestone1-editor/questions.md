@@ -80,3 +80,10 @@ This is also very likely caused by erroneous rules for `LAYOUT`.
 # Syntactic Editor Services
 
 # Simple Term Rewriting
+
+##### Why am I getting a *Builder failed* error when I click *Show desugared syntax*?
+
+You probably do not have a snippet of code selected that can be transformed by the `desugar` rule, thereby causing the `editor-desugar` rule to fail.
+If you select an expression and run *Show desugared syntax*, you will see the output of `desugar` applied to that expression.
+Alternatively, you could edit the `editor-desugar` rule to apply the `desugar-all` strategy to transform the complete AST of your MiniJava file.
+
