@@ -60,7 +60,7 @@ For example, the following two test cases require to resolve the type `Foo` to t
     module resolution
      
     language MiniJava
-    start symbol Start
+    start symbol Program
      
     test forward class name resolution [[
       class Main {
@@ -111,7 +111,7 @@ For example, the following test cases specify a correct MiniJava program,
     module resolution
      
     language MiniJava
-    start symbol Start
+    start symbol Program
      
     test correct program [[
       class Main {
