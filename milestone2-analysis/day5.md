@@ -28,8 +28,8 @@ The test suite should provide
 
 You need to submit your MiniJava project with a pull request against branch `assignment5` on GitHub. 
 Your GitHub repository contains a step-by-step procedure how to file such a request. 
-Testing files created this lab should go into the `MiniJava-tests-names` project.
-As part of your submission, we ask you to provide a short paragraph explaining some choices you made in your implementation in `MiniJava/README.md`. 
+Test files created during this lab should go into a new project `MiniJava-tests-names`.
+This project should contain a `README.md` with a short paragraph explaining the organisation of your test project. 
 The deadline for submission is October 22, 17:59.
 
 ### Grading
@@ -37,6 +37,14 @@ The deadline for submission is October 22, 17:59.
 You can earn up to 5 points for the organisation of your test project.
 We take its structure, file names, test names, and your explanation into account.
 You can earn up to 95 points for the coverage of your test cases.
+**Note:** It is important to name tests in a testsuite uniquely. Tests in different test suites can have the same name, but for grading, we need to be able to distinguish tests in the same test suite by their name.
+
+### Early Feedback
+
+We provide early feedback for the effectiveness of your test cases.
+This feedback gives you an indication which parts of the name binding rules might still be uncovered by your tests. 
+It includes a summary on how many erroneous language definitions you reveal and how many points you earn by detecting them.
+We start sending out early feedback on Monday.
 
 ## Detailed Instructions
 
