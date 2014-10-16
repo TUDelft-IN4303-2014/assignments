@@ -22,7 +22,7 @@ The test suite should provide
   * errors on cyclic inheritance,
   * errors on hiding fields,
   * warnings on hiding variables,
-  * errors on instantiating or subclassing the main class.
+  * errors on instantiating, subclassing, or referencing the main class.
 
 ### Submission
 
