@@ -26,9 +26,10 @@ The test suite should provide
 
 ### Submission
 
-You need to submit your test project on Blackboard.
-As part of your submission, we ask you to provide a short paragraph explaining the organisation of your test project.
-The deadline for submission is October 23, 17:59.
+You need to submit your MiniJava project with a pull request against branch `assignment5` on GitHub. 
+Your GitHub repository contains a step-by-step procedure how to file such a request. 
+As part of your submission, we ask you to provide a short paragraph explaining some choices you made in your implementation in `MiniJava/README.md`. 
+The deadline for submission is October 22, 17:59.
 
 ### Grading
 
@@ -150,4 +151,3 @@ Next, you should develop test cases for
  hiding fields and variables, 
  and main class instantiation/subclassing.
 Again, you should keep in mind that coverage is the main criterion for your grade. 
-

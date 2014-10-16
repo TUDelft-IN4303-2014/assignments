@@ -11,25 +11,31 @@ In this milestone, the MiniJava editor from the previous milestone is extended w
 
 ### MiniJava Editor (Milestone 1)
 
-In the last assignment of milestone 1, we provided you with a fresh MiniJava editor project, 
-  which already covers the concrete and abstract syntax of MiniJava. 
+In the last assignment of milestone 1, we provided you with a fresh MiniJava editor project, which already covers the concrete and abstract syntax of MiniJava. 
 For grading purposes, you are required to continue with this project as a starting point for milestone 2.
-The projects hides nearly its entire implementation from you. 
-Only the signature for MiniJava abstract syntax trees is accessible. You can find it in  `assignment1/MiniJava.str`.
+For lab 6 (next week) we will provide you with a fresh MiniJava project again, which covers desugarings.
 
 ### Test Project
 
-You should create a separate project for your test cases and example programs:
+You should create separate projects for your name analysis test cases and example programs:
 
 1. Right-click into the Package Explorer.
 2. Select **New** from the context menu.
 3. Choose **Project...** from the list.
 4. Select the **Project** wizard from **General**.
 5. Switch to the **Next** tab.
-6. As **Project name**, use `MiniJava-tests-<YourNetID>`. 
+6. As **Project name**, use `MiniJava-tests-names`. 
 7. Press the **Finish** button.
 
-Please do not resubmit your syntax test cases during this milestone.
+And one for your type analysis test cases and example programs:
+
+1. Right-click into the Package Explorer.
+2. Select **New** from the context menu.
+3. Choose **Project...** from the list.
+4. Select the **Project** wizard from **General**.
+5. Switch to the **Next** tab.
+6. As **Project name**, use `MiniJava-tests-types`. 
+7. Press the **Finish** button.
 
 ## Resources
 

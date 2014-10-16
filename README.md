@@ -16,7 +16,7 @@ All assignments are publicly available on GitHub:
   3. [Syntactic Editor Services](milestone1-editor/day3.md) (due to 08 October)
   4. [Simple Term Rewriting](milestone1-editor/day4.md) (due to 15 October)
 * Milestone 2
-  5. Testing Name Analysis (due to 22 October)
+  5. [Testing Name Analysis](milestone2-analysis/day5.md) (due to 22 October)
   6. Name Analysis (due to 12 November)
   7. Testing Type Analysis (due to 19 November)
   8. Basic Type Analysis (due to 26 November)
