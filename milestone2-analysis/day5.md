@@ -20,8 +20,8 @@ The test suite should provide
   * errors on missing definitions,
   * warnings on unused definitions,
   * errors on cyclic inheritance,
-  * errors on hiding fields,
-  * warnings on hiding variables,
+  * errors on fields hiding fields in a parent class,
+  * warnings on variables hiding fields,
   * errors on instantiating, subclassing, or referencing the main class.
 
 ### Submission
