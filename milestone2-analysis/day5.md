@@ -155,6 +155,8 @@ For example, the following test cases specify a correct MiniJava program,
 
 You can start with test cases for duplicate definitions, missing definitions, and unused definitions.
 Similar to your syntax test cases, you can pair up positive (`0 errors`) and negative test cases.
+For duplicate definitions, each definition with the same name should produce an error, which is why the `error on duplicate class` test above expects 2 errors.
+
 Next, you should develop test cases for 
  cyclic inheritance, 
  hiding fields and variables, 
