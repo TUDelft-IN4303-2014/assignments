@@ -6,6 +6,18 @@ From this definition, you generate an Eclipse editor, that provides
 
 ## Overview
 
+### Initial Editor Project
+
+For this lab, we provide you with a new initial editor project.
+This project is a common starting point for all of you.
+It includes:
+
+* a parse table `common/Minimal.tbl` which passes all syntax tests
+* a corresponding signature `common/src-gen/signatures/MiniJava-sig.str`
+* a pretty-printing definition `common/src-gen/pp/MiniJava-pp.str`
+* content-completion definition `common/src-gen/completions/MiniJava-esv.esv`
+* desugarings implementation `common/desugar.ctree` which can be used by importing `common/desugar`
+
 ### Objectives
 
 Specify name analysis for MiniJava in NaBL and Stratego and generate an Eclipse editor from it. 
@@ -35,10 +47,10 @@ The specification should include:
 
 ### Submission
 
-You need to submit your MiniJava project on Blackboard. 
-As part of your submission,
-  we ask you to provide a short paragraph explaining the organisation of your NaBL and Stratego files.
-The deadline for submission is November 13, 17:59.
+You need to submit your MiniJava project with a pull request against branch `assignment6` on GitHub. 
+Your GitHub repository contains a step-by-step procedure how to file such a request. 
+This project should contain a `README.md` with a short paragraph explaining the organisation of your NaBL and Stratego files.
+The deadline for submission is November 12th, 17:59.
 
 ### Grading
 
@@ -74,19 +86,32 @@ We focus on
   the consistent use of NaBL Stratego paradigms.
 We will consider the fact that both languages are new to you.
 
+## Detailed Instructions
+
 ### Spoofax Update
 
-This lab requires you to update Spoofax to the latest unstable release and 
-  to fix an import in the milestone we provided you.
+This lab requires you to update Spoofax to the latest version.
 
-1. Choose *Install New Software* from the *Help* menu.
-2. Add `http://download.spoofax.org/update/unstable/` as an update site.
-3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
-4. Delete the directory `lib/runtime` in your existing MiniJava project.
-5. Update the import in `trans/minijava.str` from `lib/runtime/nbl/-` to `lib/runtime/nabl/-`.
-6. Build your MiniJava project.
+1. Choose *Check for Updates* from the *Help* menu.
+2. Wait for updates to be found.
+3. Install the updates to Spoofax.
+4. Restart Eclipse
 
-## Detailed Instructions
+### Initial Editor Project
+
+We provide you with an initial MiniJava project in the branch `assignment6`.
+Make sure you have this branch in your fork as well, before you start working on this assignment.
+
+1. Import the project into your workspace:
+    1. right-click into the Package Explorer
+    2. select **Import...** from the context menu
+    3. choose **General/Existing Projects into Workspace** from the list
+    4. select the MiniJava project
+    5. press the **Finish** button
+2. Build the project:
+    1. select the project folder
+    2. select **Build Project** from the **Project** menu
+    3. the console will report success or failure
 
 ### Name Binding
 
@@ -184,7 +209,7 @@ First, you need to create a new Stratego file in `trans` or one of its subdirect
       runtime/task/-
       runtime/types/-
 
-Again, the module name has to be the same as the file name and should include the path relative to the `trans` directory.
+Again, the module name has to be the same as the file name and should include the path relative to the `trans` directory. You need to import this file into `trans/minijava.str`.
 Now you can turn off the generic checks:
 
     strategies
