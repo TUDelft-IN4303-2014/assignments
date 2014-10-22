@@ -101,7 +101,7 @@ Make sure you have this branch in your fork as well, before you start working on
     2. select **Build Project** from the **Project** menu
     3. the console will report success or failure
 
-This project contains the desugarings implementation `common/desugar.ctree` which can be used by importing `common/desugar`.
+This project contains the desugarings implementation `common/desugar.ctree`, in addition to implementations of the previous initial project. The desugarings can be used by importing `common/desugar`.
 
 ### Name Binding
 
