@@ -6,18 +6,6 @@ From this definition, you generate an Eclipse editor, that provides
 
 ## Overview
 
-### Initial Editor Project
-
-For this lab, we provide you with a new initial editor project.
-This project is a common starting point for all of you.
-It includes:
-
-* a parse table `common/Minimal.tbl` which passes all syntax tests
-* a corresponding signature `common/src-gen/signatures/MiniJava-sig.str`
-* a pretty-printing definition `common/src-gen/pp/MiniJava-pp.str`
-* content-completion definition `common/src-gen/completions/MiniJava-esv.esv`
-* desugarings implementation `common/desugar.ctree` which can be used by importing `common/desugar`
-
 ### Objectives
 
 Specify name analysis for MiniJava in NaBL and Stratego and generate an Eclipse editor from it. 
@@ -99,7 +87,7 @@ This lab requires you to update Spoofax to the latest version.
 
 ### Initial Editor Project
 
-We provide you with an initial MiniJava project in the branch `assignment6`.
+We provide you with an initial MiniJava project in the branch `assignment6`. 
 Make sure you have this branch in your fork as well, before you start working on this assignment.
 
 1. Import the project into your workspace:
@@ -112,6 +100,8 @@ Make sure you have this branch in your fork as well, before you start working on
     1. select the project folder
     2. select **Build Project** from the **Project** menu
     3. the console will report success or failure
+
+This project contains the desugarings implementation `common/desugar.ctree` which can be used by importing `common/desugar`.
 
 ### Name Binding
 
