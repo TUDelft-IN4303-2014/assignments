@@ -120,7 +120,7 @@ To start a new name binding specification,
     module module-name
       
     imports
-      assignment1/MiniJava
+      common/src-gen/signatures/MiniJava-sig
 
 The module name has to be the same as the file name and should include the path relative to the `trans` directory.
 For example, a file `foo.nab` in directory `trans/bar` should define a module `bar/foo`.
