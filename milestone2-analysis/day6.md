@@ -120,7 +120,9 @@ To start a new name binding specification,
     module module-name
       
     imports
+      
       common/src-gen/signatures/MiniJava-sig
+      common/desugar
 
 The module name has to be the same as the file name and should include the path relative to the `trans` directory.
 For example, a file `foo.nab` in directory `trans/bar` should define a module `bar/foo`.
@@ -194,10 +196,11 @@ First, you need to create a new Stratego file in `trans` or one of its subdirect
      
     imports
       
-      assignment1/MiniJava
-      runtime/nabl/-
-      runtime/task/-
-      runtime/types/-
+      common/src-gen/signatures/MiniJava-sig
+      common/desugar
+      lib/runtime/nabl/-
+      lib/runtime/task/-
+      lib/runtime/types/-
 
 Again, the module name has to be the same as the file name and should include the path relative to the `trans` directory. You need to import this file into `trans/minijava.str`.
 Now you can turn off the generic checks:
