@@ -272,12 +272,13 @@ You can do so in a special `defines` clause:
     ...: defines Field f of type t
     
 This associates the type `t` with the field name `f`.
-You can see such associations in the index (try the *Show index (current)* builder).
-Search for entries of the form `Prop(URI(...), Type(), Result(...)`.
-The URI specifies the definition by naming its scopes.
-The result refers to a task which has the property as a result.
-You can see tasks and their results with the *Show tasks (current)* builder.
+You can see such associations in the index (try the *Show index > Partition* builder).
 The index stores all definitions and properties of these definitions.
+Search for entries of the form `prop URI -- Type() >> Result`.
+The `URI` specifies the definition by naming its scopes.
+The `Result` refers to a task which has the property as a result.
+You can see tasks and their results with the *Show tasks > Partition* builder.
+Alternatively, you can also use the *Show index > Partition (resolved)* builder, which inlines the results of tasks.
 
 #### Property-based Constraints 
 
