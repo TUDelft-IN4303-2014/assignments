@@ -26,11 +26,11 @@ The test suite should provide
 
 ### Submission
 
-You need to submit your MiniJava project with a pull request against branch `assignment5` on GitHub. 
+You need to submit your test project with a pull request against branch `assignment5` on GitHub. 
 Your GitHub repository contains a step-by-step procedure how to file such a request. 
 Test files created during this lab should go into a new project `MiniJava-tests-names`.
 This project should contain a `README.md` with a short paragraph explaining the organisation of your test project. 
-The deadline for submission is October 22, 17:59.
+The deadline for submissions is October 22nd, 17:59.
 
 ### Grading
 
