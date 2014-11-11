@@ -177,6 +177,15 @@ You can specify this scoping behaviour in a binding rule:
     
 The pattern of this rule matches programs and its `scopes` clause specifies that this is a scope for class names.
 
+When using multiple clauses in your patterns, be sure to assign them with the same binding rule. If they are spread across multiple binding rules it can occur that some clauses are ignored. The following is an example of correct usage when using multiple clauses:
+
+      Bar(name): defines Bar name scopes Foo, Tux
+
+as compared to incorrect usage:
+
+     Bar(name): defines Bar 
+     Bar(name): scopes Foo, Tux 
+  
 #### More Name Binding Rules
 
 You are now able to complete the name binding rules for MiniJava. You should come up with:
