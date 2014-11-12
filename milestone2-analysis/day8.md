@@ -7,7 +7,7 @@ From this definition, you generate an Eclipse editor, that provides type informa
 
 ### Objectives
 
-Specify type analysis for MiniJava in NaBL, TS and Stratego and generate an Eclipse editor from it. 
+Specify type analysis for MiniJava in NaBL, TS, and Stratego, and generate an Eclipse editor from it. 
 The specification should include:
 
 1. Name binding rules for
@@ -28,10 +28,11 @@ The specification should include:
   
 ### Submission
 
-You need to submit your MiniJava project on Blackboard. 
-As part of your submission,
-  we ask you to provide a short paragraph explaining the organisation of your NaBL and Stratego files.
-The deadline for submission is November 27, 17:59.
+You need to submit your MiniJava project with a pull request against branch `assignment8` on GitHub. 
+Your GitHub repository contains a step-by-step procedure how to file such a request. 
+This project should contain a `README.md` with a short paragraph explaining the organisation of your NaBL and Stratego files.
+
+The deadline for submission is November 26, 17:59.
 
 ### Grading
 
@@ -77,11 +78,11 @@ We will consider the fact that both languages are new to you.
 In this lab you specify typing rules and constraints as much as possible in TS, a brand new metalanguage for specifying type systems of programming languages.
 TS has a number of rough edges:
 
-1. Generated Stratego files contain errors, but compile fine.
+1. Generated Stratego files can contain errors, but compile fine.
 2. Generated variable names change in each compilation.
 3. The language lacks syntactic sugar for typical typing rule patterns.
 
-Despite these issues, the language should allow you to specify typing rules and constraints in a declarative and concise way.
+Despite these issues, the language allows you to specify typing rules and constraints in a declarative and concise way.
 TS files end in `.ts` and generate corresponding `.generated.str` files.
 There overall structure looks like this:
 
@@ -89,8 +90,8 @@ There overall structure looks like this:
      
     imports
       
-      assignment1/MiniJava
-      analysis/desugar
+      common/src-gen/signatures/MiniJava-sig
+      common/desugar
      
     type rules
      
@@ -114,11 +115,11 @@ This might include tasks which originated from a different file than the file th
 
 Name and type tasks are executed incrementally based on changes made in MiniJava programs. 
 However, tasks do not take changes of your language specification into account.
-If you encounter an unexpected result after changing your naming or typing rules, try a *Reset and reanalyze* to force a full analysis.
+If you encounter an unexpected result after changing your naming or typing rules, right click the project containing your example files, and choose `Spoofax -> Reload analysis data`.
 
 #### Debugging
 
-Hovers offer a quick way to check if type analysis works as expected.
+Hovers offer a quick way to check if type analysis works as expected. There is already a default hover implementation that shows name and type information, but it can be customised.
 The hover for your editor is specified in `trans/minijava.str`:
 
     editor-hover:
@@ -148,7 +149,7 @@ Tests that expect a class type as a result have to be modified to accept annotat
 
 When you get unexpected results, you can inspect index entries and 
   collected tasks with the *Show analysis*, *Show tasks* and *Show index* builders.
-Probably the most useful builders for you are those which show them only for the current file or for a selection.
+Probably the most useful builders for you are those which show them only for the current file (also called a partition) or for a selection.
 
 Consider the following task entry:
 

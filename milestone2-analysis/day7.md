@@ -28,7 +28,7 @@ Your GitHub repository contains a step-by-step procedure how to file such a requ
 Test files created during this lab should go into a new project `MiniJava-tests-types`.
 This project should contain a `README.md` with a short paragraph explaining the organisation of your test project.
 
-The deadline for submissions is November 26th, 17:59.
+The deadline for submissions is November 19th, 17:59.
 
 ### Grading
 
