@@ -18,8 +18,8 @@ All assignments are publicly available on GitHub:
 * Milestone 2
   5. [Testing Name Analysis](milestone2-analysis/day5.md) (due to 22 October)
   6. [Name Analysis](milestone2-analysis/day6.md) (due to 12 November)
-  7. Testing Type Analysis (due to 19 November)
-  8. Basic Type Analysis (due to 26 November)
+  7. [Testing Type Analysis](milestone2-analysis/day7.md) (due to 19 November)
+  8. [Basic Type Analysis](milestone2-analysis/day8.md) (due to 26 November)
   9. Inheritance and Subtyping (due to 3 December)
 * Milestone 3
   10. Compiling Minimal Programs (due to 10 December)
