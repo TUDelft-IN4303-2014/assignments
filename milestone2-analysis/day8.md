@@ -32,7 +32,7 @@ You need to submit your MiniJava project with a pull request against branch `ass
 Your GitHub repository contains a step-by-step procedure how to file such a request. 
 This project should contain a `README.md` with a short paragraph explaining the organisation of your NaBL and Stratego files.
 
-The deadline for submission is November 26, 17:59.
+The deadline for submission is November 26th, 17:59.
 
 ### Grading
 
