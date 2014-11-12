@@ -70,37 +70,11 @@ We focus on
   the consistent use of NaBL Stratego paradigms.
 We will consider the fact that both languages are new to you.
 
-### Spoofax Update
-
-This lab requires you to update Spoofax to the latest unstable release.
-
-1. Choose *Install New Software* from the *Help* menu.
-2. Add `http://download.spoofax.org/update/unstable/` as an update site.
-3. Install Spoofax. Eclipse will tell you it is already installed and suggests an update. This is fine.
-4. Build your MiniJava project.
-5. If you get build errors about `nabl-def`, regenerate your name binding files (go to .nab file, Actions -> Generate name analysis), and build again.
-
-### Error in the Initial Project
-
-In some versions of the initial project, your desugaring rules will not be applied.
-However, desugaring is crucial for this lab.
-You should make sure, that the file `trans/minijava.str` defines the following two strategies:
-
-    analysis-single-default-interface = 
-      analysis-single-default(desugar-all, id, id|<language>)
-    analysis-multiple-default-interface = 
-      analysis-multiple-default(parse-file <+ !(), desugar-all, id, id|<language>, <project-path>)
-
-If the strategies are defined using `id` instead of `desugar-all`, you should change this.
-
 ## Detailed Instructions
 
-### Challenge
+### TS
 
-Challenges are meant to distinguish excellent solutions from good solutions. 
-Typically, they are less guided and require more investigation or higher programming skills.
-
-The challenge for this lab is to specify typing rules and constraints as much as possible in TS, a brand new metalanguage for specifying type systems of programming languages.
+In this lab you specify typing rules and constraints as much as possible in TS, a brand new metalanguage for specifying type systems of programming languages.
 TS has a number of rough edges:
 
 1. Generated Stratego files contain errors, but compile fine.
@@ -208,30 +182,12 @@ The following instructions exist:
 ### Typing Rules
 
 Typing rules specify the types of expressions.
-Instead of specifying these types directly, we wrap them in tasks.
-For each kind of expression, you should define a rule `create-type-task(|ctx)`,
-  which rewrites an expression to a task yielding its type.
-There are three strategies to create type analysis tasks:
-
-1. `<type-is(|ctx)> ty` creates a task which has `ty` as its result.
-2. `<type-is(|ctx, t*)> ty` creates a task which has `ty` as its result, when all tasks `t*` succeed.
-3. `<type-lookup(|ctx)> ref` creates a task which looks up the type of a reference `ref`. 
-4. `<type-match(|ctx, ty1)> ty2` creates a task which matches `ty1` against `ty2`. 
-
-You have already used `type-lookup` and `type-match` in the assignment on name analysis for constraints related to the main class.
 
 #### Literals
 
 In the simplest case, the type of an expression is directly known.
 An typical example for such expressions are literals.
-For example, integer literals are of type `int`.
-The following rule matches an integer literal and creates a task which will result in the type `int`:
-
-    create-type-task(|ctx): IntValue(_)  -> <type-is(|ctx)> Int()
-
-You should specify similar rules for boolean literals and for object creations.
-
-When you want to accept the challenge, here is the previous rule in TS:
+For example, integer literals are of type `int`:
 
     IntValue(v): Int()
 
@@ -242,32 +198,6 @@ Note that you cannot use wildcards in TS patterns.
 In more complicated cases, you need to check the types of subexpressions.
 The general idea is that only well-typed expressions have a type.
 For example, `1 + true` should have no type, since the right subexpression is of type `boolean` instead of type `int`.
-The general pattern for the corresponding typing rules is this:
-
-    create-type-task(|ctx): 
-      e -> <type-is(|ctx, [task2, task4])> ty
-      where
-        task1 := <type-task(|ctx)> e1
-      ; task2 := <type-match(|ctx, ty1)> task1
-      ; task3 := <type-task(|ctx)> e2
-      ; task4 := <type-match(|ctx, ty2)> task3
-      
-Here, `e` should match an expression with subexpressions `e1` and `e2` and
-`ty` should be the type of `e`, while `ty1` and `ty2` should be the expected types of `e1` and `e2`, respectively.
-The strategy `type-task` tries to find an existing type task for an expression.
-If it cannot find such a task, it will call `create-type-task` to create a new one.
-
-You can follow this pattern for the rules for unary and binary expressions.
-You should define the following rules:
-
-1. One `create-type-task` rule for `UnExp`.
-2. One `create-type-task` rule for `BinExp`.
-3. A rule `type-of-op` for each unary and binary operator, which rewrites the operator to a tuple.
-   This tuple should consist of the expected types of subexpressions and the type of the operator itself.
-   For example, the following rule states that `Length` requires a subexpression of type `int[]` and yields an expression of type `int`:
-         
-        type-of-op: Length() -> (IntArray(), Int())
-
 In TS, the general pattern for checking subexpressions is this:
 
     e: ty
@@ -280,6 +210,20 @@ In TS, you need to specify the types of operators in axioms:
 
     Length(): (IntArray(), Int())
 
+Here, `e` should match an expression with subexpressions `e1` and `e2` and
+`ty` should be the type of `e`, while `ty1` and `ty2` should be the expected types of `e1` and `e2`, respectively.
+
+You can follow this pattern for the rules for unary and binary expressions.
+You should define the following rules:
+
+1. One rule for `UnExp`.
+2. One rule for `BinExp`.
+3. A rule for each unary and binary operator, which rewrites the operator to a tuple.
+   This tuple should consist of the expected types of subexpressions and the type of the operator itself.
+   For example, the following rule states that `Length` requires a subexpression of type `int[]` and yields an expression of type `int`:
+ 
+    Length(): (IntArray(), Int())
+
 #### References
 
 For references, you need to lookup the type of the corresponding definition.
@@ -288,22 +232,12 @@ You should have specified these types in the name analysis assignment:
 
     ...: defines Field f of type t
 
-You can use `type-lookup` to create a task which looks up the type at a definition:
-
-    create-type-task(|ctx): 
-      e -> ...
-      where
-        task := <type-lookup(|ctx)> r
-    
-Here, `r` should be a reference in an expression `e`.
-`task` is a task which yields the type at the definition of `r`.
-You can use this task either in other tasks or as the result of `create-type-task`.
-You have used this strategy already in the assignment on name analysis.
-
 In TS, you can lookup the type of definitions as follows:
 
     e: ...
     where definition of r: ty
+
+Here, `r` should be a reference in an expression `e`.
 
 ### Name Binding Revisited
 
@@ -325,17 +259,12 @@ Implicit definitions can also have properties, which allows you to specify the t
 Next, you should specify a rule which resolves `this` to the implicit definition you just added.
 Again, you should use the constructor for `this` as the name in this rule.
 
-Finally, you can define a typing rule which uses `type-lookup` to create a task which looks up the type of `this`. 
-You need to make sure that `type-lookup` is applied to the term matched by the rule, not to a new term `This()`.
-You can achieve this by matching with a variable and an additional check, that this variable matches `This()`:
+Finally, you can define a typing rule which looks up the type of `this`. 
+You need to make sure that `definition of` is applied to the term matched by the rule, not to a new term `This()`.
+You can achieve this by matching with a variable `v` and a term `e` matching `this`:
 
-    create-type-task(|ctx): 
-      e -> ...
-      where
-        This() := e
-      ; task   := <type-lookup(|ctx)> e
-      
-Note that it is currently not possible to specify this rule in TS.
+    v@e: ty
+    where definition of v ...
 
 #### Method Calls
 
@@ -356,7 +285,7 @@ To type a method call, you need to define the type of a method name definition:
 
     ...: defines Method m of type t
 
-Next, you can specify a `create-type-task` rule for method calls, which looks up the type of the method definition.
+Next, you can specify a type rule for method calls, which looks up the type of the method definition.
 You should have this working, before you continue.
 
 The current solution works nicely, but also yields a type for method calls with missing arguments, additional arguments, or wrong argument types.
@@ -365,66 +294,33 @@ This type should include the expected types for the parameters and the return ty
 You can construct this sophisticated type either as a tuple of parameter types and return type 
 or define a special constructor for this type.
 Similar to the rule for method calls, you can collect the parameter types in a `where` clause.
-To make this work, you also need to create type tasks for parameters:
+To make this work, you also need to create type rules for parameters:
 
-    create-type-task(|ctx): Param(t, p) -> <type-is(|ctx)> ...
+    Param(t, p): ...
     
 Before you continue, you should check if the type associated with the method name carries all the information you need.
 Do not continue, until this is working.
 
 Next, you can adopt your typing rule for method calls.
-`type-lookup` will now yield the more sophisticated type.
+The type lookup will now yield the more sophisticated type.
 You need to extract the parameter types and the return type for further tasks.
-This extraction is done by a `Rewrite` task:
-
-    create-type-task(|ctx):
-      ... -> ...
-      where
-        task1 := <type-lookup(|ctx)> m                              // lookup sophisticated type of method name definition
-      ; task2 := <new-task(|ctx)> Rewrite("parameter-types", task1) // extract parameter types
-      ; task3 := <new-task(|ctx)> Rewrite("return-type", task1)     // extract return type
-      ; ...                                                         // check actual argument types w.r.t. parameter types
-      
-The first parameter of a `Rewrite` task specifies a particular rewrite rule.
-You need to provide an implementation for this rule:
-
-    task-rewrite: 
-      ("parameter-types", sophisticated-type) -> parameter-types
-      where
-        ...
-        
-    task-rewrite: 
-      ("return-type", sophisticated-type) -> return-type
-      where
-        ...
-
-The goal of these rules is to match the pattern of a sophisticated type and extract the relevant parts of it.
-You need to replace `sophisticated-type` with a pattern that matches the sophisticated type.
-These rules are executed by the rewrite tasks.
-You should not create any tasks in these rules.
-
-In TS, you do not need to specify rules for `task-rewrite`. 
-Instead, you can use a pattern for `sophisticated-type` which matches `parameter-types` and `return-type`:
+You can use a pattern for `sophisticated-type` which matches `parameter-types` and `return-type`:
 
     ...: ...
-    where definition of m: sophisticated-type // lookup sophisticated type and match parameter-types and return-type
+    where definition of m: sophisticated-type // lookup sophisticated type and 
+      and sophisticated-type => ...           // match parameter-types and return-type
       and  ...                                // check actual argument types w.r.t. parameter types
-
-TS will generate the corresponding rewrite rules for you.
-Note that it is also necessary to implement type rules for parameters in TS.
 
 ### Constraints
 
 In the assignment on name analysis, you have seen already strategies to specify constraints.
-You can specify type constraints in a similar way.
+You can specify type constraints directly in TS.
 
 #### Expressions
 
 In the typing rules for expressions, 
-  you used `type-match` to create tasks which check the types of subexpressions against expected types.
-These tasks will fail, if an actual type does not match an expected type.
-You should extend your typing rules and specify corresponding error messages with `task-create-error-on-failure`.
-
+  you check the types of subexpressions against expected types.
+These checks will fail, if an actual type does not match an expected type.
 In TS, you can specify errors and warnings in `else` clauses:
 
     e : t
@@ -439,9 +335,7 @@ In TS, you can specify errors and warnings in `else` clauses:
 
 Statements typically do not have a type, but they might expect a certain type of an expression in the statement.
 For example, an if statement requires a boolean expression.
-You should specify such additional constraints in `nabl-constraint` rules.
-
-In TS, you can specify constraints in special rules:
+In TS, you can specify such constraints in special rules:
 
     s :-
         where e: t
