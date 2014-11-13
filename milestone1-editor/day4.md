@@ -24,8 +24,8 @@ It includes:
   * methods (method name, parameter types, return type) and
   * local variables (variable name and type).
 2. Define rewrite rules `desugar` which desugar
-  * unary expressions into terms of the form `UnOp(op, exp)`,
-  * binary expressions into terms of the form `BinOp(op, exp1, exp2)` and
+  * unary expressions into terms of the form `UnExp(op, exp)`,
+  * binary expressions into terms of the form `BinExp(op, exp1, exp2)` and
   * octal numbers into decimal numbers.
 3. Integrate `desugar` into a strategy `desugar-all` which desugars subtrees in an AST.
 
