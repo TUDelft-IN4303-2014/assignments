@@ -220,6 +220,16 @@ Now you can turn off the generic checks:
       nabl-check-disable-hiding(|uri, ns) = id
       nabl-check-disable-unresolved = id
       
+#### Tasks
+
+To support incremental name and type analysis, we use tasks to specify name and type analysis.
+A task is a unit of computation, which might depend on index entries (such as name declarations or properties) or on the results of other tasks. 
+Based on your NaBL and TS rules, asks are collected in a traversal, before they are evaluated.
+Results of evaluated tasks are cached.
+When a file is changed, tasks are only re-collected for this file.
+A task is only re-evaluated, if it is new or if one of its dependencies changed.
+This might include tasks which originated from a different file than the file that changed.
+
 #### Unresolved References
 
 You can create your own constraints by providing rewrite rules for `nabl-constraint(|ctx)`:
