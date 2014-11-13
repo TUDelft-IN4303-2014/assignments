@@ -116,7 +116,7 @@ Consider the following test case as an example:
     ]] resolve #1 to #2
 
 The type of the callee expression determines the class in which the method declaration can be found.
-In this example, the expression `new Foo()` is of type `ClassType(Foo)` and 
+In this example, the expression `new Foo()` is of type `ClassType("Foo")` and 
 the corresponding class `Foo` contains a method declaration for `run()`.
 
 You should come up with test cases for the resolution of method names. 
