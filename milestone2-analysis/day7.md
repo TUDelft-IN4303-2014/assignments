@@ -92,6 +92,18 @@ and a variable reference to be of its declared type `Bool()`:
 
 You can use `setup` headers and footers to avoid repeating parts in similar test cases.
 
+When using get-type on objects the expected ClassType constructor also requires annotations.
+These annotations should be added to the constructor using a wild card as done below.
+
+	test expression id type [[
+		class Foobar {
+			Foo x;
+			public Foo method() {
+				return [[x]];
+			}
+		}
+	]] run get-type to ClassType("Foo"{_})
+
 You should come up with test cases for the types of all kinds of expressions.
 Just like previous testing assignments, this assignment is all about the coverage of your test suite.
 
@@ -116,7 +128,7 @@ Consider the following test case as an example:
     ]] resolve #1 to #2
 
 The type of the callee expression determines the class in which the method declaration can be found.
-In this example, the expression `new Foo()` is of type `ClassType("Foo")` and 
+In this example, the expression `new Foo()` is of type `ClassType("Foo"{_})` and 
 the corresponding class `Foo` contains a method declaration for `run()`.
 
 You should come up with test cases for the resolution of method names. 
