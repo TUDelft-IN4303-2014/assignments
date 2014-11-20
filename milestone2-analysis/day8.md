@@ -121,32 +121,7 @@ If you encounter an unexpected result after changing your naming or typing rules
 
 #### Debugging
 
-Hovers offer a quick way to check if type analysis works as expected. There is already a default hover implementation that shows name and type information, but it can be customised.
-The hover for your editor is specified in `trans/minijava.str`:
-
-```
-editor-hover:
-  (target, position, ast, path, project-path) -> <fail>
-```
-
-The elements of the tuple are:
-
-* `target`: The AST node corresponding to the text the mouse hovers over.
-* `position`: The position of `target` inside the whole AST.
-* `ast`: The whole AST.
-* `path`: The path of the current file.
-* `project-path`: The path of the project.
-
-You can use the type of an expression as the hover text for the expression.
-Therefor, you should replace `<fail>` with the actual hover information.
-The following strategies might be useful:
-
-1. `get-type` retrieves the result of the corresponding type task.
-2. When you do not want to show the AST of a type but its concrete syntax, 
-   you can reuse your pretty-print strategies for types from the assignment on editor services.
-
-When you build your project and move your mouse over an expression in a MiniJava editor, 
-  you should see its type in a hover text.
+Hovers offer a quick way to check if type analysis works as expected. When you move your mouse over an expression or definition in a MiniJava editor, you should see its type in a hover text.
 
 Your test cases from the previous lab should enable a more principled way of testing type analysis. 
 Tests that expect a class type as a result have to be modified to accept annotations on the name of the class. For example, an expectation `ClassType("A")` needs to be changed to `ClassType("A"{_})`.
