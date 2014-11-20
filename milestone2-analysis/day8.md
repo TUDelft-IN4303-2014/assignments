@@ -313,7 +313,7 @@ You can use a pattern for `sophisticated-type` which matches `parameter-types` a
 
     ...: ...
     where definition of m: sophisticated-type // lookup sophisticated type and 
-      and sophisticated-type => ...           // match parameter-types and return-type
+      and sophisticated-type : ...           // match parameter-types and return-type
       and  ...                                // check actual argument types w.r.t. parameter types
 
 ### Constraints
