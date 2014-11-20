@@ -73,15 +73,6 @@ We will consider the fact that both languages are new to you.
 
 ## Detailed Instructions
 
-### Spoofax Update
-
-This lab requires you to update Spoofax to the latest version.
-
-1. Choose *Check for Updates* from the *Help* menu.
-2. Wait for updates to be found.
-3. Install the updates to Spoofax.
-4. Restart Eclipse
-
 ### TS
 
 In this lab you specify typing rules and constraints in TS, a brand new metalanguage for specifying type systems of programming languages.
