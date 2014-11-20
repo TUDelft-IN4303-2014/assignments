@@ -32,7 +32,7 @@ You need to submit your MiniJava project with a pull request against branch `ass
 Your GitHub repository contains a step-by-step procedure how to file such a request. 
 This project should contain a `README.md` with a short paragraph explaining the organisation of your NaBL and Stratego files.
 
-The deadline for submission is November 26th, 17:59.
+The deadline for submissions is November 26th, 17:59.
 
 ### Grading
 
@@ -73,9 +73,18 @@ We will consider the fact that both languages are new to you.
 
 ## Detailed Instructions
 
+### Spoofax Update
+
+This lab requires you to update Spoofax to the latest version.
+
+1. Choose *Check for Updates* from the *Help* menu.
+2. Wait for updates to be found.
+3. Install the updates to Spoofax.
+4. Restart Eclipse
+
 ### TS
 
-In this lab you specify typing rules and constraints as much as possible in TS, a brand new metalanguage for specifying type systems of programming languages.
+In this lab you specify typing rules and constraints in TS, a brand new metalanguage for specifying type systems of programming languages.
 TS has a number of rough edges:
 
 1. Generated Stratego files can contain errors, but compile fine.
@@ -86,16 +95,18 @@ Despite these issues, the language allows you to specify typing rules and constr
 TS files end in `.ts` and generate corresponding `.generated.str` files.
 There overall structure looks like this:
 
-    module types
+```
+module types
+
+imports
+  
+  common/src-gen/signatures/MiniJava-sig
+  common/desugar
      
-    imports
-      
-      common/src-gen/signatures/MiniJava-sig
-      common/desugar
-     
-    type rules
-     
-      ...
+type rules
+  
+  ...
+```
 
 ### Tasks
 
@@ -122,8 +133,10 @@ If you encounter an unexpected result after changing your naming or typing rules
 Hovers offer a quick way to check if type analysis works as expected. There is already a default hover implementation that shows name and type information, but it can be customised.
 The hover for your editor is specified in `trans/minijava.str`:
 
-    editor-hover:
-      (target, position, ast, path, project-path) -> <fail>
+```
+editor-hover:
+  (target, position, ast, path, project-path) -> <fail>
+```
 
 The elements of the tuple are:
 
@@ -153,10 +166,12 @@ Probably the most useful builders for you are those which show them only for the
 
 Consider the following task entry:
 
-    task 1 [2, 3] =
-      produce &2
-      ->
-      [Int()]
+```
+task 1 [2, 3] =
+  produce &2
+  ->
+  [Int()]
+```
       
 This entry consists of
 
@@ -173,12 +188,13 @@ The following instructions exist:
   If `x` is a term or a task with a result, `x` is chosen.
   Otherwise, `y` is chosen.
 * `concat t1 + t2` combines the results of tasks `t1` and `t2`.
-* `show error msg on t when t' fails` shows an error message `msg` on term `t` when task `t'` fails.
+* `Message(tsk, [], result, trm, msg)` shows an error message `msg` on term `trm` based on the `result` (either succeeding, failing, or producing multiple results) of task `tsk`.
   There are similar variants for warnings and other conditions such as the success of a task.
 * `produce x` produces result `x`.
 * `CollectDefs(x)` retrieves the definition of a reference `x`.
 * `lookup Type() props on d` looks up the type of a definition `d`.
 * `check Type() prop t1 against t2 wrt Eq()` checks if types `t1` and `t2` are equal.
+* `rewrite t wrt s` rewrites term `t` using strategy `s`.
 
 ### Typing Rules
 
@@ -221,9 +237,12 @@ You should define the following rules:
 2. One rule for `BinExp`.
 3. A rule for each unary and binary operator, which rewrites the operator to a tuple.
    This tuple should consist of the expected types of subexpressions and the type of the operator itself.
-   For example, the following rule states that `Length` requires a subexpression of type `int[]` and yields an expression of type `int`:
- 
-    Length(): (IntArray(), Int())
+   For example, the following rule states that `Length` requires a subexpression of type `int[]` and yields an expression of type `int`:   
+``` 
+Length(): (IntArray(), Int())
+```
+
+The array subscript expression also requires a type, similar to a binary expression.
 
 #### References
 
@@ -271,7 +290,7 @@ You can achieve this by matching with a variable `v` and a term `e` matching `th
 
 Method calls need to be resolved with respect to the type of the callee expression.
 This expression needs to be of a class type and the method call should resolve to a method in the corresponding class.
-Such contextual references are specified as follows:
+Such contextual references are specified in NaBL as follows:
 
     ...: 
       refers to Namespace1 name1 in Namespace2 name2
@@ -324,13 +343,15 @@ In the typing rules for expressions,
 These checks will fail, if an actual type does not match an expected type.
 In TS, you can specify errors and warnings in `else` clauses:
 
-    e : t
-      where e1: et1
-        and et1 == t1
-       else error "Your meaningful error message should be here" on e1
-        and e2: et2
-        and et2 == t2
-       else error "Another meaningful error message should be here" on e2
+```
+e : t
+where e1: et1
+  and et1 == t1
+ else error "Your meaningful error message should be here" on e1
+  and e2: et2
+  and et2 == t2
+ else error "Another meaningful error message should be here" on e2
+```
 
 #### Statements
 
@@ -338,10 +359,36 @@ Statements typically do not have a type, but they might expect a certain type of
 For example, an if statement requires a boolean expression.
 In TS, you can specify such constraints in special rules:
 
-    s :-
-        where e: t
-         else error "Yet another meaningful error message should be here" on e
+```
+s :-
+where e: t
+ else error "Yet another meaningful error message should be here" on e
+```
         
 #### Method Declarations
 
 Finally, you can also specify a constraint which checks the type of a return expression against the declared return type.
+
+#### Superfluous and Cascading Type Errors
+
+In the current version if TS, there is an issue with superfluous and cascading type errors. Whenever a type check (such as `e1 == e2`) fails, any subsequent type checks and and errors attached to those type checks will also fail. The term will also be untyped, meaning that any other type rules that depend on the type of that term will also fail.
+
+To work around this issue, types rules should be split up into multiple rules. The example fragment for expressions should be split up in the following way:
+
+```
+// Always produce a type, to prevent cascading.
+e : t
+where ... : t
+
+// First constraint
+e :-
+where e1: et1
+  and et1 == t1
+ else error "Your meaningful error message should be here" on e1
+
+// Second constraint, prevent superfluous error when first constraint fails.
+e :-
+where e2: et2
+  and et2 == t2
+ else error "Another meaningful error message should be here" on e2
+```
