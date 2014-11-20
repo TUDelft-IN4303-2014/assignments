@@ -235,6 +235,24 @@ Length(): (IntArray(), Int())
 
 The array subscript expression also requires a type, similar to a binary expression.
 
+The signatures for desugared expressions are missing from the intial project, so here they are for reference:
+
+```
+signature
+  constructors
+   	
+    BinExp      : BinOp * Exp * Exp -> Exp
+    UnExp       : UnOp * Exp -> Exp
+    Plus        : BinOp
+    Minus       : BinOp
+    Times       : BinOp
+    LtOp        : BinOp
+    AndOp       : BinOp
+    LengthOp    : UnOp
+    NewArrayOp  : UnOp
+    NotOp       : UnOp
+```
+
 #### References
 
 For references, you need to lookup the type of the corresponding definition.
