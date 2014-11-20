@@ -78,12 +78,13 @@ We will consider the fact that both languages are new to you.
 In this lab you specify typing rules and constraints in TS, a brand new metalanguage for specifying type systems of programming languages.
 TS has a number of rough edges:
 
-1. Generated Stratego files can contain errors, but compile fine.
-2. Generated variable names change in each compilation.
-3. The language lacks syntactic sugar for typical typing rule patterns.
+1. Imports of Stratego files (such as desugared signatires) will show errors, you can ignore these.
+2. Generated Stratego files can contain errors, but compile fine.
+3. Generated variable names change in each compilation.
+4. The language lacks syntactic sugar for typical typing rule patterns.
 
 Despite these issues, the language allows you to specify typing rules and constraints in a declarative and concise way.
-TS files end in `.ts` and generate corresponding `.generated.str` files.
+TS files end in `.ts` and generate corresponding `.generated.str` files, __be sure to import these files in your minijava.str file__.
 There overall structure looks like this:
 
 ```
