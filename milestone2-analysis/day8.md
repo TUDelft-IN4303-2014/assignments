@@ -30,7 +30,7 @@ The specification should include:
 
 You need to submit your MiniJava project with a pull request against branch `assignment8` on GitHub. 
 Your GitHub repository contains a step-by-step procedure how to file such a request. 
-This project should contain a `README.md` with a short paragraph explaining the organisation of your NaBL and Stratego files.
+This project should contain a `README.md` with a short paragraph explaining the organisation of your NaBL, TS, and Stratego files.
 
 The deadline for submissions is November 26th, 17:59.
 
