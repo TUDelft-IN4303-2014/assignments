@@ -23,10 +23,11 @@ Specify inheritance and subtyping in MiniJava with name binding and type rules i
 
 ### Submission
 
-You need to submit your MiniJava project on Blackboard. 
-As part of your submission,
-  we ask you to provide a short paragraph explaining the organisation of your NaBL and Stratego files.
-The deadline for submission is December 4, 17:59.
+You need to submit your MiniJava project with a pull request against branch `assignment9` on GitHub. 
+Your GitHub repository contains a step-by-step procedure how to file such a request. 
+This project should contain a `README.md` with a short paragraph explaining the organisation of your NaBL, TS, and Stratego files.
+
+The deadline for submissions is December 3rd, 17:59.
 
 ### Grading
 
@@ -60,71 +61,6 @@ We focus on
   meaningful variable names and
   the consistent use of NaBL Stratego paradigms.
 We will consider the fact that these languages are new to you.
-
-### Update Library
-
-You should create the file `lib/runtime/task/new-messages.str` with the following content:
-
-		module runtime/task/new-messages
-		
-		imports
-		  
-		  runtime/task/core
-		  runtime/editor/origins
-		  runtime/task/messages
-		  
-		signature
-		
-		  sorts
-		  
-		    Message
-		    MessageTrigger
-		    
-		  constructors
-		    
-		    Failure  : List(Result) -> MessageTrigger // No results
-		    Success  : List(Result) -> MessageTrigger // At least one result
-		    Multiple : List(Result) -> MessageTrigger // More than one result
-		
-		    Message  : MessageTrigger * Term -> Instruction
-		
-		rules // task creation
-		  
-		  task-create-message-on-triggers(|partition, triggers):
-		    message -> <new-task(|partition)> Message(triggers, message)
-		  
-		  task-create-error-on-triggers(|partition, triggers, message) = 
-		    task-error-message(|message); task-create-message-on-triggers(|partition, triggers)
-		    
-		  task-create-warning-on-triggers(|partition, triggers, message) =
-		    task-warning-message(|message); task-create-message-on-triggers(|partition, triggers)
-		    
-		  task-create-note-on-triggers(|partition, triggers, message) =
-		    task-note-message(|message); task-create-message-on-triggers(|partition, triggers)
-		  
-		rules // task execution
-		  
-		  task-is-combinator = ?Message(_, _)
-		
-		  perform-task(|n):
-		    Message(trigger*, message) -> []
-		    where
-		      <map(?Failure([]) + ?Success([_|_]) + ?Multiple([_, _|_]))> trigger*
-		    where
-		      task-add-message(|n, message)
-
-The new strategy `task-create-error-on-triggers(|ctx, triggers, msg)` and its variants will give you more control when you want to create errors, warning, or notes. You should pass it a list of `triggers`.
-There are three kinds of triggers:
-
-* `Failure(t)` requires that task `t` has no result.
-* `Success(t)` requires that task `t` has at least one result.
-* `Multiple(t)` requires that task `t` has at least two results.
-
-The message `msg` will only be shown if the requirements of all triggers are fulfilled.
-
-### Update Spoofax
-
-When you are using TS, you should update Spoofax.
 
 ## Detailed Instructions
 
