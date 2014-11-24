@@ -204,9 +204,9 @@ You should define the following rules:
 2. One rule for `BinExp`.
 3. A rule for each unary and binary operator, which rewrites the operator to a tuple.
    This tuple should consist of the expected types of subexpressions and the type of the operator itself.
-   For example, the following rule states that `Length` requires a subexpression of type `int[]` and yields an expression of type `int`:   
+   For example, the following rule states that the operator for `Length` requires a subexpression of type `int[]` and yields an expression of type `int`:   
 ``` 
-Length(): (IntArray(), Int())
+LengthOp(): (IntArray(), Int())
 ```
 
 The array subscript expression also requires a type, similar to a binary expression.
