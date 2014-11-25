@@ -85,7 +85,7 @@ TS has a number of rough edges:
 
 Despite these issues, the language allows you to specify typing rules and constraints in a declarative and concise way.
 TS files end in `.ts` and generate corresponding `.generated.str` files, __be sure to import these modules in your minijava.str file__.
-There overall structure looks like this:
+The overall structure looks like this:
 
 ```
 module types
