@@ -356,7 +356,7 @@ Finally, you can also specify a constraint which checks the type of a return exp
 
 #### Superfluous and Cascading Type Errors
 
-In the current version if TS, there is an issue with superfluous and cascading type errors. Whenever a type check (such as `e1 == e2`) fails, any subsequent type checks and and errors attached to those type checks will also fail. The term will also be untyped, meaning that any other type rules that depend on the type of that term will also fail.
+In the current version of TS, there is an issue with superfluous and cascading type errors. Whenever a type check (such as `e1 == e2`) fails, any subsequent type checks and errors attached to those type checks will also fail. The term will also be untyped, meaning that any other type rules that depend on the type of that term will also fail.
 
 To work around this issue, types rules should be split up into multiple rules. The example fragment for expressions should be split up in the following way:
 
