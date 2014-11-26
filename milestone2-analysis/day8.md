@@ -192,7 +192,7 @@ In TS, the general pattern for checking subexpressions is this:
 
 In TS, you need to specify the types of operators in axioms:
 
-    Length(): (IntArray(), Int())
+    LengthOp(): (IntArray(), Int())
 
 Here, `e` should match an expression with subexpressions `e1` and `e2` and
 `ty` should be the type of `e`, while `ty1` and `ty2` should be the expected types of `e1` and `e2`, respectively.
