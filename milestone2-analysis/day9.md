@@ -64,6 +64,15 @@ We will consider the fact that these languages are new to you.
 
 ## Detailed Instructions
 
+### Spoofax Update
+
+This lab requires you to update Spoofax to the latest version.
+
+1. Choose *Check for Updates* from the *Help* menu.
+2. Wait for updates to be found.
+3. Install the updates to Spoofax.
+4. Restart Eclipse
+
 ### Inheritance
 
 Your current implementation does not consider inheritance.
@@ -123,192 +132,63 @@ However, subtyping is allowed in the following places:
 3. In a method call, the types of the actual parameters need to be subtypes of the types of the formal parameters.
 4. In method overriding, the return type of the overriding method needs to be a subtype of the return type of the overridden method.
 
-You can achieve subtyping in three steps.
-In the first step, you prepare constraints for subtyping checks.
-In the second step, you consider only parent classes for subtyping.
-Finally, you consider ancestor classes for subtyping.
+You can achieve subtyping in three steps:
 
-#### Subtyping Constraints
+1. define and instantiate subtyping relations in TS.
+2. make existing constraints work with subtyping where needed.
+3. add new constraints to handle subtyping errors.
 
-You should factor out equivalence checks from your constraints.
-First, you need to define a relation for subtyping:
+#### Defining the Subtype Relation
 
-    signature constructors
-     
-      SubTyping: Relation
+Relations in TS are used to model subtyping. A relation in TS is much like the regular definition of a logical relation, it is a set of binary term tuples that are in a certain relation with each other. For example, `class B extends A` indicates that `B` has a subtype relation with `A`. Relations allow matching such as: is class `B` in a subtyping relation with `A`?, which will be used to implement constraints later.
 
-Next, you should identify code fragments of the form
+First, a relation and its properties must be defined
 
-    <type-match(|ctx, ty1)> ty2
+```
+relations
 
-and replace them with
+  define property1, property2, ... <name:
+```
 
-    <create-subtype-task(|ctx)> (SubTyping(), ty1, ty2)
+The available properties for relations are:
 
-where `ty1` should be a subtype of `ty2`.
-You should do this only in places, where subtyping is actually allowed.
-Finally, you can define `create-subtype-task`:
+* reflexive: If elements in the relation relate to them self.
+* transitive: If `A` relates to `B`, and `B` relates to `C`, then `A` also relates `C`.
+* symmetric: If `A` relates to `B`, then `B` relates to `A`.
 
-    create-subtype-task(|ctx):
-      (SubTyping(), ty1, ty2) -> t
-      where
-      	<not(is-list)> ty1
-      ; <not(is-list)> ty2
-      where
-        t := <type-match(|ctx, ty1)> ty2
- 
-You might notice that this is a pure refactoring, which should not affect the functionality of your code.
-Finally, you should add the following boilerplate code for handling lists:
+A relation must be named so it can be used in other places. Note that name can also be empty, so `<:` can be used as relation name. You should define a subtyping relation and think about which properties it should have.
 
-    create-subtype-task(|ctx):
-      (SubTyping(), t1*, t2*) -> <type-is(|ctx, [m])> t*
-      where 
-         t* := <zip(create-subtype-task(|ctx, SubTyping()))> (t1*, t2*)
-      <+ t* := <map-with-index(create-subtype-task(|ctx, SubTyping(), t2*))> t1*
-       ; l  := <new-task(|ctx)> Length(t2*)
-       ; m  := <type-match(|ctx, <length> t1*)> l 
-     
-    create-subtype-task(|ctx, op):
-      (t1, t2) -> <create-subtype-task(|ctx)> (op, t1, t2)
-     
-    create-subtype-task(|ctx, op, t*):
-      (i, t) -> st
-      where
-        t' := <new-task(|ctx)> Index(i, t*)
-      ; st := <create-subtype-task(|ctx)> (op, t, t')
+Now you can store new instances of subtype relations using regular type rules.
 
-When you are using TS, you can achieve the same by replacing equivalence checks of the form 
+```
+type rules
 
-     ty1 == ty2 
+  pattern :-
+  where store c <name: sc
+```
 
-by subtyping checks 
+This stores a new instance of a relation between `c` and `sc`. Add corresponding rule(s) to store instances of subtype relations.
 
-     ty1 <: ty2
+#### Using the Subtype Relation
 
-or
+You can use the subtype relation in TS in place of equality checks. Checks in the form of
 
-     ty1* <list: ty2*
-     
-where `ty1*` and `ty2*` are lists.
+```
+ty1 == ty2 
+```
 
-You then need to define the relation `<:`:
+can be replaced by subtyping checks 
 
-    ty1 <: ty2
-    where ty1 == ty2
+```
+ty1 <name: ty2
+```
 
-You should also add the following boilerplate code:
+In Stratego constraints, such checks can be done using
 
-    create-subtype-task(|ctx):
-      ("<list:", t1*, t2*) -> <type-is(|ctx, [m])> t*
-      where 
-         t* := <zip(create-subtype-task(|ctx, "<:"))> (t1*, t2*)
-      <+ t* := <map-with-index(create-subtype-task(|ctx, "<:", t2*))> t1*
-       ; l  := <new-task(|ctx)> Length(t2*)
-       ; m  := <type-match(|ctx, <length> t1*)> l 
-     
-    create-subtype-task(|ctx, op):
-      (t1, t2) -> <create-subtype-task(|ctx)> (op, t1, t2)
-     
-    create-subtype-task(|ctx, op, t*):
-      (i, t) -> st
-      where
-        t' := <new-task(|ctx)> Index(i, t*)
-      ; st := <create-subtype-task(|ctx)> (op, t, t')
+```
+match := <relation-create-match(|ctx)> ("<name:", ty1, ty2)
+```
 
+which does the same as the TS variant.
 
-#### Parent Classes
-
-The general idea is to assign types to the `extends` part of a class declaration and to class names.
-Consider the following example:
-
-    class Main {
-      public static void main ( String [] a ) {
-        System.out.println(42);
-      }
-    }
-     
-    class A  {}
-     
-    class B extends A {}
-     
-    class C extends B {}
-
-`A` should be of type `Top()`, `B` should be of type `ClassType("A")`, and `C` should be of type `ClassType("B")`.
-
-First, you need to define a constructor for a top type `Top()`.
-Such a top type is common for type systems with subtyping.
-In Java, this corresponds to `java.lang.Object`, which is a supertype of all class types.
-When a class extends another class, the type of the `extends` part should be the class type of the parent class.
-Otherwise, the `extends` part is missing, but it is still represented in the abstract syntax.
-Its type should be `Top()`.
-You can specify these types either in `create-type-task` rules or in TS.
-Before you continue, you should check your type definitions by inspecting the analysed syntax and the corresponding tasks.
-
-Now you can assign types to class names in NaBL rules.
-The idea is, that the type of a class name is the class type of its parent class or `Top()`, if it has no parent.
-You can do this with a `where` clause which retrieves the type of the `extends` part. 
-You can test your specification by building the project and hovering over a class name.
-
-In a next step, you have to extend `create-subtype-task`.
-Currently, it only checks for type equivalence.
-You can now add a second check, which checks if `ty1` is a class type of some class with a parent type `ty2`:
-
-     create-subtype-task(|ctx):
-       (SubTyping(), ty1, ty2) -> t
-       where 
-         <not(is-list)> ty1
-       ; <not(is-list)> ty2
-       where
-         check1 := <type-match(|ctx, ty1)> ty2 ;
-         c-name := ... // extract class name from class type with a rewrite task
-         ty     := ... // lookup type from class name
-         check2 := ... // match ty with ty2
-         t      := <new-task(|ctx)> Choice([check1, check2])
-         
-In TS, you need to extend the definition of the `<:` relation:
-
-    ty1 <: ty2
-    where ty1 == ty2
-       or ty1 => ... // extract class name from class type with a pattern match
-      and ...        // lookup type from class name
-      and ...        // match type with ty2 
-
-#### Ancestor Classes
-
-So far you only consider parent classes in subtyping checks. 
-To get correct subtyping checks, you need to consider all ancestor classes.
-This can be achieved by assigning multiple types to class names.
-Reconsider the following example:
-
-    class Main {
-      public static void main ( String [] a ) {
-        System.out.println(42);
-      }
-    }
-     
-    class A  {}
-     
-    class B extends A {}
-     
-    class C extends B {}
-
-`A` should be of type `Top()`, `B` should be of types `ClassType("A")` and `Top()`, and `C` should be of types `ClassType("B")`, `ClassType("A")` and `Top()`.
-
-To achieve this, you need to extend your `create-type-task` rule for `extends` parts with a second type, which is looked up from the parent class:
-
-    create-type-task(|ctx):
-      ... -> ty
-      where
-        ty1 := ... // your initial type
-      ; ty2 := ... // type lookup from parent class
-      ; ty  := <new-task(|ctx)> Combine([ty1, ty2])
-        
-There is currently no way to express this rule in TS.
-
-### Cyclic Inheritance
-
-Finally, you should implement constraints for cyclic inheritance.
-These constraints can be expressed based on the type of `extends` parts.
-
-
-
+Now you can update any constraints with subtyping checks where needed, and create new constraints to handle subtyping errors. 
