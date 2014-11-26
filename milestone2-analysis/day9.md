@@ -41,12 +41,11 @@ The total number of points depends on how many test cases you pass in each of th
 * subtyping (25 points)
     * parent types (15 points)
     * ancestor types (10 points)
-* constraints (40 points)
-    * hiding variables and fields (5 points)
+* constraints (45 points)
+    * hiding variables and fields (10 points)
     * method overloading and method overriding (20 points)
     * cyclic inheritance (10 points)
     * subtyping in assignments, return expressions, method calls (5 points)
-* challenge (using TS) (5 points)
 
 You can earn up to 10 points for your messages in errors and warnings.
 We particular focus on 
