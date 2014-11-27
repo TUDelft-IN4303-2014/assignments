@@ -349,6 +349,8 @@ s :-
 where e: t
  else error "Yet another meaningful error message should be here" on e
 ```
+
+Note that `-` is not a type specifier: `:-` must be a single token, `: -` is not recognized. 
         
 #### Method Declarations
 
