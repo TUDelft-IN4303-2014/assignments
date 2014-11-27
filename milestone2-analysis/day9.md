@@ -157,11 +157,11 @@ Now you can update any constraints with subtyping checks where needed, and creat
 ### Hiding Variables and Fields
 
 You can now extend your constraints for hidden fields.
-For this purpose, you can use `nabl-lookup-local-import(|ctx)`.
-This strategy works similar to `nabl-lookup-local(|ctx)`.
-It creates a task to lookup a name in the current context,
-but only considers declarations, which are imported into the current scope.
-It does not consider declarations from surrounding scopes.
+For this purpose, you can use `nabl-lookup-local-import(|ctx)` and `nabl-lookup-lexical-import(|ctx)`.
+These strategies work similar to `nabl-lookup-local(|ctx)` and `nabl-lookup-lexical(|ctx)`.
+They create a task to lookup a name in the current context,
+but only consider declarations, which are imported into the current scope.
+They do not consider declarations from surrounding scopes.
 You should add checks for variable and field declarations, which hide fields from ancestor classes.
 You should give warnings on variable declarations and report errors on field declarations.
 
