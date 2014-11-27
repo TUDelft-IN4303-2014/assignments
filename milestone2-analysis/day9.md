@@ -37,15 +37,12 @@ You earn points, when your implementation passes test cases.
 The total number of points depends on how many test cases you pass in each of the following groups:
 
 * name binding (5 points)
-    * inheritance (5 points) 
-* subtyping (25 points)
-    * parent types (15 points)
-    * ancestor types (10 points)
-* constraints (45 points)
+* subtyping (10 points)
+* constraints (60 points)
     * hiding variables and fields (10 points)
     * method overloading and method overriding (20 points)
     * cyclic inheritance (10 points)
-    * subtyping in assignments, return expressions, method calls (5 points)
+    * subtyping in assignments, return expressions, method calls (20 points)
 
 You can earn up to 10 points for your messages in errors and warnings.
 We particular focus on 
@@ -93,33 +90,6 @@ It only considers declarations which are declared in the referred scope, but not
 The following clause also imports declarations of `NS1` which are imported into the referred scope:
 
     imports NS1, imported NS1, NS2 from NS name
-
-### Hiding Variables and Fields
-
-You can now extend your constraints for hidden fields.
-For this purpose, you can use `nabl-lookup-local-import(|ctx)`.
-This strategy works similar to `nabl-lookup-local(|ctx)`.
-It creates a task to lookup a name in the current context,
-but only considers declarations, which are imported into the current scope.
-It does not consider declarations from surrounding scopes.
-You should add checks for variable and field declarations, which hide fields from ancestor classes.
-You should give warnings on variable declarations and report errors on field declarations.
-
-### Method Overloading and Overriding
-
-Next, you can specify constraints for overloaded and overridden method declarations.
-You should report errors on overloading methods and give notes on overriding methods.
-The following strategies might be useful:
-
-* `nabl-lookup-local(|ctx)`
-* `nabl-lookup-lexical(|ctx)`
-* `nabl-lookup-local-import(|ctx)`
-* `nabl-lookup-lexical-import(|ctx)`
-* `type-lookup(|ctx)`
-* `type-match(|ctx)`
-* `task-create-error-on-triggers(|ctx, triggers, msg)`
-* `task-create-warning-on-triggers(|ctx, triggers, msg)`
-* `task-create-note-on-triggers(|ctx, triggers, msg)`
 
 ### Subtyping
 
@@ -182,12 +152,56 @@ can be replaced by subtyping checks
 ty1 <name: ty2
 ```
 
-In Stratego constraints, such checks can be done using
-
-```
-match := <relation-create-match(|ctx)> ("<name:", ty1, ty2)
-```
-
-which does the same as the TS variant.
-
 Now you can update any constraints with subtyping checks where needed, and create new constraints to handle subtyping errors. 
+
+### Hiding Variables and Fields
+
+You can now extend your constraints for hidden fields.
+For this purpose, you can use `nabl-lookup-local-import(|ctx)`.
+This strategy works similar to `nabl-lookup-local(|ctx)`.
+It creates a task to lookup a name in the current context,
+but only considers declarations, which are imported into the current scope.
+It does not consider declarations from surrounding scopes.
+You should add checks for variable and field declarations, which hide fields from ancestor classes.
+You should give warnings on variable declarations and report errors on field declarations.
+
+### Method Overloading and Overriding
+
+Next, you can specify constraints for overloaded and overridden method declarations.
+You should report errors on overloading methods and give notes on overriding methods.
+The following strategies might be useful:
+
+* `nabl-lookup-local(|ctx)`
+* `nabl-lookup-lexical(|ctx)`
+* `nabl-lookup-local-import(|ctx)`
+* `nabl-lookup-lexical-import(|ctx)`
+* `type-lookup(|ctx)`
+* `type-match(|ctx)`
+* `task-create-error-on-triggers(|ctx, triggers, msg)`
+* `task-create-warning-on-triggers(|ctx, triggers, msg)`
+* `task-create-note-on-triggers(|ctx, triggers, msg)`
+
+You can use the following template as a starting point:
+
+````
+nabl-constraint(|ctx) = 
+    ?Method(retty, mname, _, _, _, _) 
+  ; local := <...(|ctx)> mname                                   // lookup method declarations in the current class
+  ; ...                                                          // report an error if there is more than one method declaration of that name
+  ; imported := <...(|ctx)> mname                                // lookup method declarations in ancestor classes
+  ; mty      := <type-lookup(|ctx)> mname                        // get the type of the current method
+  ; paramty  := <new-task(|ctx)> Rewrite("parameter-types", mty) // get the parameter types of the current method 
+  ; ity      := <type-lookup(|ctx)> imported                     // get the type of the inherited method
+  ; iretty   := <new-task(|ctx)> Rewrite("return-type", ity)     // get the return type of the inherited method
+  ; iparamty := <new-task(|ctx)> Rewrite("parameter-types", ity) // get the parameter types of the inherited method     
+  ; matchp   := ...                                              // compare parameter types
+  ; matchret := ...                                              // compare return types
+  ; ...                                                          // report error if current method overloads inherited method
+  ; ...                                                          // report error if current methods overrides inherited method with incompatible return type
+  ; ...                                                          // report note if current method overrides inherited method correctly
+  ; fail
+  
+  task-rewrite: ("return-type", (_, rt))      -> rt
+  task-rewrite: ("parameter-types", (pt*, _)) -> pt*
+  
+````
