@@ -169,17 +169,6 @@ You should give warnings on variable declarations and report errors on field dec
 
 Next, you can specify constraints for overloaded and overridden method declarations.
 You should report errors on overloading methods and give notes on overriding methods.
-The following strategies might be useful:
-
-* `nabl-lookup-local(|ctx)`
-* `nabl-lookup-lexical(|ctx)`
-* `nabl-lookup-local-import(|ctx)`
-* `nabl-lookup-lexical-import(|ctx)`
-* `type-lookup(|ctx)`
-* `type-match(|ctx)`
-* `task-create-error-on-triggers(|ctx, triggers, msg)`
-* `task-create-warning-on-triggers(|ctx, triggers, msg)`
-* `task-create-note-on-triggers(|ctx, triggers, msg)`
 
 You can use the following template as a starting point:
 
@@ -205,3 +194,19 @@ nabl-constraint(|ctx) =
   task-rewrite: ("parameter-types", (pt*, _)) -> pt*
   
 ````
+The following strategies might be useful:
+
+* `nabl-lookup-local(|ctx)` looks up a name in the current scope.
+* `nabl-lookup-lexical(|ctx)` looks up a name in the current and parent scopes.
+* `nabl-lookup-local-import(|ctx)` looks up a name imported into the current scope.
+* `nabl-lookup-lexical-import(|ctx)` looks up a name imported into the current or parent scopes.
+* `type-match(|ctx, ty)` checks if a type matches type `ty`.
+* `relation-create-match(|ctx)` checks for a tuple `("<name:", ty1, ty2)` if `ty1 <name: ty2` holds.
+* `task-create-error-on-triggers(|ctx, triggers, msg)` creates an error message based on a list of triggers. 
+* `task-create-warning-on-triggers(|ctx, triggers, msg)` creates a warning message based on a list of triggers. 
+* `task-create-note-on-triggers(|ctx, triggers, msg)` creates a note based on a list of triggers. 
+
+You can use the following triggers:
+
+* `Success(task)` triggers if `task` succeeds.
+* `Failure(task)` triggers if `task` fails.
