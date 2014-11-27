@@ -210,3 +210,10 @@ You can use the following triggers:
 
 * `Success(task)` triggers if `task` succeeds.
 * `Failure(task)` triggers if `task` fails.
+
+### Cyclic inheritance
+Finally, you should report an error message on cyclic inheritance. This can be done in TS. You can use
+```
+not(ty1 <name: ty2)
+```
+to get the negation of a subtype relation.
