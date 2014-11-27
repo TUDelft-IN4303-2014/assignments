@@ -62,7 +62,7 @@ We will consider the fact that these languages are new to you.
 
 ### Spoofax Update
 
-This lab requires you to update Spoofax to the latest version.
+This lab requires you to update Spoofax to the latest version. Use the `http://download.spoofax.org/update/in4303` update site.
 
 1. Choose *Check for Updates* from the *Help* menu.
 2. Wait for updates to be found.
@@ -136,7 +136,7 @@ type rules
   where store c <name: sc
 ```
 
-This stores a new instance of a relation between `c` and `sc`. Add corresponding rule(s) to store instances of subtype relations.
+This stores a new instance of a relation between `c` and `sc`. TS has a limitation where references are not allowed on the left hand side of a relation, these must be definitions. If you use a reference on the left hand side, the analysis will crash. Now add corresponding rule(s) to store instances of subtype relations.
 
 #### Using the Subtype Relation
 
