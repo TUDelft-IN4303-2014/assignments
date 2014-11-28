@@ -338,6 +338,15 @@ where e1: et1
  else error "Another meaningful error message should be here" on e2
 ```
 
+You can add variables to your error messages in TS using the following syntax:
+
+```
+e : t
+where e1: et1
+  and et1 == t1
+ else error ["Expression ", e1, " is of type ", et1] on e1
+```
+
 #### Statements
 
 Statements typically do not have a type, but they might expect a certain type of an expression in the statement.
