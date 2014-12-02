@@ -344,7 +344,7 @@ You can add variables to your error messages in TS using the following syntax:
 e : t
 where e1: et1
   and et1 == t1
- else error ["Expression ", e1, " is of type ", et1] on e1
+ else error $[Expression [e1] is of type [et1]] on e1
 ```
 
 #### Statements
