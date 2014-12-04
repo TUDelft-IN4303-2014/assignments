@@ -21,7 +21,7 @@ All assignments are publicly available on GitHub:
   7. [Testing Type Analysis](milestone2-analysis/day7.md) (due to 19 November)
   8. [Basic Type Analysis](milestone2-analysis/day8.md) (due to 26 November)
   9. [Inheritance and Subtyping](milestone2-analysis/day9.md) (due to 3 December)
-* Milestone 3: Code Generation
+* [Milestone 3: Code Generation](milestone3-codegen)
   10. [Compiling Minimal Programs](milestone3-codegen/day10.md) (due to 10 December)
   11. Compiling Expressions and Statements (due to 17 December)
   12. Compiling, Fields, Parameters, and Variables (due to 11 January)
