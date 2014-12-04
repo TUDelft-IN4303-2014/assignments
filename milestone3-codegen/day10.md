@@ -163,6 +163,7 @@ At this point, you can generate Jasmin class files from simple MiniJava programs
 Define a new builder *Generate Java class files* with corresponding builder strategy, that generates the Jasmin file and turns it into a Java class file. To generate the class file, you first need to generate the Jasmin AST.  
 
 To translate a Jasmin AST into a Java class file, you can use the strategy `jasmin-generate` defined in `trans/jasmin.str`. This strategy will only work, if you specify the path of the source file in a Jasmin directive. 
+The source directive is used by the JVM for debugging purposes and error messages. The Jasmin builder uses it to figure out where to store the class file. Thus, make sure your Jasmin AST has the form `JBCFile(JBCHeader(_, JBCSource(path), _, _, _, _, _, _, _, _), _, _)`. You can pass `path` as an strategy argument from `generate-jbc` to `program-to-jbc`.
 
 ### Notes on names in Jasmin
 
