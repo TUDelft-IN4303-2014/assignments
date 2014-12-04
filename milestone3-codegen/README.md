@@ -11,55 +11,18 @@ We provide you with a Jasmin editor which was built with Spoofax.
 
 #### Installation
 
-1. Download the Jasmin editor project from [GitHub][GitHub-Jasmin]. You can either clone the project, or download the zip file.
-2. Import the project into your workspace:
-    1. right-click into the Package Explorer or open the **File** menu
-    2. select **Import...** from the context menu
-    3. choose **General/Existing Projects into Workspace** from the list
-    4. select **archive file** (2nd choice) as a source if you downloaded the `.zip` file or **root directory** if you cloned the repository
-    5. select the downloaded Jasmin `.zip` file or the `org.spoofax.lang.jasmin` folder
-    6. press the **Finish** button
-3. Build the project:
-    1. select the project folder
-    2. select **Build Project** from the **Project** menu
-    3. the console will report success or failure
-4. Go to the Jasmin Homepage and 
-    1. download the 2.4 release,
-    2. copy the `jasmin.jar` file,
-    3. and place it in the `lib` directory of your Jasmin project in Eclipse.
-    4. Later, you need to do this for all projects with Jasmin files which should be translated into classes.
+1. Choose *Install New Software...* from the *Help* menu.
+2. Use the JasminXT update site `http://download.spoofax.org/update/jasmin` in the *Work with:* text box.
+3. Tick *JasminXT* and choose *Next*.
+4. Choose *Next*, accept the license agreement, and choose *Finish*.
+5. Wait for JasminXT to be installed and restart Eclipse.
 
 #### Usage
 
-You can edit Jasmin files with a Spoofax editor. The editor's menu entries allow you to inspect the abstract syntax of Jasmin files and to generate Java class files from them. The project comes with a number of example programs. You should explore them in order to get used to Jasmin's  syntax.
+You can edit Jasmin files with a Spoofax editor. The editor's menu entries allow you to inspect the abstract syntax of Jasmin files, to generate Java class files from them, and to execute those class files. The project comes with a number of example programs. You should explore them in order to get used to Jasmin's syntax.
 
-[Jasmin]: http://jasmin.sourceforge.net/ (Jasmin Home Page)
 [GitHub-Jasmin]: https://github.com/metaborg/spoofax-jasmin (Jasmin Editor Project on GitHub)
-
-### MiniJava Editor (Milestone 2)
-
-We provide you with a fresh MiniJava editor project, which already covers concrete and abstract syntax, name analysis, type analysis, and constraint checking for MiniJava. For grading purposes, you are required to use this project as a starting point for milestone 3.
-
-#### Installation
-
-1. Download the MiniJava project from [GitHub][GitHub-CC].
-2. Import the project into your workspace:
-    1. right-click into the Package Explorer
-    2. select **Import...** from the context menu
-    3. choose **General/Existing Projects into Workspace** from the list
-    4. select **archive file** (2nd choice) as a source
-    5. select the downloaded MiniJava project
-    6. press the **Finish** button
-3. Build the project:
-    1. select the project folder
-    2. select **Build Project** from the **Project** menu
-    3. the console will report success or failure
-
-[GitHub-CC]: https://github.com/guwac/compiler-construction/releases (Initial MiniJava Project on GitHub)
-
-#### Implementation Details
-
-The projects hides nearly its entire implementation from you. You can find the signature for MiniJava abstract syntax trees in  `milestone1/MiniJava.str`, and the signature for desugared ASTs in `milestone2/MiniJava.core.str`.
+[Jasmin]: http://jasmin.sourceforge.net/ (Jasmin Home Page)
 
 ## Material
 

@@ -20,7 +20,11 @@ The code generator should include
 
 ### Submission
 
-You need to submit your MiniJava project on Blackboard. As part of your submission, we ask you to provide a short paragraph explaining the organisation of your Stratego files. The deadline for submission is December 11, 17:59.
+You need to submit your MiniJava project with a pull request against branch `assignment10` on GitHub. 
+Your GitHub repository contains a step-by-step procedure how to file such a request. 
+This project should contain a `README.md` with a short paragraph explaining the organisation of your Stratego files.
+
+The deadline for submissions is December 10th, 17:59.
 
 ### Grading
 
@@ -42,6 +46,35 @@ You can earn up to 5 points for the organisation of your Stratego files and up t
 We will consider the fact that Stratego is new to you.
 
 ## Detailed Instructions
+
+### Initial Editor Project
+
+We provide you with an initial MiniJava project in the branch `assignment10`. 
+Make sure you have this branch in your fork as well, before you start working on this assignment.
+
+1. Import the project into your workspace:
+    1. right-click into the Package Explorer
+    2. select **Import...** from the context menu
+    3. choose **General/Existing Projects into Workspace** from the list
+    4. select the MiniJava project
+    5. press the **Finish** button
+2. Build the project:
+    1. select the project folder
+    2. select **Build Project** from the **Project** menu
+    3. the console will report success or failure
+
+This project contains the following implementations:
+
+* MiniJava signatures in `common/src-gen/signatures/MiniJava-sig`.
+* MiniJava pretty-printer in `common/src-gen/pp/MiniJava-pp`
+* MiniJava syntactic completions in `common/src-gen/completions/MiniJava-esv`.
+* MiniJava desugarings in `common/desugar`.
+* MiniJava name analysis in `common/names`.
+* MiniJava type analysis in `common/types`.
+* JasminXT signatures in `common/src-gen/signatures/JasminXT*-sig`
+* JasminXT pretty-printer in `common/src-gen/pp/JasminXT*-pp`
+
+These implementations are already imported into the initial project.
 
 ### Write Jasmin Code
 
