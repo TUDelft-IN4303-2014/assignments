@@ -20,9 +20,11 @@ In this lab, you extend your code generator to handle expressions, statements, m
 
 ### Submission
 
-You need to submit your MiniJava project on Blackboard. 
-As part of your submission, we ask you to provide a short paragraph explaining the organisation of your MiniJava examples, the corresponding Jasmin files, and your Stratego files. 
-The deadline for submission is December 18, 17:59.
+You need to submit your MiniJava project with a pull request against branch `assignment11` on GitHub. 
+Your GitHub repository contains a step-by-step procedure how to file such a request. 
+This project should contain a `README.md` with a short paragraph explaining the organisation of your Stratego files.
+
+The deadline for submissions is December 10th, 17:59.
 
 ### Grading
 
@@ -161,7 +163,7 @@ For example, the only variable parts in the default constructor of a class are i
     , Init()
     , JBCMethodDesc([], Void())
     , [ JBCLimitStack("1"), JBCLimitLocals("1")
-      , JBCVarDecl(VarNum(0), "this", Reference(c), LabelRef("start"), LabelRef("end"))
+      , JBCVarDecl("0", "this", Reference(CRef(c)), LabelRef("start"), LabelRef("end"))
       , JBCLabel("start")
       , ALOAD_0()
       , INVOKESPECIAL(JBCMethodRef(CRef(p), MRef(Init()), JBCMethodDesc([], Void())))
