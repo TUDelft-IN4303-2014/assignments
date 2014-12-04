@@ -147,11 +147,11 @@ In general, there are four different approaches to this in Stratego:
 
 4. Use special list variables (recommended). Stratego provides special variable names for sequences. These names end in `*`, for example `instr*`. When using such variables in a list, Stratego will inline the list elements at that position instead of creating a nested list. For example, 
 
-        instr1* := [LDC("1"), LDC("2")]; instr2* := [LDC("0"), instr1*, LDC("3")]
+        instr1* := [LDC(Int("1")), LDC(Int("2"))]; instr2* := [LDC(Int("0")), instr1*, LDC(Int("3"))]
 
     is equivalent to
 
-        instr1* := [LDC("1"), LDC("2")]; instr2* := [LDC("0"), LDC("1"), LDC("2"), LDC("3")]
+        instr1* := [LDC(Int("1")), LDC(Int("2"))]; instr2* := [LDC(Int("0")), LDC(Int("1")), LDC(Int("2")), LDC(Int("3"))]
 
 #### Generate Concrete Syntax
 
