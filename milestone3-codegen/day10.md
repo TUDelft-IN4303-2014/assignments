@@ -77,6 +77,8 @@ This project contains the following implementations:
 
 These implementations are already imported into the initial project.
 
+***Update:*** There is an inconsistency in the pretty-printing rules. You can fix this, by deleting `common/src-gen/pp/JasminXT-Extra-PP-Rules.pp.str`.
+
 ### Write Jasmin Code
 
 Consider the following simple MiniJava program:
