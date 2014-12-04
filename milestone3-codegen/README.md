@@ -19,10 +19,10 @@ We provide you with a Jasmin editor which was built with Spoofax.
 
 #### Usage
 
-You can edit Jasmin files with a Spoofax editor. The editor's menu entries allow you to inspect the abstract syntax of Jasmin files, to generate Java class files from them, and to execute those class files. The project comes with a number of example programs. You should explore them in order to get used to Jasmin's syntax.
+You can edit Jasmin files with a Spoofax editor. The editor's menu entries allow you to inspect the abstract syntax of Jasmin files, to generate Java class files from them, and to execute those class files. The GitHub repo contains a [number of example programs](https://github.com/metaborg/spoofax-jasmin/tree/master/org.spoofax.lang.jasmin.tests/examples). You should explore them in order to get used to Jasmin's syntax.
 
-[GitHub-Jasmin]: https://github.com/metaborg/spoofax-jasmin (Jasmin Editor Project on GitHub)
-[Jasmin]: http://jasmin.sourceforge.net/ (Jasmin Home Page)
+* GitHub-Jasmin: <https://github.com/metaborg/spoofax-jasmin> (Jasmin Editor Project on GitHub)
+* Jasmin: <http://jasmin.sourceforge.net/> (Jasmin Home Page)
 
 ## Material
 
