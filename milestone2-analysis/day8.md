@@ -184,11 +184,13 @@ The general idea is that only well-typed expressions have a type.
 For example, `1 + true` should have no type, since the right subexpression is of type `boolean` instead of type `int`.
 In TS, the general pattern for checking subexpressions is this:
 
-    e: ty
-    where e1: ety1
-      and ety1 == ty1
-      and e2: ety2
-      and ety2 == ty2
+    	expression: returnType
+      where ...
+      and rightExpression: rightExpressionType
+      and rightExpressionType == expectedRightOperatorType
+      and leftExpression: leftExpressionType
+      and leftExpressionType == expectedLeftOperatorType
+      
 
 In TS, you need to specify the types of operators in axioms:
 
