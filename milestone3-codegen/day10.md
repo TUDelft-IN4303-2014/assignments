@@ -99,7 +99,7 @@ Code generation should be a service of your MiniJava editor. To achieve this, de
 
     generate-jbc: (selected, position, ast, path, project-path) -> (filename, result)
 
-The implementation  should rely on a strategy `program-to-jbc`, which transforms MiniJava programs into Java bytecode. 
+The implementation should rely on a strategy `program-to-jbc`, which transforms MiniJava programs into Java bytecode. 
 
 ### Implement a Code Generation Strategy
 
@@ -166,6 +166,7 @@ Define a new builder *Generate Java class files* with corresponding builder stra
 
 To translate a Jasmin AST into a Java class file, you can use the strategy `jasmin-generate` defined in `trans/jasmin.str`. This strategy will only work, if you specify the path of the source file in a Jasmin directive. 
 The source directive is used by the JVM for debugging purposes and error messages. The Jasmin builder uses it to figure out where to store the class file. Thus, make sure your Jasmin AST has the form `JBCFile(JBCHeader(_, JBCSource(path), _, _, _, _, _, _, _, _), _, _)`. You can pass `path` as an strategy argument from `generate-jbc` to `program-to-jbc`.
+You should imlement this in a strategy called `generate-jc`, see the file `editor/MiniJava-Menus.esv` for more details.
 
 ### Notes on names in Jasmin
 
