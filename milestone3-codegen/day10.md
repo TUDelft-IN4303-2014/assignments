@@ -120,7 +120,7 @@ This rule should call `exp-to-jbc` to translate the expression inside the print 
 3. Provide a rule for `class-to-jbc`, which translates a main class from MiniJava into a Jasmin class file. 
 This rule should call `stmt-to-jbc` to translate the statement inside the main method to a Java bytecode sequence.
 
-4. Provide a rule for `program-to-jbc`, which translates a MiniJava program into a list of Jasmin class files. 
+4. Provide a rule for `program-to-jbc`, which translates a MiniJava program into a Jasmin class file. 
 This rule should call `class-to-jbc` to translate the main class of the program into a Jasmin class file.
 
 #### Testing
