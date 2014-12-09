@@ -197,4 +197,4 @@ Implement a strategy `write-file` that rewrites a pair of file name and file con
 
 ### Run a MiniJava Program
 
-Add a builder that runs a MiniJava program by running the main method from the generated class file.
+Add a builder that runs a MiniJava program by running the main method, in order to be able to run the main method a .class file has to be generated.
