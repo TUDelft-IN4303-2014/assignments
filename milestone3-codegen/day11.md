@@ -8,7 +8,7 @@ In this lab, you extend your code generator to handle expressions, statements, m
 
 1. Write MiniJava programs and corresponding Jasmin programs which cover the following constructs:
     * all kinds of unary and binary expressions,
-    * object creation,
+    * object and array creation,
     * `this` expressions,
     * method calls without arguments,
     * block statements, 
@@ -42,8 +42,8 @@ Furthermore, you can earn up to 65 points for your code generator:
     * expressions (27 points)
         * logic constants (1 point)
         * unary expressions (5 points)
-        * binary expressions (14 points)
-        * object creation (1 point)
+        * binary expressions, including array subscript (14 points)
+        * object and array creation (1 point)
         * `this` expressions (1 point)
         * method calls (5 points)
 * challenges (10 points)
