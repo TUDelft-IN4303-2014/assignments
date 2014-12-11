@@ -106,7 +106,7 @@ You can test each rule by selecting a code fragment in the MiniJava editor and r
 
 At this point, you can generate only a single Jasmin class file from the main class of a MiniJava program. In general, you need to generate a class file for each class in a MiniJava program. To achieve this, you need to adapt the interface of your builders. Currently, you return a pair of file name and file content:
 
-    generate-jbc: (selected, position, ast, path, project-path) ->(filename, result)
+    generate-jbc: (selected, position, ast, path, project-path) -> (filename, result)
 
 Spoofax takes this information, creates the file if needed, and (over-)writes its content. You can also return a constant `None()`:
 
@@ -114,11 +114,21 @@ Spoofax takes this information, creates the file if needed, and (over-)writes it
 
 This tells Spoofax not to create or write any files. Instead, you need to create and write any files on your own.
 
-2. Adapt `generate-jbc` to use `write-file` from the last lab in order to generate multiple Jasmin class files.
+1. Adapt `generate-jbc` to use `write-file` from the last lab's challenge in order to generate multiple Jasmin class files. If you didn't do this challenge, here's the implementation for `write-file`:
 
-3. Provide rules for `class-to-jbc`, which translate empty classes from MiniJava into Jasmin class files. 
+```
+write-file(|dir):
+f@JBCFile(JBCHeader(_, _, JBCClass(_, cn), _, _, _, _, _, _, _), _, _) -> fn
+where
+  fn  := $[[dir]/[cn].j];
+  <fputs; fclose> (<jasmin-pp> f, <fopen> (fn, "w"));
+  <refresh-workspace-file> fn
 
-4. Extend your builder for Java class files to handle multiple class files.
+```
+
+2. Provide rules for `class-to-jbc`, which translate classes from MiniJava into Jasmin class files. 
+
+3. Extend your builder for Java class files to handle multiple class files.
  
 ### Code Generation for Methods
 
