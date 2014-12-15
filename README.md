@@ -24,7 +24,7 @@ All assignments are publicly available on GitHub:
 * [Milestone 3: Code Generation](milestone3-codegen)
   10. [Compiling Minimal Programs](milestone3-codegen/day10.md) (due to 10 December)
   11. [Compiling Expressions and Statements](milestone3-codegen/day11.md) (due to 17 December)
-  12. Compiling, Fields, Parameters, and Variables (due to 11 January)
+  12. Compiling, Fields, Parameters, and Variables (due to 7 January)
 
 ## Submitting Assignments
 
