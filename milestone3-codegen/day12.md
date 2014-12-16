@@ -21,7 +21,7 @@ In this lab, you complete your code generator to handle arbitrary MiniJava progr
 You need to submit your MiniJava project on Blackboard. 
 As part of your submission, we ask you to provide a short paragraph explaining the organisation of your MiniJava examples, the corresponding Jasmin files, and your Stratego files. 
 When you solved challenges, you should provide another paragraph sketching your approach.
-The deadline for submission is January 8, 17:59.
+The deadline for submission is January 7, 17:59.
 
 ### Grading
 
