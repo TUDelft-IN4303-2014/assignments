@@ -18,10 +18,12 @@ In this lab, you complete your code generator to handle arbitrary MiniJava progr
 
 ### Submission
 
-You need to submit your MiniJava project on Blackboard. 
-As part of your submission, we ask you to provide a short paragraph explaining the organisation of your MiniJava examples, the corresponding Jasmin files, and your Stratego files. 
+You need to submit your MiniJava project with a pull request against branch `assignment12` on GitHub. 
+Your GitHub repository contains a step-by-step procedure how to file such a request. 
+This project should contain a `README.md` with a short paragraph explaining the organisation of your MiniJava examples, the corresponding Jasmin files, and your Stratego files. 
 When you solved challenges, you should provide another paragraph sketching your approach.
-The deadline for submission is January 7, 17:59.
+
+The deadline for submissions is January 7, 17:59.
 
 ### Grading
 
@@ -84,13 +86,13 @@ You can test each rule by selecting a code fragment in the MiniJava editor and r
 
 ### Generate Code for Local Variables and Variable Access
 
-Finally, you need to extend your code generator to cover parameters, local variables,  and access to them.
+Finally, you need to extend your code generator to cover parameters, local variables, and access to them.
 
 1. Declare a custom property `var-index` of type `Int` for the namespace `Variable` in an NaBL file.
    See the challenges from last week on how to declare such a property.
 
 2. Store the index `i` of each parameter and local variable on its name by applying `store-var-index(|ctx, i)` to its name.
-   See the challenges from last week on how to store properties on names.
+   See the [challenges from last week on how to store properties on names](day11.md#variant-1-storing-method-descriptors).
    In order to calculate indices, you need to match the method declaration, not the parameter or variable declarations.
    The following strategies might be useful:
     * `map-with-index(s)` works like `map(s)`, but applies `s` to pairs `(i, e)` where `e` is an element of the list and `i` is the index of this element in the list.   
@@ -155,7 +157,6 @@ Next, replace applications of `exp-to-jbc` and `stmt-to-jbc` by `exp-to-jbc-ln` 
     3. Maintain a state using [dynamic rules](http://eelcovisser.org/post/268/dynamic-rewrite-rules---the-good-parts).
     4. Maintain a state in the index. 
 
-
 ### Bonus
 
 #### Generate Precise Ranges for Local Variables
@@ -168,4 +169,3 @@ A precise range of a local variable covers only the parts in the code where the 
 
 You should extend your code generator to generate precise ranges.
 Similar to the stack limit challenge from last week, the analysis should be performed on the MiniJava code, not on the Java bytecode.
-

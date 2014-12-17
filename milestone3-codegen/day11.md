@@ -23,6 +23,7 @@ In this lab, you extend your code generator to handle expressions, statements, m
 You need to submit your MiniJava project with a pull request against branch `assignment11` on GitHub. 
 Your GitHub repository contains a step-by-step procedure how to file such a request. 
 This project should contain a `README.md` with a short paragraph explaining the organisation of your Stratego files.
+When you solved challenges, you should provide another paragraph sketching your approach.
 
 The deadline for submissions is December 17th, 17:59.
 
