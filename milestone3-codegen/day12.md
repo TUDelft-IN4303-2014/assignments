@@ -84,7 +84,7 @@ You now need to extend your code generator to handle field declarations and fiel
 
 3. Extend your rules for `class-to-jbc` to handle field declarations.
 
-4. Provide a rule for `exp-to-jbc`, which translates field access expressions from MiniJava into sequences of Java bytecode instructions.
+4. Provide a rule for `exp-to-jbc`, which translates field access expressions from MiniJava into sequences of Java bytecode instructions. We desugar `VarRef` terms that refer to fields into `FieldRef` terms for you. This happens in a post-desugaring step, so `FieldRef` terms are only visible in the analyzed AST, not the desugared AST.
  
 5. Provide a rule for `stmt-to-jbc`, which translates assignments to fields from MiniJava into sequences of Java bytecode instructions. 
    This rule should call `exp-to-jbc` to translate expressions to Java bytecode sequences.
