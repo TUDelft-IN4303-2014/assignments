@@ -51,6 +51,15 @@ This works like a challenge, but it gives you extra points on top of the total p
 
 ## Detailed Instructions
 
+### JasminXT Update
+
+This lab requires you to update JasminXT to the latest version.
+
+1. Choose *Check for Updates* from the *Help* menu.
+2. Wait for updates to be found.
+3. Install the updates to JasminXT.
+4. Restart Eclipse
+
 ### Write Even More Jasmin Code
 
 Before you complete your code generator, you should come up with small example MiniJava programs, which cover the following constructs:
