@@ -173,9 +173,7 @@ In the simplest case, the type of an expression is directly known.
 An typical example for such expressions are literals.
 For example, integer literals are of type `int`:
 
-    IntValue(v): Int()
-
-Note that you cannot use wildcards in TS patterns.
+    IntValue(_): Int()
 
 #### Unary and Binary Expressions
 
