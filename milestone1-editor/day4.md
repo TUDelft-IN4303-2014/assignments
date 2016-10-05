@@ -225,7 +225,7 @@ A unary expression has one subexpression and an operator.
 A binary expression has two subexpressions and an operator. 
 There are more than one kind of unary expressions and more than three kinds of binary expressions in MiniJava.
 2. Specify new constants for unary and binary operators in a signature. 
-Use `UnOp` and `BinOp` as types of these operators. 
+Use `Uop` and `Bop` as types of these operators. 
 Again, you should use names based on the semantics of an operator, not on its syntax.
 Reading an expression aloud might help you to find suitable constructor names.
 3. Define constructors `UnExp` and `BinExp`, 
