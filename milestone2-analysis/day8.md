@@ -337,6 +337,7 @@ where e1: et1
   and et2 == t2
  else error "Another meaningful error message should be here" on e2
 ```
+You cannot make us of String Interpolation in errors and warnings in TS.
 
 You can add variables to your error messages in TS using the following syntax:
 
